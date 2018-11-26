@@ -8,6 +8,18 @@ namespace DimseLab_Aflevering.Model
 {
     class Doohickey
     {
-        // Dimmerduten
+        private String name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+
+        public Doohickey(string inputName)
+        {
+            Name = inputName;
+        }
     }
 }

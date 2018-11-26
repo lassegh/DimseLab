@@ -8,6 +8,27 @@ namespace DimseLab_Aflevering
 {
     class User
     {
-        // Ich bin der user class
+        private String _firstName;
+        private String _lastName;
+
+        public string FirstName
+        {
+            get { return _firstName; }
+            set { _firstName = value; }
+        }
+
+        public string LastName
+        {
+            get { return _lastName; }
+            set { _lastName = value; }
+        }
+
+
+
+        public User(string inputFirstName, string inputLastName)
+        {
+            FirstName = inputFirstName;
+            LastName = inputLastName;
+        }
     }
 }

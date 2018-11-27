@@ -10,47 +10,21 @@
         <viewModel:MenuViewModel />
     </Page.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2.5*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
 
-        <!--#region MenuBar-->
-        <Grid Grid.Column="0"
-              Grid.Row="0"
-              Grid.RowSpan="2"
-              BorderThickness="4"
-              BorderBrush="Black">
-            <Grid Height="auto"
-                  Width="auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-            </Grid>
-        </Grid>
-        <!--#endregion-->
-
         <!--#region TopBar-->
         <Grid Grid.Row="0"
               Grid.Column="1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.6*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -59,31 +33,92 @@
             </Grid.RowDefinitions>
             <Rectangle Grid.Column="0"
                        Grid.Row="0"
-                       Grid.ColumnSpan="3"
-                       Fill="LightBlue" />
-            <Button Content="Home"
+                       Grid.ColumnSpan="6"
+                       Fill="Gray" />
+            <Button 
                     Width="140"
                     Height="80"
                     Command="{Binding BrowseButton}"
-                    Grid.Column="0"
-                    Grid.Row="0" />
-            <Button Content="Page 1"
-                    Width="140"
+                    Grid.Column="2"
+                    Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="Assets/browse.png"
+                           Grid.Row="0"
+                           MaxHeight="20"
+                           MinHeight="1"/>
+                    <TextBlock Text="Browse"
+                               Grid.Row="1"/>
+                </Grid>
+            </Button>
+            <Button Width="140"
                     Height="80"
                     Command="{Binding ManageProjectsButton}"
-                    Grid.Column="1"
-                    Grid.Row="0" />
-            <Button Content="Page 2"
-                    Width="140"
+                    Grid.Column="3"
+                    Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Source="Assets/myprojects.png"
+                           Grid.Row="0"
+                           MaxHeight="20"
+                           MinHeight="1" />
+                    <TextBlock Text="Mine Projekter"
+                               Grid.Row="1" />
+                </Grid>
+            </Button>
+            <Button Width="140"
                     Height="80"
                     Command="{Binding UserProfileButton}"
-                    Grid.Column="2"
-                    Grid.Row="0" />
+                    Grid.Column="4"
+                    Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Source="Assets/img_325791.png"
+                           Grid.Row="0"
+                           MaxHeight="20"
+                           MinHeight="1" />
+                    <TextBlock Text="Min Profil"
+                               Grid.Row="1" />
+                </Grid>
+            </Button>
+            <Button Width="140"
+                    Height="80"
+                    Command="{Binding AdminButton}"
+                    Grid.Column="5"
+                    Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Image Source="Assets/Cogwheel-512.png"
+                           Grid.Row="0"
+                           MaxHeight="20"
+                           MinHeight="1" />
+                    <TextBlock Text="Admin"
+                               Grid.Row="1" />
+                </Grid>
+            </Button>
 
             <Rectangle Grid.Column="1"
                        Grid.Row="1"
                        Grid.RowSpan="2"
-                       Fill="LightBlue" />
+                       Fill="Gray" />
+            <Image Source="Assets/logo.png" 
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.RowSpan="2"/>
         </Grid>
         <!--#endregion-->
     </Grid>

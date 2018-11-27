@@ -21,6 +21,7 @@ namespace DimseLab_Aflevering.ViewModel
         public RelayCommand ManageProjectsButton { get; set; }
         public RelayCommand UserProfileButton { get; set; }
         public RelayCommand AdminButton { get; set; }
+        public User CurrentUser { get; set; }
 
         public bool BrowseVisibility
         {
@@ -55,14 +56,21 @@ namespace DimseLab_Aflevering.ViewModel
 
         public MenuViewModel()
         {
-            //TODO get loginToken
+            //TODO get loginToken - tjek om der er logget på
+            _loggedIn = true;
+            CurrentUser = new User("Lars","Truelsen",4612456,"lars@easj.dk");
+
             if (_loggedIn)
             {
                 //Show me browse
+                OpenBrowse();
             }
             else
             {
                 //Show me login
+                OpenUserProfile();
+
+                // TODO Disable menu buttons
             }
             
             BrowseButton = new RelayCommand(OpenBrowse);

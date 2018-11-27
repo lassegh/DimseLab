@@ -122,6 +122,24 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Grid.RowSpan="2" />
+            <TextBlock Text="Du er logged in som:"
+                       Grid.Column="2"
+                       Grid.Row="1"
+                       VerticalAlignment="Bottom"
+                       Margin="10,0,0,0"/>
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        Margin="10,0,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CurrentUser.FirstName}"
+                           Margin="0,0,2,0" />
+                <TextBlock Text="{Binding CurrentUser.LastName}"
+                           Margin="0" />
+            </StackPanel>
+                <TextBlock Text="{Binding CurrentUser.Email}"/>
+            </StackPanel>
+            
         </Grid>
         <!--#endregion-->
 
@@ -160,7 +178,7 @@
                                                            Margin="10,5,10,5"
                                                            Grid.Row="1"
                                                            Grid.Column="0"
-                                                           TextWrapping="Wrap"/>
+                                                           TextWrapping="Wrap" />
                                                 <MenuFlyoutSeparator Grid.Row="2"
                                                                      Grid.Column="0"
                                                                      Grid.ColumnSpan="2" />
@@ -187,15 +205,15 @@
                                                     <RowDefinition />
                                                 </Grid.RowDefinitions>
                                                 <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding FirstName}"
-                                                           Margin="10,10,2,5"/>
-                                                <TextBlock Text="{Binding LastName}"
-                                                           Margin="0,10,10,5" />
+                                                    <TextBlock Text="{Binding FirstName}"
+                                                               Margin="10,10,2,5" />
+                                                    <TextBlock Text="{Binding LastName}"
+                                                               Margin="0,10,10,5" />
                                                 </StackPanel>
                                                 <TextBlock Text="{Binding Email}"
                                                            Margin="10,5,10,5"
-                                                           Grid.Row="1"/>
-                                                <MenuFlyoutSeparator Grid.Row="2"/>
+                                                           Grid.Row="1" />
+                                                <MenuFlyoutSeparator Grid.Row="2" />
                                             </Grid>
                                         </StackPanel>
                                     </DataTemplate>
@@ -259,7 +277,7 @@
                            Grid.Column="0"
                            Text="Mine Projekter"
                            FontWeight="Bold"
-                           Margin="10" />
+                           Margin="10,12,10,10" />
 
                 <ListView ItemsSource="{Binding MyProjects, Mode=TwoWay}"
                           Height="500"

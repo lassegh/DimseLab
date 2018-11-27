@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using DimseLab_Aflevering.Annotations;
 using DimseLab_Aflevering.Model;
 using GalaSoft.MvvmLight.Command;
@@ -16,13 +17,13 @@ namespace DimseLab_Aflevering.ViewModel
     {
         ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
 
-        private string _inputName;
-        private string _inputDescribtion;
+        private string _projectInputName;
+        private string _projectInputDescribtion;
 
         private DateTime _projectBeginDate;
         private DateTime _projectEndDate;
 
-        private string _isFinished;
+        private bool _projectIsFinished;
 
         private RelayCommand _relayAddProject;
 
@@ -38,9 +39,10 @@ namespace DimseLab_Aflevering.ViewModel
 
         }
 
+        // Adds a new project to "ProjectList"
         public void AddNewProject()
         {
-            ProjectList.Add(new Project(InputName, InputDescribtion, ProjectEndDate));
+            ProjectList.Add(new Project(ProjectInputName, ProjectInputDescribtion, ProjectEndDate));
         }
 
 
@@ -57,16 +59,16 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
-        public string InputName
+        public string ProjectInputName
         {
-            get { return _inputName; }
-            set { _inputName = value; }
+            get { return _projectInputName; }
+            set { _projectInputName = value; }
         }
 
-        public string InputDescribtion
+        public string ProjectInputDescribtion
         {
-            get { return _inputDescribtion; }
-            set { _inputDescribtion = value; }
+            get { return _projectInputDescribtion; }
+            set { _projectInputDescribtion = value; }
         }
 
         public DateTime ProjectBeginDate
@@ -81,10 +83,10 @@ namespace DimseLab_Aflevering.ViewModel
             set { _projectEndDate = value; }
         }
 
-        public string IsFinished
+        public bool ProjectIsFinished
         {
-            get { return _isFinished; }
-            set { _isFinished = value; }
+            get { return _projectIsFinished; }
+            set { _projectIsFinished = value; }
         }
 
         public RelayCommand RelayAddProject

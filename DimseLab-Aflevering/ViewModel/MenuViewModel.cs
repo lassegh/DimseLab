@@ -14,10 +14,13 @@ namespace DimseLab_Aflevering.ViewModel
     {
         private bool _loggedIn;
         private bool _browseVisibility = false;
+        private bool _myProjectsVisibility = false;
+        private bool _myProfileVisibility = false;
 
         public RelayCommand BrowseButton { get; set; }
         public RelayCommand ManageProjectsButton { get; set; }
         public RelayCommand UserProfileButton { get; set; }
+        public RelayCommand AdminButton { get; set; }
 
         public bool BrowseVisibility
         {
@@ -25,6 +28,26 @@ namespace DimseLab_Aflevering.ViewModel
             set
             {
                 _browseVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool MyProjectsVisibility
+        {
+            get { return _myProjectsVisibility; }
+            set
+            {
+                _myProjectsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool MyProfileVisibility
+        {
+            get { return _myProfileVisibility; }
+            set
+            {
+                _myProfileVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -44,16 +67,37 @@ namespace DimseLab_Aflevering.ViewModel
             
             BrowseButton = new RelayCommand(OpenBrowse);
             ManageProjectsButton = new RelayCommand(OpenMyProjects);
+            UserProfileButton = new RelayCommand(OpenUserProfile);
+            AdminButton = new RelayCommand(OpenAdmin);
         }
 
         private void OpenBrowse()
         {
             BrowseVisibility = true;
+            MyProjectsVisibility = false;
+            MyProfileVisibility = false;
         }
 
         private void OpenMyProjects()
         {
             BrowseVisibility = false;
+            MyProjectsVisibility = true;
+            MyProfileVisibility = false;
+        }
+
+        private void OpenUserProfile()
+        {
+            BrowseVisibility = false;
+            MyProjectsVisibility = false;
+            MyProfileVisibility = true;
+        }
+
+        private void OpenAdmin()
+        {
+            BrowseVisibility = false;
+            MyProjectsVisibility = false;
+            MyProfileVisibility = false;
+            // Admin to be visible
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

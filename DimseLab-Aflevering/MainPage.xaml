@@ -126,14 +126,47 @@
         <!--#endregion-->
 
         <!--#region BrowserGrid-->
-        <Grid Grid.Row="1" Visibility="{Binding BrowseVisibility, Mode=TwoWay}">
-            <Grid.DataContext>
-                <viewModel:BrowseViewModel />
-            </Grid.DataContext>
-            <TextBox BorderThickness="5"
-                     BorderBrush="Black">
+        <Grid Grid.Row="1"
+              Visibility="{Binding BrowseVisibility}">
+            <Grid Grid.Row="1">
+                <Grid.DataContext>
+                    <viewModel:BrowseViewModel />
+                </Grid.DataContext>
+                <TextBox BorderThickness="5"
+                         BorderBrush="Black">
 
-            </TextBox>
+                </TextBox>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region MyProjectsGrid-->
+        <Grid Grid.Row="1"
+              Visibility="{Binding MyProjectsVisibility}">
+            <Grid Grid.Row="1">
+                <Grid.DataContext>
+                    <viewModel:BrowseViewModel />
+                </Grid.DataContext>
+                <TextBox BorderThickness="5"
+                         BorderBrush="Blue">
+
+                </TextBox>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region MyProfileGrid-->
+        <Grid Grid.Row="1"
+              Visibility="{Binding MyProfileVisibility}">
+            <Grid Grid.Row="1">
+                <Grid.DataContext>
+                    <viewModel:BrowseViewModel />
+                </Grid.DataContext>
+                <TextBox BorderThickness="5"
+                         BorderBrush="Red">
+
+                </TextBox>
+            </Grid>
         </Grid>
         <!--#endregion-->
     </Grid>

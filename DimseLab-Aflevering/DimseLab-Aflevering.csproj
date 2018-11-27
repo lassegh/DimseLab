@@ -96,7 +96,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Doohickey.cs" />
@@ -115,6 +116,11 @@
     <None Include="DimseLab-Aflevering_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\browse.png" />
+    <Content Include="Assets\Cogwheel-512.png" />
+    <Content Include="Assets\img_325791.png" />
+    <Content Include="Assets\logo.png" />
+    <Content Include="Assets\myprojects.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -129,7 +135,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -142,7 +148,9 @@
       <Version>5.3.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

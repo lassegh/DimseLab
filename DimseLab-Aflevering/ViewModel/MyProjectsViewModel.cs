@@ -16,17 +16,34 @@ namespace DimseLab_Aflevering.ViewModel
         private ObservableCollection<Project> _myProjects = new ObservableCollection<Project>();
         private Project _selectedProject;
 
-        public ObservableCollection<Project> MyProjects { get; set; }
-        public Project SelectedProject
-        {
-            get { return _selectedProject; }
-            set { _selectedProject = value; }
-        }
+
 
         public MyProjectsViewModel()
         {
-            
+
         }
+        
+
+
+
+        #region Get & Set Properties
+
+        public ObservableCollection<Project> MyProjects { get; set; }
+
+        public Project SelectedProject
+        {
+            get { return _selectedProject; }
+            set
+            {
+                _selectedProject = value;
+                // skal der ikke kaldes OnPropertyChange her? /Michael
+            }
+        }
+
+        #endregion
+
+
+        #region NotifyPropChange
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -35,5 +52,8 @@ namespace DimseLab_Aflevering.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
+
+
 }

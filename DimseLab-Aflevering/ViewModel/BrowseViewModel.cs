@@ -54,10 +54,10 @@ namespace DimseLab_Aflevering.ViewModel
             RelayAddProject = new RelayCommand(AddNewProject);
 
             // Placeholder Projects
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
+            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", Convert.ToDateTime("27/01/2019")));
+            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", Convert.ToDateTime("27/01/2019")));
+            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", Convert.ToDateTime("27/01/2019")));
+            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", Convert.ToDateTime("27/01/2019")));
 
         }
 
@@ -94,7 +94,7 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
 
-        #region Get & Set Propertys
+        #region Get & Set Properties
 
         public ObservableCollection<User> UserList
         {

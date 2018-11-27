@@ -43,15 +43,15 @@
                     Grid.Row="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Image Source="Assets/browse.png"
                            Grid.Row="0"
                            MaxHeight="20"
-                           MinHeight="1"/>
+                           MinHeight="1" />
                     <TextBlock Text="Browse"
-                               Grid.Row="1"/>
+                               Grid.Row="1" />
                 </Grid>
             </Button>
             <Button HorizontalAlignment="Center"
@@ -116,12 +116,24 @@
                        Grid.Row="1"
                        Grid.RowSpan="2"
                        Fill="Gray" />
-            <Image Source="Assets/logo.png" 
+            <Image Source="Assets/logo.png"
                    Grid.Column="1"
                    Grid.Row="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   Grid.RowSpan="2"/>
+                   Grid.RowSpan="2" />
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region BrowserGrid-->
+        <Grid Grid.Row="1" Visibility="{Binding BrowseVisibility, Mode=TwoWay}">
+            <Grid.DataContext>
+                <viewModel:BrowseViewModel />
+            </Grid.DataContext>
+            <TextBox BorderThickness="5"
+                     BorderBrush="Black">
+
+            </TextBox>
         </Grid>
         <!--#endregion-->
     </Grid>

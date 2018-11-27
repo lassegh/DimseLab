@@ -47,6 +47,7 @@ namespace DimseLab_Aflevering.ViewModel
 
             // Placeholder Users
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));

@@ -6,15 +6,27 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
+using Windows.UI.Popups;
 using DimseLab_Aflevering.Annotations;
 using DimseLab_Aflevering.Model;
 using GalaSoft.MvvmLight.Command;
 
 namespace DimseLab_Aflevering.ViewModel
 {
-    class ProjectViewModel : INotifyPropertyChanged
+    class BrowseViewModel : INotifyPropertyChanged
     {
+        // User
+        ObservableCollection<User> _userList = new ObservableCollection<User>();
+
+        private string _userInputFirstName;
+        private string _userInputLastName;
+        private int _userInputNumber;
+        private string _userInputEmail;
+
+        private RelayCommand _relayAddUser;
+
+
+        // Project
         ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
 
         private string _projectInputName;
@@ -27,16 +39,52 @@ namespace DimseLab_Aflevering.ViewModel
 
         private RelayCommand _relayAddProject;
 
-        public ProjectViewModel()
+
+
+        public BrowseViewModel()
         {
+            RelayAddUser = new RelayCommand(CallAddNewUser);
+
+            // Placeholder Users
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            // Projects created as placeholders
+            // Placeholder Projects
             ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
             ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
             ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
             ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.Today));
 
+        }
+
+        // A fix for the async method "AddNewUser"
+        #region FixAsyncAddNewUser
+
+        public void CallAddNewUser()
+        {
+            AddNewUser();
+        }
+
+        #endregion
+
+
+        //Method that adds a new user or otherwise tells the user if they used a wrong email
+        public async Task AddNewUser()
+        {
+            if (UserInputEmail.Contains("@easj.dk".ToLower()) && string.IsNullOrWhiteSpace(UserInputEmail) || string.IsNullOrWhiteSpace(UserInputFirstName) || string.IsNullOrWhiteSpace(UserInputLastName))
+            {
+                // Wrong email used
+                var dialog = new MessageDialog("Invalid Email Used");
+                await dialog.ShowAsync();
+            }
+            else
+            {   // Adds new user
+                UserList.Add(new User(UserInputFirstName, UserInputLastName, UserInputNumber, UserInputEmail));
+            }
         }
 
         // Adds a new project to "ProjectList"
@@ -46,15 +94,55 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
 
+        #region Get & Set Propertys
 
-        #region Get & Set Proppertys
+        public ObservableCollection<User> UserList
+        {
+            get { return _userList; }
+            set
+            {
+                _userList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string UserInputFirstName
+        {
+            get { return _userInputFirstName; }
+            set { _userInputFirstName = value; }
+        }
+
+        public string UserInputLastName
+        {
+            get { return _userInputLastName; }
+            set { _userInputLastName = value; }
+        }
+
+        public int UserInputNumber
+        {
+            get { return _userInputNumber; }
+            set { _userInputNumber = value; }
+        }
+
+        public string UserInputEmail
+        {
+            get { return _userInputEmail; }
+            set { _userInputEmail = value; }
+        }
+
+        public RelayCommand RelayAddUser
+        {
+            get { return _relayAddUser; }
+            set { _relayAddUser = value; }
+        }
+
 
         public ObservableCollection<Project> ProjectList
         {
             get { return _projectList; }
             set
             {
-                _projectList = value; 
+                _projectList = value;
                 OnPropertyChanged();
             }
         }

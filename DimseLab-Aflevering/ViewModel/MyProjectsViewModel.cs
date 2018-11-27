@@ -20,14 +20,16 @@ namespace DimseLab_Aflevering.ViewModel
 
         public MyProjectsViewModel()
         {
-            var helper = new Helper();
-            var projects = helper.ReadProjectData();
+            var helper = new Helper(); // New instance of helper class to access all its functionality
+            var projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
 
+            // Loops though every project and compares if the email fits the current users email. 
             foreach (var project in projects)
-            {
+            {   
+                // Compares emails to test and show that it works, since we dont have a login system yet
                 if (project.ProjectMembers.Any(x => x.Email == helper.CurrentUser.Email))
                 {
-                    MyProjects.Add(project);
+                    MyProjects.Add(project); //adds this new filtered list to the "MyProject" List
                 }
                 
             }

@@ -54,13 +54,12 @@ namespace DimseLab_Aflevering.ViewModel
 
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            // Placeholder Projects
+            // Moved all dummy data for projects to "helper class" since this is were it will come from in the future.
             var helper = new Helper();
             var projects = helper.ReadProjectData();
 
             foreach (var project in projects)
             {
-
                 ProjectList.Add(project);
             }
 

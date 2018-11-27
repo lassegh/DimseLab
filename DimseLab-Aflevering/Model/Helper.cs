@@ -31,10 +31,15 @@ namespace DimseLab_Aflevering.Model
 
         }
 
+        // Her læser vi hele vores "database / Dummydata" af projekter fra, som bliver stoppet i en ny liste
+        // som bliver brugt i både "Browse" og i "MyProjects". Men "MyProjects" bliver filtreret og sat i en ny liste
         public List<Project> ReadProjectData()
         {
             var projects = new List<Project>();
 
+
+
+            // Project 1
             var project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
                 System.Globalization.CultureInfo.InvariantCulture));
 
@@ -42,6 +47,10 @@ namespace DimseLab_Aflevering.Model
 
             projects.Add(project1);
 
+
+
+
+            // Project 2
             var project2 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
                 System.Globalization.CultureInfo.InvariantCulture));
 
@@ -49,6 +58,10 @@ namespace DimseLab_Aflevering.Model
 
             projects.Add(project2);
 
+
+
+
+            // Project 1
             var project3 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
                 System.Globalization.CultureInfo.InvariantCulture));
 
@@ -56,6 +69,9 @@ namespace DimseLab_Aflevering.Model
 
             projects.Add(project3);
 
+
+
+            // Returns the new filtered project to the one that calls it.
             return projects;
         }
 

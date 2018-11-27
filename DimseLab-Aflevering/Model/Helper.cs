@@ -15,11 +15,12 @@ namespace DimseLab_Aflevering.Model
 
         List<User> _userList = new List<User>();
 
+        public User CurrentUser { get; set; }
 
         public Helper()
         {
-          
-            
+            CurrentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
+
 
 
         }
@@ -30,9 +31,32 @@ namespace DimseLab_Aflevering.Model
 
         }
 
-        public void ReadProjectData()
+        public List<Project> ReadProjectData()
         {
+            var projects = new List<Project>();
 
+            var project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+                System.Globalization.CultureInfo.InvariantCulture));
+
+            project1.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
+
+            projects.Add(project1);
+
+            var project2 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+                System.Globalization.CultureInfo.InvariantCulture));
+
+            project2.ProjectMembers.Add(new User("Ole", "Olsen", 32324567, "Ole@easj.dk".ToLower()));
+
+            projects.Add(project2);
+
+            var project3 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+                System.Globalization.CultureInfo.InvariantCulture));
+
+            project3.ProjectMembers.Add(new User("Karsten", "Karlsen", 32324567, "Karsten@easj.dk".ToLower()));
+
+            projects.Add(project3);
+
+            return projects;
         }
 
         public void WriteDoohickeyData()

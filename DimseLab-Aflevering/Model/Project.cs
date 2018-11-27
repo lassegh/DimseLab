@@ -77,6 +77,7 @@ namespace DimseLab_Aflevering.Model
             ProjectBeginDate = DateTime.Now; //vælger nuværende dag og tidspunkt
             ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her
             IsFinished = false; //for den er jo ikke færdig når den lige er blevet skabt
+            ProjectMembers = new List<User>();
         }
 
 

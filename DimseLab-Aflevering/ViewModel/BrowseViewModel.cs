@@ -55,14 +55,15 @@ namespace DimseLab_Aflevering.ViewModel
             RelayAddProject = new RelayCommand(AddNewProject);
 
             // Placeholder Projects
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture)));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture)));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture)));
-            ProjectList.Add(new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture)));
+            var helper = new Helper();
+            var projects = helper.ReadProjectData();
+
+            foreach (var project in projects)
+            {
+
+                ProjectList.Add(project);
+            }
+
 
         }
 

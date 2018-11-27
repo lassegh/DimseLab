@@ -20,6 +20,17 @@ namespace DimseLab_Aflevering.ViewModel
 
         public MyProjectsViewModel()
         {
+            var helper = new Helper();
+            var projects = helper.ReadProjectData();
+
+            foreach (var project in projects)
+            {
+                if (project.ProjectMembers.Any(x => x.Email == helper.CurrentUser.Email))
+                {
+                    MyProjects.Add(project);
+                }
+                
+            }
 
         }
         
@@ -27,8 +38,6 @@ namespace DimseLab_Aflevering.ViewModel
 
 
         #region Get & Set Properties
-
-        public ObservableCollection<Project> MyProjects { get; set; }
 
         public Project SelectedProject
         {
@@ -38,6 +47,12 @@ namespace DimseLab_Aflevering.ViewModel
                 _selectedProject = value;
                 // skal der ikke kaldes OnPropertyChange her? /Michael
             }
+        }
+
+        public ObservableCollection<Project> MyProjects
+        {
+            get { return _myProjects; }
+            set { _myProjects = value; }
         }
 
         #endregion

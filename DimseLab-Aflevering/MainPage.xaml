@@ -35,8 +35,8 @@
                        Grid.Row="0"
                        Grid.ColumnSpan="6"
                        Fill="Gray" />
-            <Button 
-                    Width="140"
+            <Button HorizontalAlignment="Center"
+                    Width="400"
                     Height="80"
                     Command="{Binding BrowseButton}"
                     Grid.Column="2"
@@ -54,7 +54,8 @@
                                Grid.Row="1"/>
                 </Grid>
             </Button>
-            <Button Width="140"
+            <Button HorizontalAlignment="Center"
+                    Width="400"
                     Height="80"
                     Command="{Binding ManageProjectsButton}"
                     Grid.Column="3"
@@ -72,7 +73,8 @@
                                Grid.Row="1" />
                 </Grid>
             </Button>
-            <Button Width="140"
+            <Button HorizontalAlignment="Center"
+                    Width="400"
                     Height="80"
                     Command="{Binding UserProfileButton}"
                     Grid.Column="4"
@@ -90,7 +92,8 @@
                                Grid.Row="1" />
                 </Grid>
             </Button>
-            <Button Width="140"
+            <Button HorizontalAlignment="Center"
+                    Width="400"
                     Height="80"
                     Command="{Binding AdminButton}"
                     Grid.Column="5"

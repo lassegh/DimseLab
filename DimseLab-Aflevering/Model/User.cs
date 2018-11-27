@@ -10,6 +10,8 @@ namespace DimseLab_Aflevering
     {
         private String _firstName;
         private String _lastName;
+        private int _number;
+        private string _email;
 
         public string FirstName
         {
@@ -23,12 +25,26 @@ namespace DimseLab_Aflevering
             set { _lastName = value; }
         }
 
+        public int Number
+        {
+            get { return _number; }
+            set { _number = value; }
+        }
+
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
 
 
-        public User(string inputFirstName, string inputLastName)
+        public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail)
         {
             FirstName = inputFirstName;
             LastName = inputLastName;
+            Number = inputNumber;
+            Email = inputEmail;
+
         }
     }
 }

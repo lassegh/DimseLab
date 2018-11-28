@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\TEMP_RegexSearch.cs" />
+    <Compile Include="Model\ViewController.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">

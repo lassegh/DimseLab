@@ -34,7 +34,7 @@ namespace DimseLab_Aflevering
 
 
 
-
+/*
             //Erstat HEJHEJHEJ med hvad end object du har en liste af
         public List<HEJHEJHEJ> RXsearch(string SearchTerm, List<HEJHEJHEJ> inputList)
         {
@@ -60,6 +60,6 @@ namespace DimseLab_Aflevering
 
             //returerner en liste med søgeresultater
             return FilteredList;
-        }
+        }*/
     }
 }

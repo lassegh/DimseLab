@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using DimseLab_Aflevering.Annotations;
+using DimseLab_Aflevering.Model;
 using GalaSoft.MvvmLight.Command;
 
 namespace DimseLab_Aflevering.ViewModel
 {
     class MenuViewModel : INotifyPropertyChanged
     {
-        private bool _loggedIn;
-        private bool _browseVisibility = false;
-        private bool _myProjectsVisibility = false;
-        private bool _myProfileVisibility = false;
+        private bool _loggedIn; // er der logged på
+
+        // Objecter af views holdes i denne liste
+        private List<ViewController> _viewVisibility;
 
         public RelayCommand BrowseButton { get; set; }
         public RelayCommand ManageProjectsButton { get; set; }
@@ -23,32 +25,12 @@ namespace DimseLab_Aflevering.ViewModel
         public RelayCommand AdminButton { get; set; }
         public User CurrentUser { get; set; }
 
-        public bool BrowseVisibility
+        public List<ViewController> ViewVisibility
         {
-            get { return _browseVisibility; }
+            get { return _viewVisibility; }
             set
             {
-                _browseVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool MyProjectsVisibility
-        {
-            get { return _myProjectsVisibility; }
-            set
-            {
-                _myProjectsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool MyProfileVisibility
-        {
-            get { return _myProfileVisibility; }
-            set
-            {
-                _myProfileVisibility = value;
+                _viewVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -60,10 +42,18 @@ namespace DimseLab_Aflevering.ViewModel
             _loggedIn = true;
             CurrentUser = new User("Lars","Truelsen",4612456,"lars@easj.dk");
 
+            // Lægger objecter for views i liste
+            _viewVisibility = new List<ViewController>()
+            {
+                new ViewController("Browse"),
+                new ViewController("MyProjects"),
+                new ViewController("MyProfile")
+            };
+
             if (_loggedIn)
             {
                 //Show me browse
-                OpenBrowse();
+                OpenMyProjects();
             }
             else
             {
@@ -79,33 +69,40 @@ namespace DimseLab_Aflevering.ViewModel
             AdminButton = new RelayCommand(OpenAdmin);
         }
 
+        /// <summary>
+        /// Viser et bestemt view
+        /// </summary>
+        /// <param name="name">Navnet på det view, der skal vises</param>
+        private void ShowView(string name)
+        {
+            foreach (var view in ViewVisibility)
+            {
+                if (view.Name.Equals(name))
+                {
+                    view.Visible = true;
+                }
+                else view.Visible = false;
+            }
+        }
+
         private void OpenBrowse()
         {
-            BrowseVisibility = true;
-            MyProjectsVisibility = false;
-            MyProfileVisibility = false;
+            ShowView("Browse");
         }
 
         private void OpenMyProjects()
         {
-            BrowseVisibility = false;
-            MyProjectsVisibility = true;
-            MyProfileVisibility = false;
+            ShowView("MyProjects");
         }
 
         private void OpenUserProfile()
         {
-            BrowseVisibility = false;
-            MyProjectsVisibility = false;
-            MyProfileVisibility = true;
+            ShowView("MyProfile");
         }
 
         private void OpenAdmin()
         {
-            BrowseVisibility = false;
-            MyProjectsVisibility = false;
-            MyProfileVisibility = false;
-            // Admin to be visible
+            ShowView("Admin");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

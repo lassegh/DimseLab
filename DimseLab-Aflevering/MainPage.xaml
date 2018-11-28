@@ -145,13 +145,12 @@
 
         <!--#region BrowserGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding BrowseVisibility}">
-            <Grid Grid.Row="1">
+              Visibility="{Binding ViewVisibility[0].Visible}">
+            <Grid>
                 <Grid.DataContext>
                     <viewModel:BrowseViewModel />
                 </Grid.DataContext>
-                <Pivot x:Name="rootPivot"
-                       Title="Browse">
+                <Pivot Title="Browse">
                     <PivotItem Header="Projekter">
                         <StackPanel>
                             <ListView ItemsSource="{Binding ProjectList, Mode=TwoWay}"
@@ -260,7 +259,7 @@
 
         <!--#region MyProjectsGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding MyProjectsVisibility}">
+              Visibility="{Binding ViewVisibility[1].Visible}">
             <Grid>
                 <Grid.DataContext>
                     <viewModel:MyProjectsViewModel />
@@ -366,7 +365,7 @@
 
         <!--#region MyProfileGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding MyProfileVisibility}">
+              Visibility="{Binding  ViewVisibility[2].Visible}">
             <Grid Grid.Row="1">
                 <Grid.DataContext>
                     <viewModel:BrowseViewModel />

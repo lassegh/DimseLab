@@ -47,7 +47,9 @@ namespace DimseLab_Aflevering.ViewModel
             {
                 new ViewController("Browse"),
                 new ViewController("MyProjects"),
-                new ViewController("MyProfile")
+                new ViewController("MyProfile"),
+                new ViewController("Admin"),
+                new ViewController("EditProject")
             };
 
             if (_loggedIn)

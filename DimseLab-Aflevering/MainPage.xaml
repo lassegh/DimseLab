@@ -285,6 +285,7 @@
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           SelectedItem="{Binding SelectedProject}"
+                          SelectedValuePath="{Binding }"
                           Grid.Row="1"
                           Grid.Column="0">
                     <ListView.ItemTemplate>
@@ -303,7 +304,7 @@
                                     <TextBlock Text="{Binding Name}"
                                                Margin="10,10,10,5"
                                                Grid.Row="0"
-                                               Grid.Column="0" />
+                                               Grid.Column="0"/>
                                     <TextBlock Text="{Binding Description}"
                                                Margin="10,5,10,5"
                                                Grid.Row="1"
@@ -312,6 +313,7 @@
                                     <MenuFlyoutSeparator Grid.Row="2"
                                                          Grid.Column="0"
                                                          Grid.ColumnSpan="2" />
+                                    
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>
@@ -387,6 +389,21 @@
                 </Grid.DataContext>
                 <TextBox BorderThickness="5"
                          BorderBrush="Red">
+
+                </TextBox>
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region AdminGrid-->
+        <Grid Grid.Row="1"
+              Visibility="{Binding  ViewVisibility[3].Visible}">
+            <Grid Grid.Row="1">
+                <Grid.DataContext>
+                    <viewModel:BrowseViewModel />
+                </Grid.DataContext>
+                <TextBox BorderThickness="5"
+                         BorderBrush="BlueViolet">
 
                 </TextBox>
             </Grid>

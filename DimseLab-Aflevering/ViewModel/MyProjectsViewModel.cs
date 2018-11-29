@@ -36,8 +36,11 @@ namespace DimseLab_Aflevering.ViewModel
             }
 
         }
-        
 
+        public void OnClick_ProjectInList()
+        {
+
+        }
 
 
         #region Get & Set Properties

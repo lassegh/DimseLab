@@ -25,28 +25,38 @@ namespace DimseLab_Aflevering.Model
             CurrentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
 
 
-
         }
 
+        #region readingNwriting
 
-        //her var lars
-        //alt andet lige, så undskylder han for den følgende WriteProjectData
-        public static async Task WriteProjectData<T>(T objectToSave)
+        
+
+        
+        //Denne kode er stjålet direkte fra Ebbe Vang. Fuck tha police!
+        public static async Task SaveObjectToXml<T>(List<T> inputList, string filename)
         {
             // stores an object in XML format in file called 'filename'
             var serializer = new XmlSerializer(typeof(T));
-            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(@"C:\Dimselab");
-            StorageFile file = await folder.CreateFileAsync("ProjectData.xml", CreationCollisionOption.ReplaceExisting);
+            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(@"C:/Dimselab");
+            StorageFile file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             Stream stream = await file.OpenStreamForWriteAsync();
 
-            using (stream)
+            foreach (T ITEM in inputList)
             {
-                serializer.Serialize(stream, objectToSave);
+                using (stream)
+                {
+                    serializer.Serialize(stream, ITEM);
+                }
             }
+
         }
 
 
 
+        public async void WriteProjectData()
+        {
+            await SaveObjectToXml(ProjectList, "ProjectData.xml");
+        }
 
 
         // Her læser vi hele vores "database / Dummydata" af projekter fra, som bliver stoppet i en ny liste
@@ -93,9 +103,9 @@ namespace DimseLab_Aflevering.Model
             return projects;
         }
 
-        public void WriteDoohickeyData()
+        public async void WriteDoohickeyData()
         {
-
+            await SaveObjectToXml(DoohickeyList, "DoohickeyData.xml");
         }
 
         public void ReadDoohickeyData()
@@ -103,15 +113,20 @@ namespace DimseLab_Aflevering.Model
 
         }
 
-        public void WriteUserData()
+        public async void WriteUserData()
         {
-
+            await SaveObjectToXml(UserList, "UserData.xml");
         }
 
         public void ReadUserData()
         {
 
         }
+
+        #endregion
+
+
+
 
         public List<User> UserList
         {

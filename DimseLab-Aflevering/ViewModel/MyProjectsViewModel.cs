@@ -21,11 +21,19 @@ namespace DimseLab_Aflevering.ViewModel
         private DateTime _projectEndDate;
         private Project _selectedProject;
 
+
         private RelayCommand _selectedProjectCommand;
 
+        private string _inputProjectName;
+        private string _inputProjectDescribtion;
+        private DateTime _inputProjectDate;
+
+        private RelayCommand _relayAddProject;
 
         public MyProjectsViewModel()
         {
+            RelayAddProject = new RelayCommand(AddNewProject);
+
             var helper = new Helper(); // New instance of helper class to access all its functionality
             var projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
 
@@ -41,6 +49,31 @@ namespace DimseLab_Aflevering.ViewModel
             }
 
             SelectedProjectCommand = new RelayCommand(OnClickProjectInList);
+
+        }
+
+        public void AddNewProject()
+        {
+            if (string.IsNullOrWhiteSpace(InputProjectName) || string.IsNullOrWhiteSpace(InputProjectDescribtion))
+            {
+
+            }
+            else
+            {
+                var helper = new Helper();
+                var projects = helper.ReadProjectData();
+
+
+
+
+                // Add Project
+                var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate);
+
+                project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
+
+                projects.Add(project);
+
+            }
         }
 
         public void OnClickProjectInList()
@@ -70,7 +103,11 @@ namespace DimseLab_Aflevering.ViewModel
         public ObservableCollection<Project> MyProjects
         {
             get { return _myProjects; }
-            set { _myProjects = value; }
+            set
+            {
+                _myProjects = value;
+                OnPropertyChanged();
+            }
         }
 
         public DateTime ProjectEndDate
@@ -83,10 +120,35 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+
         public RelayCommand SelectedProjectCommand
         {
             get { return _selectedProjectCommand; }
             set { _selectedProjectCommand = value; }
+        }
+
+        public string InputProjectName
+        {
+            get { return _inputProjectName; }
+            set { _inputProjectName = value; }
+        }
+
+        public string InputProjectDescribtion
+        {
+            get { return _inputProjectDescribtion; }
+            set { _inputProjectDescribtion = value; }
+        }
+
+        public DateTime InputProjectDate
+        {
+            get { return _inputProjectDate; }
+            set { _inputProjectDate = value; }
+        }
+
+        public RelayCommand RelayAddProject
+        {
+            get { return _relayAddProject; }
+            set { _relayAddProject = value; }
         }
 
         #endregion

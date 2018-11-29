@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Windows.Storage;
 
 namespace DimseLab_Aflevering.Model
 {
@@ -26,10 +29,25 @@ namespace DimseLab_Aflevering.Model
         }
 
 
-        public void WriteProjectData()
+        //her var lars
+        //alt andet lige, så undskylder han for den følgende WriteProjectData
+        public static async Task WriteProjectData<T>(T objectToSave)
         {
+            // stores an object in XML format in file called 'filename'
+            var serializer = new XmlSerializer(typeof(T));
+            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(@"C:\Dimselab");
+            StorageFile file = await folder.CreateFileAsync("ProjectData.xml", CreationCollisionOption.ReplaceExisting);
+            Stream stream = await file.OpenStreamForWriteAsync();
 
+            using (stream)
+            {
+                serializer.Serialize(stream, objectToSave);
+            }
         }
+
+
+
+
 
         // Her læser vi hele vores "database / Dummydata" af projekter fra, som bliver stoppet i en ny liste
         // som bliver brugt i både "Browse" og i "MyProjects". Men "MyProjects" bliver filtreret og sat i en ny liste

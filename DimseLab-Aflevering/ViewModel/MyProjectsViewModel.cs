@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using DimseLab_Aflevering.Annotations;
 using DimseLab_Aflevering.Model;
+using GalaSoft.MvvmLight.Command;
 
 namespace DimseLab_Aflevering.ViewModel
 {
@@ -17,6 +21,7 @@ namespace DimseLab_Aflevering.ViewModel
         private DateTime _projectEndDate;
         private Project _selectedProject;
 
+        private RelayCommand _selectedProjectCommand;
 
 
         public MyProjectsViewModel()
@@ -35,11 +40,18 @@ namespace DimseLab_Aflevering.ViewModel
                 
             }
 
+            SelectedProjectCommand = new RelayCommand(OnClickProjectInList);
         }
 
-        public void OnClick_ProjectInList()
+        public void OnClickProjectInList()
         {
+            Debug.WriteLine(SelectedProject.Name);
+            
+        }
 
+        private void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -51,7 +63,7 @@ namespace DimseLab_Aflevering.ViewModel
             set
             {
                 _selectedProject = value;
-                // skal der ikke kaldes OnPropertyChange her? /Michael
+                OnPropertyChanged();
             }
         }
 
@@ -69,6 +81,12 @@ namespace DimseLab_Aflevering.ViewModel
                 _projectEndDate = value;
                 OnPropertyChanged();
             }
+        }
+
+        public RelayCommand SelectedProjectCommand
+        {
+            get { return _selectedProjectCommand; }
+            set { _selectedProjectCommand = value; }
         }
 
         #endregion

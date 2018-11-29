@@ -126,20 +126,20 @@
                        Grid.Column="2"
                        Grid.Row="1"
                        VerticalAlignment="Bottom"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,0,0" />
             <StackPanel Orientation="Vertical"
                         Grid.Column="2"
                         Grid.Row="2"
                         Margin="10,0,0,0">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding CurrentUser.FirstName}"
-                           Margin="0,0,2,0" />
-                <TextBlock Text="{Binding CurrentUser.LastName}"
-                           Margin="0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding CurrentUser.FirstName}"
+                               Margin="0,0,2,0" />
+                    <TextBlock Text="{Binding CurrentUser.LastName}"
+                               Margin="0" />
+                </StackPanel>
+                <TextBlock Text="{Binding CurrentUser.Email}" />
             </StackPanel>
-                <TextBlock Text="{Binding CurrentUser.Email}"/>
-            </StackPanel>
-            
+
         </Grid>
         <!--#endregion-->
 
@@ -269,28 +269,56 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Text="Mine Projekter"
                            FontWeight="Bold"
-                           Margin="10,15,10,10" 
-                           VerticalAlignment="Top"/>
+                           Margin="10,15,10,10"
+                           VerticalAlignment="Top" />
+                <!--
+                <ItemsControl ItemsSource="{Binding MyProjects}"
+                              >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding SelectedProjectCommand}">
+                            <Border BorderBrush="LightBlue"
+                                    BorderThickness="2"
+                                    CornerRadius="5"
+                                    Margin="5">
+                                
+                                <TextBlock Text="{Binding Name}" />
+                            </Border>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+-->
 
                 <ListView ItemsSource="{Binding MyProjects, Mode=TwoWay}"
                           Height="500"
                           Width="500"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
-                          SelectedItem="{Binding SelectedProject}"
-                          SelectedValuePath="{Binding }"
                           Grid.Row="1"
-                          Grid.Column="0">
+                          Grid.Column="0"
+                          SelectedItem="{Binding SelectedProject}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <Grid>
+                                <Grid>
+                                    <Grid.DataContext>
+                                        <viewModel:MyProjectsViewModel/>
+                                    </Grid.DataContext>
+                                    <Button Command="{Binding SelectedProjectCommand}" />
+                                </Grid>
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
@@ -304,18 +332,18 @@
                                     <TextBlock Text="{Binding Name}"
                                                Margin="10,10,10,5"
                                                Grid.Row="0"
-                                               Grid.Column="0"/>
+                                               Grid.Column="0" />
                                     <TextBlock Text="{Binding Description}"
                                                Margin="10,5,10,5"
                                                Grid.Row="1"
-                                               Grid.Column="0" 
+                                               Grid.Column="0"
                                                TextWrapping="Wrap" />
                                     <MenuFlyoutSeparator Grid.Row="2"
                                                          Grid.Column="0"
                                                          Grid.ColumnSpan="2" />
-                                    
+
                                 </Grid>
-                            </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -349,7 +377,7 @@
                                Grid.Column="0"
                                Margin="5"
                                Height="100"
-                               TextWrapping="Wrap"/>
+                               TextWrapping="Wrap" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Margin="5"
@@ -359,17 +387,16 @@
                              Margin="5"
                              Text="{Binding SelectedDeltager.DeltagerEmail}" />
                     <TextBlock Grid.Row="3"
-                             Grid.Column="0"
-                             Margin="5"
-                             Text="Slutdato:" />
+                               Grid.Column="0"
+                               Margin="5"
+                               Text="Slutdato:" />
                     <DatePicker HorizontalAlignment="Center"
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 Margin="5"
                                 VerticalAlignment="Top"
                                 DayVisible="True"
-                                Date="{Binding ProjectEndDate, Mode=TwoWay}"
-                                />
+                                Date="{Binding ProjectEndDate, Mode=TwoWay}" />
                     <Button Content="Tilføj"
                             Grid.Row="4"
                             Grid.Column="1"

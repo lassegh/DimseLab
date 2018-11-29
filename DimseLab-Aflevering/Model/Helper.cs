@@ -51,10 +51,10 @@ namespace DimseLab_Aflevering.Model
 
 
             // Project 2
-            var project2 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+            var project2 = new Project("Bumse presseren", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
                 System.Globalization.CultureInfo.InvariantCulture));
 
-            project2.ProjectMembers.Add(new User("Ole", "Olsen", 32324567, "Ole@easj.dk".ToLower()));
+            project2.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
             projects.Add(project2);
 

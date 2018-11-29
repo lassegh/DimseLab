@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DimseLab_Aflevering.Annotations;
 using DimseLab_Aflevering.Model;
+using GalaSoft.MvvmLight.Command;
 
 namespace DimseLab_Aflevering.ViewModel
 {
@@ -17,10 +18,16 @@ namespace DimseLab_Aflevering.ViewModel
         private DateTime _projectEndDate;
         private Project _selectedProject;
 
+        private string _inputProjectName;
+        private string _inputProjectDescribtion;
+        private DateTime _inputProjectDate;
 
+        private RelayCommand _relayAddProject;
 
         public MyProjectsViewModel()
         {
+            RelayAddProject = new RelayCommand(AddNewProject);
+
             var helper = new Helper(); // New instance of helper class to access all its functionality
             var projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
 
@@ -34,7 +41,29 @@ namespace DimseLab_Aflevering.ViewModel
                 }
                 
             }
+            
+        }
 
+        public void AddNewProject()
+        {
+            if (string.IsNullOrWhiteSpace(InputProjectName) || string.IsNullOrWhiteSpace(InputProjectDescribtion))
+            {
+
+            }
+            else
+            {
+                var helper = new Helper();
+                var projects = helper.ReadProjectData();
+
+                // Add Project
+                var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate);
+
+                project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
+
+                projects.Add(project);
+
+            }
+            
         }
 
         public void OnClick_ProjectInList()
@@ -48,17 +77,17 @@ namespace DimseLab_Aflevering.ViewModel
         public Project SelectedProject
         {
             get { return _selectedProject; }
-            set
-            {
-                _selectedProject = value;
-                // skal der ikke kaldes OnPropertyChange her? /Michael
-            }
+            set {_selectedProject = value; }
         }
 
         public ObservableCollection<Project> MyProjects
         {
             get { return _myProjects; }
-            set { _myProjects = value; }
+            set
+            {
+                _myProjects = value;
+                OnPropertyChanged();
+            }
         }
 
         public DateTime ProjectEndDate
@@ -69,6 +98,30 @@ namespace DimseLab_Aflevering.ViewModel
                 _projectEndDate = value;
                 OnPropertyChanged();
             }
+        }
+
+        public string InputProjectName
+        {
+            get { return _inputProjectName; }
+            set { _inputProjectName = value; }
+        }
+
+        public string InputProjectDescribtion
+        {
+            get { return _inputProjectDescribtion; }
+            set { _inputProjectDescribtion = value; }
+        }
+
+        public DateTime InputProjectDate
+        {
+            get { return _inputProjectDate; }
+            set { _inputProjectDate = value; }
+        }
+
+        public RelayCommand RelayAddProject
+        {
+            get { return _relayAddProject; }
+            set { _relayAddProject = value; }
         }
 
         #endregion

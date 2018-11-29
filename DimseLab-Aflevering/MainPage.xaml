@@ -353,11 +353,11 @@
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Margin="5"
-                             Text="{Binding SelectedDeltager.DeltagerNavn}" />
+                             Text="{Binding InputProjectName}" />
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
                              Margin="5"
-                             Text="{Binding SelectedDeltager.DeltagerEmail}" />
+                             Text="{Binding InputProjectDescribtion}" />
                     <TextBlock Grid.Row="3"
                              Grid.Column="0"
                              Margin="5"
@@ -368,13 +368,13 @@
                                 Margin="5"
                                 VerticalAlignment="Top"
                                 DayVisible="True"
-                                Date="{Binding ProjectEndDate, Mode=TwoWay}"
+                                Date="{Binding InputProjectDate, Mode=TwoWay}"
                                 />
                     <Button Content="Tilføj"
                             Grid.Row="4"
                             Grid.Column="1"
                             Margin="5"
-                            Command="{Binding RelayCmdUser}" />
+                            Command="{Binding RelayAddProject}" />
                 </Grid>
             </Grid>
         </Grid>

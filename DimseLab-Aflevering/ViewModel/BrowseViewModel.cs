@@ -82,6 +82,7 @@ namespace DimseLab_Aflevering.ViewModel
         {
             if (UserInputEmail.Contains("@easj.dk".ToLower()) && string.IsNullOrWhiteSpace(UserInputEmail) || string.IsNullOrWhiteSpace(UserInputFirstName) || string.IsNullOrWhiteSpace(UserInputLastName))
             {
+                // TODO er det ikke kun i dette tilfælde, der skal bruges async?
                 // Wrong email used
                 var dialog = new MessageDialog("Invalid Email Used");
                 await dialog.ShowAsync();

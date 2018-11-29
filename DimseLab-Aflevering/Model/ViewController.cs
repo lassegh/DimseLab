@@ -17,7 +17,7 @@ namespace DimseLab_Aflevering.Model
 
         public ViewController(string name)
         {
-            Name = name;
+            _name = name;
             Visible = false;
         }
 
@@ -25,7 +25,6 @@ namespace DimseLab_Aflevering.Model
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
         }
 
         // Visuel eller ej

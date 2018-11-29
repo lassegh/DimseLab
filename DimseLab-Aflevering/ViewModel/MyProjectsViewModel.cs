@@ -14,6 +14,7 @@ namespace DimseLab_Aflevering.ViewModel
     class MyProjectsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Project> _myProjects = new ObservableCollection<Project>();
+        private DateTime _projectEndDate;
         private Project _selectedProject;
 
 
@@ -55,6 +56,16 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _myProjects; }
             set { _myProjects = value; }
+        }
+
+        public DateTime ProjectEndDate
+        {
+            get { return _projectEndDate; }
+            set
+            {
+                _projectEndDate = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

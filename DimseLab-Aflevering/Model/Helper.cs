@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Windows.Storage;
 
 namespace DimseLab_Aflevering.Model
 {
@@ -29,42 +31,18 @@ namespace DimseLab_Aflevering.Model
 
         //her var lars
         //alt andet lige, så undskylder han for den følgende WriteProjectData
-        public void WriteProjectData()
+        public static async Task WriteProjectData<T>(T objectToSave)
         {
+            // stores an object in XML format in file called 'filename'
+            var serializer = new XmlSerializer(typeof(T));
+            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(@"C:\Dimselab");
+            StorageFile file = await folder.CreateFileAsync("ProjectData.xml", CreationCollisionOption.ReplaceExisting);
+            Stream stream = await file.OpenStreamForWriteAsync();
 
-            //først laver vi en midlertidig liste til at holde vores projekt data. Det gør vi for at undgå at der sker et uheld og at alt dataen forsvinder
-            List<Project> TempProjectData = new List<Project>();
-            TempProjectData = ProjectList;
-
-            //vi gemmer projektdata som strings. Med BuildFile bygger vi en string bestående af andre strings lavet af BuildLine
-            StringBuilder BuildFile = new StringBuilder();
-
-
-            //til sidst sætter vi info for hvilken fil og hvor den er
-            
-
-
-            foreach (Project ITEM in TempProjectData)
+            using (stream)
             {
-                //vi gemmer projektdata som strings i et tekstfil
-                StringBuilder BuildLine = new StringBuilder();
-
-                // \t betyder tab
-                BuildLine.Append(ITEM.Name + "\t");
-                BuildLine.Append(ITEM.Description + "\t");
-                BuildLine.Append(ITEM.ProjectMembers.ToString() + "\t");
-                BuildLine.Append(ITEM.ProjectBeginDate + "\t");
-                BuildLine.Append(ITEM.ProjectEndDate + "\t");
-                BuildLine.Append(ITEM.IsFinished.ToString() + "\t");
-                BuildLine.Append(ITEM.BorrowedItems.ToString() + "\n"); // \n betyder ny linie, og er også der hvor siger "her slutter objektet, nu kommer der et nyt" 
-
-                //så tager vi den lange streng i BuildLine og appender den ind i BuildFile
-                BuildFile.Append(BuildLine.ToString());
+                serializer.Serialize(stream, objectToSave);
             }
-
-            //og så skriver vi
-            System.IO.File.WriteAllText(@"C:\Dimselab\ProjectData.txt", BuildFile.ToString());
-
         }
 
 

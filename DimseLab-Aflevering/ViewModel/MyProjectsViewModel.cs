@@ -72,7 +72,7 @@ namespace DimseLab_Aflevering.ViewModel
 
                 project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
-                projects.Add(project);
+                MyProjects.Add(project);
 
             }
         }

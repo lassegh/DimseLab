@@ -291,12 +291,12 @@
                             <Grid>
                                 <Grid>
                                     <Grid.DataContext>
-                                        <viewModel:MenuViewModel/>
+                                        <viewModel:MenuViewModel />
                                     </Grid.DataContext>
                                     <Button Command="{Binding SelectedProjectCommand}"
                                             Margin="10"
                                             Width="500"
-                                            Height="100"/>
+                                            Height="100" />
                                 </Grid>
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -411,9 +411,9 @@
                     <viewModel:AdminViewModel />
                 </Grid.DataContext>
                 <Button Content="Save"
-                        Command="{Binding SaveButton}"/>
+                        Command="{Binding SaveButton}" />
                 <Button Content="Load"
-                        Command="{Binding LoadButton}"/>
+                        Command="{Binding LoadButton}" />
 
             </Grid>
         </Grid>
@@ -428,11 +428,12 @@
                 <Grid.DataContext>
                     <viewModel:AdminViewModel />
                 </Grid.DataContext>
-                <Button Content="Shot down project"
-                        Command="{Binding SaveButton}" />
-                <Button Content="Cry me out"
-                        Command="{Binding LoadButton}" />
-
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Shot down project"
+                            Command="{Binding SaveButton}" />
+                    <Button Content="Cry me out"
+                            Command="{Binding LoadButton}" />
+                </StackPanel>
             </Grid>
         </Grid>
         <!--#endregion-->

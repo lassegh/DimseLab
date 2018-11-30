@@ -22,7 +22,7 @@ namespace DimseLab_Aflevering.ViewModel
         private Project _selectedProject;
 
 
-        private RelayCommand _selectedProjectCommand;
+        
 
         private string _inputProjectName;
         private string _inputProjectDescribtion;
@@ -49,7 +49,7 @@ namespace DimseLab_Aflevering.ViewModel
                 
             }
 
-            SelectedProjectCommand = new RelayCommand(OnClickProjectInList);
+            
 
         }
 
@@ -75,12 +75,6 @@ namespace DimseLab_Aflevering.ViewModel
                 projects.Add(project);
 
             }
-        }
-
-        public void OnClickProjectInList()
-        {
-            Debug.WriteLine(SelectedProject.Name);
-            
         }
 
         private void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)
@@ -122,11 +116,7 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
 
-        public RelayCommand SelectedProjectCommand
-        {
-            get { return _selectedProjectCommand; }
-            set { _selectedProjectCommand = value; }
-        }
+       
 
         public string InputProjectName
         {

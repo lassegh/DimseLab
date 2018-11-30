@@ -1,13 +1,19 @@
-﻿using DimseLab_Aflevering.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DimseLab_Aflevering.ViewModel
 {
-    public class AdminViewModel
+    class AdminViewModel
     {
+        //blank
 
+        //giv mig gem, giv mig hent
         public void SaveEverything()
         {
-            
+
         }
 
 
@@ -15,6 +21,5 @@ namespace DimseLab_Aflevering.ViewModel
         {
 
         }
-
     }
 }

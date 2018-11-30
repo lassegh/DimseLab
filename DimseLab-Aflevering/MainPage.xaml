@@ -410,11 +410,12 @@
                 <Grid.DataContext>
                     <viewModel:AdminViewModel />
                 </Grid.DataContext>
-                <Button Content="Save"
-                        Command="{Binding SaveButton}" />
-                <Button Content="Load"
-                        Command="{Binding LoadButton}" />
-
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Save"
+                            Command="{Binding SaveButton}" />
+                    <Button Content="Load"
+                            Command="{Binding LoadButton}" />
+                </StackPanel>
             </Grid>
         </Grid>
         <!--#endregion-->
@@ -426,7 +427,7 @@
                   BorderBrush="Yellow"
                   BorderThickness="5">
                 <Grid.DataContext>
-                    <viewModel:AdminViewModel />
+                    <viewModel:BrowseViewModel />
                 </Grid.DataContext>
                 <StackPanel Orientation="Horizontal">
                     <Button Content="Shot down project"

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using DimseLab_Aflevering.Annotations;
 
 namespace DimseLab_Aflevering.Model
 {
-    class Project
+    class Project : INotifyPropertyChanged
     {
 
         //Imma region
@@ -27,7 +30,11 @@ namespace DimseLab_Aflevering.Model
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Description
@@ -110,5 +117,13 @@ namespace DimseLab_Aflevering.Model
         }
 
         #endregion
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

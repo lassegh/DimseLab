@@ -283,7 +283,7 @@
                           VerticalAlignment="Top"
                           Grid.Row="1"
                           Grid.Column="0"
-                          SelectedItem="{Binding SelectedProject}">
+                          SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

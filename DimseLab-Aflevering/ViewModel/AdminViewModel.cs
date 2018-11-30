@@ -12,32 +12,32 @@ namespace DimseLab_Aflevering.ViewModel
 
     class AdminViewModel
     {
-        private RelayCommand relaySaveButton;
+        RelayCommand _saveButton;
 
-        private RelayCommand relayLoadButton;
+        RelayCommand _loadButton;
 
 
-        public RelayCommand RelaySaveButton
-        {
-            get { return relaySaveButton; }
-            set { relaySaveButton = value; }
-        }
-
-        public RelayCommand RelayLoadButton
-        {
-            get { return relayLoadButton; }
-            set { relayLoadButton = value; }
-        }
 
 
 
         public AdminViewModel()
         {
             var helper = new Helper();
-            RelaySaveButton = new RelayCommand(helper.SaveEverything);
+            _saveButton = new RelayCommand(helper.SaveEverything);
             //RelayLoadButton = new RelayCommand(helper.LoadEverything);
             
         }
-        
+
+        public RelayCommand SaveButton
+        {
+            get { return _saveButton; }
+            set { _saveButton = value; }
+        }
+
+        public RelayCommand LoadButton
+        {
+            get { return _loadButton; }
+            set { _loadButton = value; }
+        }
     }
 }

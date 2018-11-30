@@ -32,6 +32,7 @@ namespace DimseLab_Aflevering.ViewModel
 
         public MyProjectsViewModel()
         {
+            SelectedProject = new Project();
             RelayAddProject = new RelayCommand(AddNewProject);
 
             var helper = new Helper(); // New instance of helper class to access all its functionality

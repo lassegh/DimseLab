@@ -68,7 +68,10 @@ namespace DimseLab_Aflevering.Model
 
         #endregion
 
-
+        public Project()
+        {
+            
+        }
 
         public Project(string inputName, string inputDescription, DateTime inputEndDate)
         {

@@ -85,8 +85,8 @@ namespace DimseLab_Aflevering.Model
 
 
             // Project 1
-            var project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture));
+            Project project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+                System.Globalization.CultureInfo.InvariantCulture),1);
 
             project1.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
@@ -97,7 +97,7 @@ namespace DimseLab_Aflevering.Model
 
             // Project 2
             var project2 = new Project("Bumse presseren", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture));
+                System.Globalization.CultureInfo.InvariantCulture),2);
 
             project2.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
@@ -108,7 +108,7 @@ namespace DimseLab_Aflevering.Model
 
             // Project 1
             var project3 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture));
+                System.Globalization.CultureInfo.InvariantCulture),3);
 
             project3.ProjectMembers.Add(new User("Karsten", "Karlsen", 32324567, "Karsten@easj.dk".ToLower()));
 

@@ -37,6 +37,8 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
+        public int ID { get; set; }
+
         public string Description
         {
             get { return _description; }

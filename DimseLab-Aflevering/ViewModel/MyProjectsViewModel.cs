@@ -55,10 +55,22 @@ namespace DimseLab_Aflevering.ViewModel
             else
             {
                 var helper = new Helper();
-                var projects = helper.ReadProjectData();
+                List<Project> projects = helper.ReadProjectData();
+
+                // Udregner id til næste projekt
+                int id = 0;
+                foreach (Project project1 in projects)
+                {
+                    if (project1.ID > id)
+                    {
+                        id = project1.ID;
+                    }
+
+                    id++;
+                }
 
                 // Add Project
-                var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate);
+                var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
 
                 project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 

@@ -12,10 +12,6 @@ namespace DimseLab_Aflevering.Model
 {
     class Project : INotifyPropertyChanged
     {
-
-        //Imma region
-        #region VariablesnProperties
-
         private string _name;
         private string _description;
         private DateTime _projectBeginDate;
@@ -26,6 +22,22 @@ namespace DimseLab_Aflevering.Model
 
         private bool isFinished;
 
+        public Project(string inputName, string inputDescription, DateTime inputEndDate)
+        {
+            Name = inputName;
+            Description = inputDescription;
+            ProjectBeginDate = DateTime.Now; //vælger nuværende dag og tidspunkt
+            ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her
+            IsFinished = false; //for den er jo ikke færdig når den lige er blevet skabt
+            ProjectMembers = new List<User>();
+        }
+
+        public Project() // <---- øhhhhh???
+        {
+
+        }
+
+        #region VariablesnProperties
 
         public string Name
         {
@@ -76,23 +88,6 @@ namespace DimseLab_Aflevering.Model
         }
 
         #endregion
-
-        public Project()
-        {
-            
-        }
-
-        public Project(string inputName, string inputDescription, DateTime inputEndDate)
-        {
-            Name = inputName;
-            Description = inputDescription;
-            ProjectBeginDate = DateTime.Now; //vælger nuværende dag og tidspunkt
-            ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her
-            IsFinished = false; //for den er jo ikke færdig når den lige er blevet skabt
-            ProjectMembers = new List<User>();
-        }
-
-
 
         #region Methods
 

@@ -361,11 +361,11 @@
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Margin="5"
-                             Text="{Binding InputProjectName}" />
+                             Text="{Binding InputProjectName, Mode=TwoWay}" />
                     <TextBox Grid.Row="2"
                              Grid.Column="2"
                              Margin="5"
-                             Text="{Binding InputProjectDescribtion}" />
+                             Text="{Binding InputProjectDescribtion, Mode=TwoWay}" />
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
                                Margin="5"

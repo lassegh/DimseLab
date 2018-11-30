@@ -291,7 +291,7 @@
                             <Grid>
                                 <Grid>
                                     <Grid.DataContext>
-                                        <viewModel:MyProjectsViewModel/>
+                                        <viewModel:MenuViewModel/>
                                     </Grid.DataContext>
                                     <Button Command="{Binding SelectedProjectCommand}"
                                             Margin="10"
@@ -414,6 +414,24 @@
                         Command="{Binding SaveButton}"/>
                 <Button Content="Load"
                         Command="{Binding LoadButton}"/>
+
+            </Grid>
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region EditProject-->
+        <Grid Grid.Row="1"
+              Visibility="{Binding  ViewVisibility[4].Visible}">
+            <Grid Grid.Row="1"
+                  BorderBrush="Yellow"
+                  BorderThickness="5">
+                <Grid.DataContext>
+                    <viewModel:AdminViewModel />
+                </Grid.DataContext>
+                <Button Content="Shot down project"
+                        Command="{Binding SaveButton}" />
+                <Button Content="Cry me out"
+                        Command="{Binding LoadButton}" />
 
             </Grid>
         </Grid>

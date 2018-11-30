@@ -23,6 +23,7 @@ namespace DimseLab_Aflevering.ViewModel
         public RelayCommand ManageProjectsButton { get; set; }
         public RelayCommand UserProfileButton { get; set; }
         public RelayCommand AdminButton { get; set; }
+        public RelayCommand SelectedProjectCommand{ get; set; }
         public User CurrentUser { get; set; }
 
         public List<ViewController> ViewVisibility
@@ -69,6 +70,7 @@ namespace DimseLab_Aflevering.ViewModel
             ManageProjectsButton = new RelayCommand(OpenMyProjects);
             UserProfileButton = new RelayCommand(OpenUserProfile);
             AdminButton = new RelayCommand(OpenAdmin);
+            SelectedProjectCommand = new RelayCommand(OnClickProjectInList);
         }
 
         /// <summary>
@@ -105,6 +107,11 @@ namespace DimseLab_Aflevering.ViewModel
         private void OpenAdmin()
         {
             ShowView("Admin");
+        }
+
+        public void OnClickProjectInList()
+        {
+            ShowView("EditProject");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

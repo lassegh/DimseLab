@@ -1,20 +1,9 @@
-﻿using DimseLab_Aflevering.Model;
-
-namespace DimseLab_Aflevering.ViewModel
+﻿namespace DimseLab_Aflevering.ViewModel
 {
     public class AdminViewModel
     {
+        //blank
 
-        public void SaveEverything()
-        {
-            
-        }
-
-
-        public void LoadEverything()
-        {
-
-        }
-
+        //giv mig gem, giv mig hent
     }
 }

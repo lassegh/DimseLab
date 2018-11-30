@@ -49,7 +49,7 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
-        public int ID { get; set; }
+        public int ID { get; set; } // denne kan ikke ses når der ikke er lavet encapsulate field på.. ihvertfald kan jeg ikke kalde den andre steder /Michael
 
         public string Description
         {

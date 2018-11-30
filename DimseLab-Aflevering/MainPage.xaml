@@ -1,4 +1,5 @@
-﻿<Page x:Class="DimseLab_Aflevering.MainPage"
+﻿<Page Name="fuckPage" 
+    x:Class="DimseLab_Aflevering.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -46,10 +47,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/browse.png"
-                           Grid.Row="0"
-                           MaxHeight="20"
-                           MinHeight="1" />
+                    <SymbolIcon Symbol="Manage" />
                     <TextBlock Text="Browse"
                                Grid.Row="1" />
                 </Grid>
@@ -289,39 +287,42 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid>
-                                    <Grid.DataContext>
-                                        <viewModel:MenuViewModel />
-                                    </Grid.DataContext>
-                                    <Button Command="{Binding SelectedProjectCommand}"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Name}"
+                                           Margin="10,10,10,5"
+                                           Grid.Row="0"
+                                           Grid.Column="0" />
+                                <TextBlock Text="{Binding Description}"
+                                           Margin="10,5,10,5"
+                                           Grid.Row="1"
+                                           Grid.Column="0"
+                                           TextWrapping="Wrap" />
+                                <MenuFlyoutSeparator Grid.Row="2"
+                                                     Grid.Column="0"
+                                                     Grid.ColumnSpan="2" />
+                                <Grid Grid.Row="1"
+                                      Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Top">
+                                    <Button Command="{Binding ElementName=fuckPage, Path=DataContext.SelectedProjectCommand}"
                                             Margin="10"
-                                            Width="500"
-                                            Height="100" />
+                                            Width="30"
+                                            Height="30"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                        <SymbolIcon Symbol="Edit" />
+                                    </Button>
                                 </Grid>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name}"
-                                               Margin="10,10,10,5"
-                                               Grid.Row="0"
-                                               Grid.Column="0" />
-                                    <TextBlock Text="{Binding Description}"
-                                               Margin="10,5,10,5"
-                                               Grid.Row="1"
-                                               Grid.Column="0"
-                                               TextWrapping="Wrap" />
-                                    <MenuFlyoutSeparator Grid.Row="2"
-                                                         Grid.Column="0"
-                                                         Grid.ColumnSpan="2" />
 
-                                </Grid>
+
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -404,7 +405,7 @@
         <!--#region AdminGrid-->
         <Grid Grid.Row="1"
               Visibility="{Binding  ViewVisibility[3].Visible}">
-            <Grid Grid.Row="1"
+            <Grid Grid.Row="0"
                   BorderBrush="BlueViolet"
                   BorderThickness="5">
                 <Grid.DataContext>
@@ -423,18 +424,31 @@
         <!--#region EditProject-->
         <Grid Grid.Row="1"
               Visibility="{Binding  ViewVisibility[4].Visible}">
-            <Grid Grid.Row="1"
-                  BorderBrush="Yellow"
-                  BorderThickness="5">
+            <Grid Grid.Row="0">
                 <Grid.DataContext>
-                    <viewModel:BrowseViewModel />
+                    <viewModel:MyProjectsViewModel />
                 </Grid.DataContext>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Shot down project"
-                            Command="{Binding SaveButton}" />
-                    <Button Content="Cry me out"
-                            Command="{Binding LoadButton}" />
-                </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding SelectedProject.Name}"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           FontWeight="Bold"/>
             </Grid>
         </Grid>
         <!--#endregion-->

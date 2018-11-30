@@ -21,9 +21,6 @@ namespace DimseLab_Aflevering.ViewModel
         private DateTime _projectEndDate;
         private Project _selectedProject;
 
-
-        
-
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTime _inputProjectDate;
@@ -46,11 +43,7 @@ namespace DimseLab_Aflevering.ViewModel
                 {
                     MyProjects.Add(project); //adds this new filtered list to the "MyProject" List
                 }
-                
             }
-
-            
-
         }
 
         public void AddNewProject()
@@ -64,16 +57,12 @@ namespace DimseLab_Aflevering.ViewModel
                 var helper = new Helper();
                 var projects = helper.ReadProjectData();
 
-
-
-
                 // Add Project
                 var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate);
 
                 project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
                 MyProjects.Add(project);
-
             }
         }
 

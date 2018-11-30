@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Windows.Foundation;
 using Windows.Storage;
 
 namespace DimseLab_Aflevering.Model
@@ -29,9 +31,24 @@ namespace DimseLab_Aflevering.Model
 
         #region readingNwriting
 
-        
 
-        
+        public async void SaveEverything()
+        {
+            await WriteProjectData();
+            await WriteDoohickeyData();
+            await WriteUserData();
+        }
+
+        /*
+        public async void LoadEverything()
+        {
+            await ReadProjectData();
+            await ReadDoohickeyData();
+            await ReadUserData();
+        }
+        */
+
+
         //Denne kode er stjålet direkte fra Ebbe Vang. Fuck tha police!
         public static async Task SaveObjectToXml<T>(List<T> inputList, string filename)
         {
@@ -53,7 +70,7 @@ namespace DimseLab_Aflevering.Model
 
 
 
-        public async void WriteProjectData()
+        public async Task WriteProjectData()
         {
             await SaveObjectToXml(ProjectList, "ProjectData.xml");
         }
@@ -103,7 +120,7 @@ namespace DimseLab_Aflevering.Model
             return projects;
         }
 
-        public async void WriteDoohickeyData()
+        public async Task WriteDoohickeyData()
         {
             await SaveObjectToXml(DoohickeyList, "DoohickeyData.xml");
         }
@@ -113,7 +130,7 @@ namespace DimseLab_Aflevering.Model
 
         }
 
-        public async void WriteUserData()
+        public async Task WriteUserData()
         {
             await SaveObjectToXml(UserList, "UserData.xml");
         }

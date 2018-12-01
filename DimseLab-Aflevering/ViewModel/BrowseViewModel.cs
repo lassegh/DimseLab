@@ -45,6 +45,7 @@ namespace DimseLab_Aflevering.ViewModel
         {
             RelayAddUser = new RelayCommand(CallAddNewUser);
 
+            // TODO oprettelse af denne type object skal ikke ske her
             // Placeholder Users
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
@@ -55,10 +56,10 @@ namespace DimseLab_Aflevering.ViewModel
             RelayAddProject = new RelayCommand(AddNewProject);
 
             // Moved all dummy data for projects to "helper class" since this is were it will come from in the future.
-            var helper = new Helper();
-            var projects = helper.ReadProjectData();
+            Helper helper = new Helper();
+            List<Project> projects = helper.ReadProjectData();
 
-            foreach (var project in projects)
+            foreach (Project project in projects)
             {
                 ProjectList.Add(project);
             }
@@ -89,6 +90,7 @@ namespace DimseLab_Aflevering.ViewModel
             }
             else
             {   // Adds new user
+                // TODO oprettelse af denne type object skal ikke ske her
                 UserList.Add(new User(UserInputFirstName, UserInputLastName, UserInputNumber, UserInputEmail));
             }
         }
@@ -96,7 +98,8 @@ namespace DimseLab_Aflevering.ViewModel
         // Adds a new project to "ProjectList"
         public void AddNewProject()
         {
-            ProjectList.Add(new Project(ProjectInputName, ProjectInputDescribtion, ProjectEndDate));
+            // TODO oprettelse af denne type object skal ikke ske her
+            ProjectList.Add(new Project(ProjectInputName, ProjectInputDescribtion, ProjectEndDate, 7777));
         }
 
 

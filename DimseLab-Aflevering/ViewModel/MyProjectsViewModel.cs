@@ -19,7 +19,6 @@ namespace DimseLab_Aflevering.ViewModel
     {
         private ObservableCollection<Project> _myProjects = new ObservableCollection<Project>();
         private DateTime _projectEndDate;
-        private Project _selectedProject;
 
         private string _inputProjectName;
         private string _inputProjectDescribtion;
@@ -29,11 +28,10 @@ namespace DimseLab_Aflevering.ViewModel
 
         public MyProjectsViewModel()
         {
-            SelectedProject = new Project();
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            var helper = new Helper(); // New instance of helper class to access all its functionality
-            var projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
+            Helper helper = new Helper(); // New instance of helper class to access all its functionality
+            List<Project> projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
 
             // Loops though every project and compares if the email fits the current users email. 
             foreach (var project in projects)
@@ -54,6 +52,7 @@ namespace DimseLab_Aflevering.ViewModel
             }
             else
             {
+                // TODO De næste to er allerede lavet og bør ikke laves på ny (af hensyn til hukommelse)
                 var helper = new Helper();
                 List<Project> projects = helper.ReadProjectData();
 
@@ -86,16 +85,6 @@ namespace DimseLab_Aflevering.ViewModel
 
         #region Get & Set Properties
 
-        public Project SelectedProject
-        {
-            get { return _selectedProject; }
-            set
-            {
-                _selectedProject = value;
-                OnPropertyChanged();
-            }
-        }
-
         public ObservableCollection<Project> MyProjects
         {
             get { return _myProjects; }
@@ -115,9 +104,6 @@ namespace DimseLab_Aflevering.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
-       
 
         public string InputProjectName
         {

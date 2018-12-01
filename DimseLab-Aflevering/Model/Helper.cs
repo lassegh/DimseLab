@@ -80,7 +80,7 @@ namespace DimseLab_Aflevering.Model
         // som bliver brugt i både "Browse" og i "MyProjects". Men "MyProjects" bliver filtreret og sat i en ny liste
         public List<Project> ReadProjectData()
         {
-            var projects = new List<Project>();
+            List<Project> projects = new List<Project>();
 
 
 

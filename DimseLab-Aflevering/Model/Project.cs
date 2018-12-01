@@ -22,7 +22,7 @@ namespace DimseLab_Aflevering.Model
 
         private bool isFinished;
 
-        public Project(string inputName, string inputDescription, DateTime inputEndDate)
+        public Project(string inputName, string inputDescription, DateTime inputEndDate, int id)
         {
             Name = inputName;
             Description = inputDescription;
@@ -30,11 +30,7 @@ namespace DimseLab_Aflevering.Model
             ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her
             IsFinished = false; //for den er jo ikke færdig når den lige er blevet skabt
             ProjectMembers = new List<User>();
-        }
-
-        public Project() // <---- øhhhhh???
-        {
-
+            ID = id; // Sætter id på projekter
         }
 
         #region VariablesnProperties
@@ -50,6 +46,7 @@ namespace DimseLab_Aflevering.Model
         }
 
         public int ID { get; set; } // denne kan ikke ses når der ikke er lavet encapsulate field på.. ihvertfald kan jeg ikke kalde den andre steder /Michael
+        // Den er public så kald den lige så tosset du vil :-S    ...... prop => TAB forever
 
         public string Description
         {

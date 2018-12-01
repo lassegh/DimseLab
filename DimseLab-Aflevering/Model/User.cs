@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DimseLab_Aflevering.Model;
 
 namespace DimseLab_Aflevering
 {
-    class User
+    public class User
     {
         private String _firstName;
         private String _lastName;
         private int _number;
         private string _email;
+        private ModelController _mc;
 
+        public User(ModelController mc)
+        {
+            _mc = mc;
+        }
 
         public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail)
         {

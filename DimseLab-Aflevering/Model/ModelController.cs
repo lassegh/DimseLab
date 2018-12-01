@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -8,11 +10,13 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Storage;
+using DimseLab_Aflevering.Annotations;
 
 namespace DimseLab_Aflevering.Model
 {
-    class Helper
+    public class ModelController : INotifyPropertyChanged
     {
+        public bool LoggedIn { get; set; }
 
         List<Project> _projectList = new List<Project>();
 
@@ -21,16 +25,40 @@ namespace DimseLab_Aflevering.Model
         List<User> _userList = new List<User>();
 
         public User CurrentUser { get; set; }
+        
+        // Creates mediator pattern
+        public User User;
+        public Doohickey Doohickey;
+        public Project Project; 
 
-        public Helper()
+        public ModelController()
         {
+            // TODO CurrentUser skal sættes til den bruger, der er logget på
             CurrentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
 
+            //TODO get loginToken - tjek om der er logget på
+            LoggedIn = true;
+
+            // Creates mediator pattern
+            User = new User(this);
+            Doohickey = new Doohickey(this);
+            Project = new Project(this);
 
         }
 
         #region readingNwriting
 
+        public async void SaveProjectsAsync()
+        {
+            Debug.WriteLine("Saving projects async...");
+            await XMLReadWrite.SaveObjectToXml<List<Project>>(ProjectList, "ProjectModel.xml");
+        }
+
+        private async void LoadProjectsAsync()
+        {
+            Debug.WriteLine("loading projects async...");
+            ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<List<Project>>("ProjectModel.xml");
+        }
 
         public async void SaveEverything()
         {
@@ -80,17 +108,13 @@ namespace DimseLab_Aflevering.Model
         // som bliver brugt i både "Browse" og i "MyProjects". Men "MyProjects" bliver filtreret og sat i en ny liste
         public List<Project> ReadProjectData()
         {
-            List<Project> projects = new List<Project>();
-
-
-
             // Project 1
             Project project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
                 System.Globalization.CultureInfo.InvariantCulture),1);
 
             project1.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
-            projects.Add(project1);
+            ProjectList.Add(project1);
 
 
 
@@ -101,7 +125,7 @@ namespace DimseLab_Aflevering.Model
 
             project2.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
-            projects.Add(project2);
+            ProjectList.Add(project2);
 
 
 
@@ -112,12 +136,12 @@ namespace DimseLab_Aflevering.Model
 
             project3.ProjectMembers.Add(new User("Karsten", "Karlsen", 32324567, "Karsten@easj.dk".ToLower()));
 
-            projects.Add(project3);
+            ProjectList.Add(project3);
 
 
 
             // Returns the new filtered project to the one that calls it.
-            return projects;
+            return ProjectList;
         }
 
         public async Task WriteDoohickeyData()
@@ -148,19 +172,39 @@ namespace DimseLab_Aflevering.Model
         public List<User> UserList
         {
             get { return _userList; }
-            set { _userList = value; }
+            set
+            {
+                _userList = value;
+                OnPropertyChanged();
+            }
         }
 
         public List<Doohickey> DoohickeyList
         {
             get { return _doohickeyList; }
-            set { _doohickeyList = value; }
+            set
+            {
+                _doohickeyList = value;
+                OnPropertyChanged();
+            }
         }
 
         public List<Project> ProjectList
         {
             get { return _projectList; }
-            set { _projectList = value; }
+            set
+            {
+                _projectList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

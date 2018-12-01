@@ -10,7 +10,7 @@ using DimseLab_Aflevering.Annotations;
 
 namespace DimseLab_Aflevering.Model
 {
-    class Project : INotifyPropertyChanged
+    public class Project : INotifyPropertyChanged
     {
         private string _name;
         private string _description;
@@ -21,6 +21,18 @@ namespace DimseLab_Aflevering.Model
         private List<Doohickey> _borrowedItems;
 
         private bool isFinished;
+
+        private ModelController _mc;
+
+        public Project()
+        {
+            
+        }
+
+        public Project(ModelController mc)
+        {
+            _mc = mc;
+        }
 
         public Project(string inputName, string inputDescription, DateTime inputEndDate, int id)
         {

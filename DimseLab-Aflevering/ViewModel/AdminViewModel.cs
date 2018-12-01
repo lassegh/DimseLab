@@ -22,7 +22,7 @@ namespace DimseLab_Aflevering.ViewModel
 
         public AdminViewModel()
         {
-            var helper = new Helper();
+            var helper = new ModelController();
             _saveButton = new RelayCommand(helper.SaveEverything);
             //RelayLoadButton = new RelayCommand(helper.LoadEverything);
             

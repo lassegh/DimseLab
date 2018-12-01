@@ -37,8 +37,6 @@ namespace DimseLab_Aflevering.ViewModel
 
         private bool _projectIsFinished;
 
-        private RelayCommand _relayAddProject;
-
 
 
         public BrowseViewModel()
@@ -53,10 +51,10 @@ namespace DimseLab_Aflevering.ViewModel
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
 
-            RelayAddProject = new RelayCommand(AddNewProject);
+
 
             // Moved all dummy data for projects to "helper class" since this is were it will come from in the future.
-            Helper helper = new Helper();
+            ModelController helper = new ModelController();
             List<Project> projects = helper.ReadProjectData();
 
             foreach (Project project in projects)
@@ -93,13 +91,6 @@ namespace DimseLab_Aflevering.ViewModel
                 // TODO oprettelse af denne type object skal ikke ske her
                 UserList.Add(new User(UserInputFirstName, UserInputLastName, UserInputNumber, UserInputEmail));
             }
-        }
-
-        // Adds a new project to "ProjectList"
-        public void AddNewProject()
-        {
-            // TODO oprettelse af denne type object skal ikke ske her
-            ProjectList.Add(new Project(ProjectInputName, ProjectInputDescribtion, ProjectEndDate, 7777));
         }
 
 
@@ -184,12 +175,6 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _projectIsFinished; }
             set { _projectIsFinished = value; }
-        }
-
-        public RelayCommand RelayAddProject
-        {
-            get { return _relayAddProject; }
-            set { _relayAddProject = value; }
         }
 
         #endregion

@@ -18,7 +18,7 @@
 
         <!--#region TopBar-->
         <Grid Grid.Row="0"
-              Grid.Column="1">
+              Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*" />
                 <ColumnDefinition Width="0.6*" />
@@ -130,12 +130,12 @@
                         Grid.Row="2"
                         Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding CurrentUser.FirstName}"
+                    <TextBlock Text="{Binding MC.CurrentUser.FirstName}"
                                Margin="0,0,2,0" />
-                    <TextBlock Text="{Binding CurrentUser.LastName}"
+                    <TextBlock Text="{Binding MC.CurrentUser.LastName}"
                                Margin="0" />
                 </StackPanel>
-                <TextBlock Text="{Binding CurrentUser.Email}" />
+                <TextBlock Text="{Binding MC.CurrentUser.Email}" />
             </StackPanel>
 
         </Grid>

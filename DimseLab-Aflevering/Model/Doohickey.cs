@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace DimseLab_Aflevering.Model
 {
-    class Doohickey
+    public class Doohickey
     {
         private String name;
+        private ModelController _mc;
 
+        public Doohickey(ModelController mc)
+        {
+            _mc = mc;
+        }
         
         public Doohickey(string inputName)
         {

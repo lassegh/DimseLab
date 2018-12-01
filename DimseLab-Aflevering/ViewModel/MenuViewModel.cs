@@ -14,8 +14,7 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class MenuViewModel : INotifyPropertyChanged
     {
-        private bool _loggedIn; // er der logged på
-
+        
         // Objecter af views holdes i denne liste
         private List<ViewController> _viewVisibility;
 
@@ -24,7 +23,8 @@ namespace DimseLab_Aflevering.ViewModel
         public RelayCommand UserProfileButton { get; set; }
         public RelayCommand AdminButton { get; set; }
         public RelayCommand<int> SelectedProjectCommand{ get; set; }
-        public User CurrentUser { get; set; }
+
+        private ModelController _mC = new ModelController();
 
         public List<ViewController> ViewVisibility
         {
@@ -36,13 +36,19 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+        public ModelController MC
+        {
+            get { return _mC; }
+            set
+            {
+                _mC = value; 
+                OnPropertyChanged();
+            }
+        }
+
 
         public MenuViewModel()
         {
-            //TODO get loginToken - tjek om der er logget på
-            _loggedIn = true;
-            CurrentUser = new User("Lars","Truelsen",4612456,"lars@easj.dk");
-
             // Lægger objecter for views i liste
             _viewVisibility = new List<ViewController>()
             {
@@ -53,7 +59,7 @@ namespace DimseLab_Aflevering.ViewModel
                 new ViewController("EditProject")
             };
 
-            if (_loggedIn)
+            if (MC.LoggedIn)
             {
                 //Show me browse
                 OpenMyProjects();

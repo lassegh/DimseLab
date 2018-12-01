@@ -30,7 +30,7 @@ namespace DimseLab_Aflevering.ViewModel
         {
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            Helper helper = new Helper(); // New instance of helper class to access all its functionality
+            ModelController helper = new ModelController(); // New instance of helper class to access all its functionality
             List<Project> projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
 
             // Loops though every project and compares if the email fits the current users email. 
@@ -53,7 +53,7 @@ namespace DimseLab_Aflevering.ViewModel
             else
             {
                 // TODO De næste to er allerede lavet og bør ikke laves på ny (af hensyn til hukommelse)
-                var helper = new Helper();
+                var helper = new ModelController();
                 List<Project> projects = helper.ReadProjectData();
 
                 // Udregner id til næste projekt
@@ -74,6 +74,7 @@ namespace DimseLab_Aflevering.ViewModel
                 project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
 
                 MyProjects.Add(project);
+                helper.SaveEverything();
             }
         }
 

@@ -14,6 +14,16 @@ namespace DimseLab_Aflevering
         private string _email;
 
 
+        public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail)
+        {
+            FirstName = inputFirstName;
+            LastName = inputLastName;
+            Number = inputNumber;
+            Email = inputEmail;
+
+        }
+
+        #region Get and Set Properties
 
         public string FirstName
         {
@@ -39,14 +49,7 @@ namespace DimseLab_Aflevering
             set { _email = value; }
         }
 
+        #endregion
 
-        public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail)
-        {
-            FirstName = inputFirstName;
-            LastName = inputLastName;
-            Number = inputNumber;
-            Email = inputEmail;
-
-        }
     }
 }

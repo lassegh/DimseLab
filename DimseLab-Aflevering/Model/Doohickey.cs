@@ -10,16 +10,18 @@ namespace DimseLab_Aflevering.Model
     {
         private String name;
 
+        
+        public Doohickey(string inputName)
+        {
+            Name = inputName;
+        }
+
+
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
-
-        public Doohickey(string inputName)
-        {
-            Name = inputName;
-        }
     }
 }

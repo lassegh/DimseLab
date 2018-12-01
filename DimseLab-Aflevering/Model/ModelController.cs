@@ -62,9 +62,10 @@ namespace DimseLab_Aflevering.Model
 
         public async void SaveEverything()
         {
-            await WriteProjectData();
+            SaveProjectsAsync();
+            /*
             await WriteDoohickeyData();
-            await WriteUserData();
+            await WriteUserData();*/
         }
 
         /*

@@ -23,6 +23,7 @@ namespace DimseLab_Aflevering.ViewModel
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTime _inputProjectDate;
+        private ModelController _mc;
 
         private RelayCommand _relayAddProject;
 
@@ -30,14 +31,17 @@ namespace DimseLab_Aflevering.ViewModel
         {
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            ModelController helper = new ModelController(); // New instance of helper class to access all its functionality
-            List<Project> projects = helper.ReadProjectData(); // We load in the entire "Database / Dummydata" list from helper to this variable
+            // Opretter instans af ModelController
+            _mc = new ModelController();
+
+            // Load data
+            _mc.LoadEverything();
 
             // Loops though every project and compares if the email fits the current users email. 
-            foreach (var project in projects)
+            foreach (Project project in _mc.ProjectList)
             {   
                 // Compares emails to test and show that it works, since we dont have a login system yet
-                if (project.ProjectMembers.Any(x => x.Email == helper.CurrentUser.Email))
+                if (project.ProjectMembers.Any(x => x.Email == _mc.CurrentUser.Email))
                 {
                     MyProjects.Add(project); //adds this new filtered list to the "MyProject" List
                 }
@@ -52,29 +56,24 @@ namespace DimseLab_Aflevering.ViewModel
             }
             else
             {
-                // TODO De næste to er allerede lavet og bør ikke laves på ny (af hensyn til hukommelse)
-                var helper = new ModelController();
-                List<Project> projects = helper.ReadProjectData();
-
                 // Udregner id til næste projekt
                 int id = 0;
-                foreach (Project project1 in projects)
+                foreach (Project project in _mc.ProjectList)
                 {
-                    if (project1.ID > id)
+                    if (project.ID > id)
                     {
-                        id = project1.ID;
+                        id = project.ID;
                     }
 
                     id++;
                 }
 
                 // Add Project
-                var project = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
-
-                project.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
-
-                MyProjects.Add(project);
-                helper.SaveEverything();
+                Project newProject = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
+                newProject.ProjectMembers.Add(_mc.CurrentUser);
+                _mc.ProjectList.Add(newProject);
+                
+                _mc.SaveEverything();
             }
         }
 

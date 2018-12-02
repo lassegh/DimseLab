@@ -48,6 +48,22 @@ namespace DimseLab_Aflevering.Model
 
         #region readingNwriting
 
+        public void SaveEverything()
+        {
+            SaveProjectsAsync();
+            /*
+            WriteDoohickeyData();
+            WriteUserData();*/
+        }
+
+        public void LoadEverything()
+        {
+            LoadProjectsAsync();
+            /*
+            LoadDoohickeyData();
+            LoadUserData();*/
+        }
+
         public async void SaveProjectsAsync()
         {
             Debug.WriteLine("Saving projects async...");
@@ -60,91 +76,7 @@ namespace DimseLab_Aflevering.Model
             ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<List<Project>>("ProjectModel.xml");
         }
 
-        public async void SaveEverything()
-        {
-            SaveProjectsAsync();
-            /*
-            await WriteDoohickeyData();
-            await WriteUserData();*/
-        }
-
         /*
-        public async void LoadEverything()
-        {
-            await ReadProjectData();
-            await ReadDoohickeyData();
-            await ReadUserData();
-        }
-        */
-
-
-        //Denne kode er stjålet direkte fra Ebbe Vang. Fuck tha police!
-        public static async Task SaveObjectToXml<T>(List<T> inputList, string filename)
-        {
-            // stores an object in XML format in file called 'filename'
-            var serializer = new XmlSerializer(typeof(T));
-            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(@"C:/Dimselab");
-            StorageFile file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            Stream stream = await file.OpenStreamForWriteAsync();
-
-            foreach (T ITEM in inputList)
-            {
-                using (stream)
-                {
-                    serializer.Serialize(stream, ITEM);
-                }
-            }
-
-        }
-
-
-
-        public async Task WriteProjectData()
-        {
-            await SaveObjectToXml(ProjectList, "ProjectData.xml");
-        }
-
-
-        // Her læser vi hele vores "database / Dummydata" af projekter fra, som bliver stoppet i en ny liste
-        // som bliver brugt i både "Browse" og i "MyProjects". Men "MyProjects" bliver filtreret og sat i en ny liste
-        public List<Project> ReadProjectData()
-        {
-            // Project 1
-            Project project1 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture),1);
-
-            project1.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
-
-            ProjectList.Add(project1);
-
-
-
-
-            // Project 2
-            var project2 = new Project("Bumse presseren", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture),2);
-
-            project2.ProjectMembers.Add(new User("Lars", "Truelsen", 32324567, "Lars@easj.dk".ToLower()));
-
-            ProjectList.Add(project2);
-
-
-
-
-            // Project 1
-            var project3 = new Project("Robotic Arm", "We are developing a intelligent robotic arm", DateTime.ParseExact("2009-05-08 14:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
-                System.Globalization.CultureInfo.InvariantCulture),3);
-
-            project3.ProjectMembers.Add(new User("Karsten", "Karlsen", 32324567, "Karsten@easj.dk".ToLower()));
-
-            ProjectList.Add(project3);
-
-
-
-            // Returns the new filtered project to the one that calls it.
-            return ProjectList;
-        }
-
         public async Task WriteDoohickeyData()
         {
             await SaveObjectToXml(DoohickeyList, "DoohickeyData.xml");
@@ -163,7 +95,7 @@ namespace DimseLab_Aflevering.Model
         public void ReadUserData()
         {
 
-        }
+        }*/
 
         #endregion
 

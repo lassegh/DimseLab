@@ -53,16 +53,17 @@ namespace DimseLab_Aflevering.ViewModel
 
 
 
-            // Moved all dummy data for projects to "helper class" since this is were it will come from in the future.
-            ModelController helper = new ModelController();
-            List<Project> projects = helper.ReadProjectData();
+            // Opretter instans af ModelController
+            ModelController mc = new ModelController();
 
-            foreach (Project project in projects)
+            // Load data
+            mc.LoadEverything();
+
+            // Henter Objecter fra liste til observableCollection
+            foreach (Project project in mc.ProjectList)
             {
                 ProjectList.Add(project);
             }
-
-
         }
 
         // A fix for the async method "AddNewUser"

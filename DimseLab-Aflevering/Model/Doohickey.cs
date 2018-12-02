@@ -11,6 +11,11 @@ namespace DimseLab_Aflevering.Model
         private String name;
         private ModelController _mc;
 
+        public Doohickey()
+        {
+            // Bruges ifm lagring til disk
+        }
+
         public Doohickey(ModelController mc)
         {
             _mc = mc;

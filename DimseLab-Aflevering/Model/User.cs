@@ -15,6 +15,11 @@ namespace DimseLab_Aflevering
         private string _email;
         private ModelController _mc;
 
+        public User()
+        {
+            // Bruges ifm lagring
+        }
+
         public User(ModelController mc)
         {
             _mc = mc;

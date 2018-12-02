@@ -26,7 +26,7 @@ namespace DimseLab_Aflevering.Model
 
         public Project()
         {
-            
+            // Bruges ifm lagring
         }
 
         public Project(ModelController mc)

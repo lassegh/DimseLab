@@ -34,12 +34,19 @@ namespace DimseLab_Aflevering.ViewModel
             // Opretter instans af ModelController
             _mc = new ModelController();
 
+            LoadAndUpdateData();
+        }
+
+        private void LoadAndUpdateData()
+        {
             // Load data
             _mc.LoadEverything();
 
+            MyProjects.Clear(); //Tømmer listen, så der ikke opstår dubletter
+
             // Loops though every project and compares if the email fits the current users email. 
             foreach (Project project in _mc.ProjectList)
-            {   
+            {
                 // Compares emails to test and show that it works, since we dont have a login system yet
                 if (project.ProjectMembers.Any(x => x.Email == _mc.CurrentUser.Email))
                 {
@@ -75,6 +82,7 @@ namespace DimseLab_Aflevering.ViewModel
                 
                 _mc.SaveEverything();
             }
+            LoadAndUpdateData();
         }
 
         private void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)

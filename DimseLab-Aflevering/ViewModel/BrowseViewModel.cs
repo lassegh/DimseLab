@@ -23,26 +23,12 @@ namespace DimseLab_Aflevering.ViewModel
         private int _userInputNumber;
         private string _userInputEmail;
 
-        private RelayCommand _relayAddUser;
 
-
-        // Project
-        ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
-
-        private string _projectInputName;
-        private string _projectInputDescribtion;
-
-        private DateTime _projectBeginDate;
-        private DateTime _projectEndDate;
-
-        private bool _projectIsFinished;
-
-
+        // Opretter instans af ModelController
+        private ModelController _mc = new ModelController();
 
         public BrowseViewModel()
-        {
-            RelayAddUser = new RelayCommand(CallAddNewUser);
-
+        { 
             // TODO oprettelse af denne type object skal ikke ske her
             // Placeholder Users
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
@@ -50,49 +36,13 @@ namespace DimseLab_Aflevering.ViewModel
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-
-
-
-            // Opretter instans af ModelController
-            ModelController mc = new ModelController();
+            
 
             // Load data
-            mc.LoadEverything();
-
-            // Henter Objecter fra liste til observableCollection
-            foreach (Project project in mc.ProjectList)
-            {
-                ProjectList.Add(project);
-            }
+            Mc.LoadEverything();
         }
 
-        // A fix for the async method "AddNewUser"
-        #region FixAsyncAddNewUser
 
-        public void CallAddNewUser()
-        {
-            AddNewUser();
-        }
-
-        #endregion
-
-
-        //Method that adds a new user or otherwise tells the user if they used a wrong email
-        public async Task AddNewUser()
-        {
-            if (UserInputEmail.Contains("@easj.dk".ToLower()) && string.IsNullOrWhiteSpace(UserInputEmail) || string.IsNullOrWhiteSpace(UserInputFirstName) || string.IsNullOrWhiteSpace(UserInputLastName))
-            {
-                // TODO er det ikke kun i dette tilfælde, der skal bruges async?
-                // Wrong email used
-                var dialog = new MessageDialog("Invalid Email Used");
-                await dialog.ShowAsync();
-            }
-            else
-            {   // Adds new user
-                // TODO oprettelse af denne type object skal ikke ske her
-                UserList.Add(new User(UserInputFirstName, UserInputLastName, UserInputNumber, UserInputEmail));
-            }
-        }
 
 
         #region Get & Set Properties
@@ -131,51 +81,11 @@ namespace DimseLab_Aflevering.ViewModel
             set { _userInputEmail = value; }
         }
 
-        public RelayCommand RelayAddUser
-        {
-            get { return _relayAddUser; }
-            set { _relayAddUser = value; }
-        }
 
-
-        public ObservableCollection<Project> ProjectList
+        public ModelController Mc
         {
-            get { return _projectList; }
-            set
-            {
-                _projectList = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ProjectInputName
-        {
-            get { return _projectInputName; }
-            set { _projectInputName = value; }
-        }
-
-        public string ProjectInputDescribtion
-        {
-            get { return _projectInputDescribtion; }
-            set { _projectInputDescribtion = value; }
-        }
-
-        public DateTime ProjectBeginDate
-        {
-            get { return _projectBeginDate; }
-            set { _projectBeginDate = value; }
-        }
-
-        public DateTime ProjectEndDate
-        {
-            get { return _projectEndDate; }
-            set { _projectEndDate = value; }
-        }
-
-        public bool ProjectIsFinished
-        {
-            get { return _projectIsFinished; }
-            set { _projectIsFinished = value; }
+            get { return _mc; }
+            set { _mc = value; }
         }
 
         #endregion

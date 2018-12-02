@@ -151,7 +151,7 @@
                 <Pivot Title="Browse">
                     <PivotItem Header="Projekter">
                         <StackPanel>
-                            <ListView ItemsSource="{Binding ProjectList, Mode=TwoWay}"
+                            <ListView ItemsSource="{Binding Mc.ProjectList, Mode=TwoWay}"
                                       Height="500">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

@@ -22,10 +22,15 @@ namespace DimseLab_Aflevering.ViewModel
 
         public AdminViewModel()
         {
-            var helper = new ModelController();
-            _saveButton = new RelayCommand(helper.SaveEverything);
             //RelayLoadButton = new RelayCommand(helper.LoadEverything);
-            
+
+
+            AdminButton = new RelayCommand(OpenAdmin);
+        }
+
+        private void OpenAdmin()
+        {
+            MenuModel.Instance.ShowView("Admin");
         }
 
         public RelayCommand SaveButton
@@ -39,5 +44,7 @@ namespace DimseLab_Aflevering.ViewModel
             get { return _loadButton; }
             set { _loadButton = value; }
         }
+
+        public RelayCommand AdminButton { get; set; }
     }
 }

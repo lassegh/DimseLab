@@ -12,42 +12,14 @@ using GalaSoft.MvvmLight.Command;
 
 namespace DimseLab_Aflevering.ViewModel
 {
-    class MenuViewModel : INotifyPropertyChanged
+    class MenuModel : INotifyPropertyChanged
     {
         
         // Objecter af views holdes i denne liste
         private List<ViewController> _viewVisibility;
+        private static MenuModel _instance = null;
 
-        public RelayCommand BrowseButton { get; set; }
-        public RelayCommand ManageProjectsButton { get; set; }
-        public RelayCommand UserProfileButton { get; set; }
-        public RelayCommand AdminButton { get; set; }
-        public RelayCommand<int> SelectedProjectCommand{ get; set; }
-
-        private ModelController _mC = new ModelController();
-
-        public List<ViewController> ViewVisibility
-        {
-            get { return _viewVisibility; }
-            set
-            {
-                _viewVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ModelController MC
-        {
-            get { return _mC; }
-            set
-            {
-                _mC = value; 
-                OnPropertyChanged();
-            }
-        }
-
-
-        public MenuViewModel()
+        private MenuModel()
         {
             // Lægger objecter for views i liste
             _viewVisibility = new List<ViewController>()
@@ -59,31 +31,25 @@ namespace DimseLab_Aflevering.ViewModel
                 new ViewController("EditProject")
             };
 
-            if (MC.LoggedIn)
+            if (ModelController.Instance.LoggedIn)
             {
                 //Show me browse
-                OpenMyProjects();
+                ShowView("MyProjects");
             }
             else
             {
                 //Show me login
-                OpenUserProfile();
+                ShowView("MyProfile");
 
                 // TODO Disable menu buttons
             }
-            
-            BrowseButton = new RelayCommand(OpenBrowse);
-            ManageProjectsButton = new RelayCommand(OpenMyProjects);
-            UserProfileButton = new RelayCommand(OpenUserProfile);
-            AdminButton = new RelayCommand(OpenAdmin);
-            SelectedProjectCommand = new RelayCommand<int>(OnClickProjectInList );
         }
 
         /// <summary>
         /// Viser et bestemt view
         /// </summary>
         /// <param name="name">Navnet på det view, der skal vises</param>
-        private void ShowView(string name)
+        public void ShowView(string name)
         {
             foreach (var view in ViewVisibility)
             {
@@ -95,29 +61,32 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
-        private void OpenBrowse()
+
+
+        
+
+        
+
+        public List<ViewController> ViewVisibility
         {
-            ShowView("Browse");
+            get { return _viewVisibility; }
+            set
+            {
+                _viewVisibility = value;
+                OnPropertyChanged();
+            }
         }
 
-        private void OpenMyProjects()
+        public static MenuModel Instance
         {
-            ShowView("MyProjects");
-        }
-
-        private void OpenUserProfile()
-        {
-            ShowView("MyProfile");
-        }
-
-        private void OpenAdmin()
-        {
-            ShowView("Admin");
-        }
-
-        public void OnClickProjectInList(int i)
-        {
-            ShowView("EditProject");
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MenuModel();
+                }
+                return _instance;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

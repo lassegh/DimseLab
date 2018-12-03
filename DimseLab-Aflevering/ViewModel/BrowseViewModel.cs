@@ -18,14 +18,12 @@ namespace DimseLab_Aflevering.ViewModel
         // User
         ObservableCollection<User> _userList = new ObservableCollection<User>();
 
+        private ObservableCollection<Project> _projectList = ModelController.Instance.ProjectList;
+
         private string _userInputFirstName;
         private string _userInputLastName;
         private int _userInputNumber;
         private string _userInputEmail;
-
-
-        // Opretter instans af ModelController
-        private ModelController _mc = new ModelController();
 
         public BrowseViewModel()
         { 
@@ -36,13 +34,14 @@ namespace DimseLab_Aflevering.ViewModel
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            
 
-            // Load data
-            Mc.LoadEverything();
+            BrowseButton = new RelayCommand(BrowseButtonMethod);
         }
 
-
+        void BrowseButtonMethod()
+        {
+            MenuModel.Instance.ShowView("Browse");
+        }
 
 
         #region Get & Set Properties
@@ -81,12 +80,13 @@ namespace DimseLab_Aflevering.ViewModel
             set { _userInputEmail = value; }
         }
 
-
-        public ModelController Mc
+        public ObservableCollection<Project> ProjectList
         {
-            get { return _mc; }
-            set { _mc = value; }
+            get { return _projectList; }
+            set { _projectList = value; }
         }
+
+        public RelayCommand BrowseButton { get; set; }
 
         #endregion
 

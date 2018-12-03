@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewModel:MenuViewModel />
+        <viewModel:MenuModel />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -130,12 +130,12 @@
                         Grid.Row="2"
                         Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding MC.CurrentUser.FirstName}"
+                    <TextBlock Text="{Binding FirstName}"
                                Margin="0,0,2,0" />
-                    <TextBlock Text="{Binding MC.CurrentUser.LastName}"
+                    <TextBlock Text="{Binding LastName}"
                                Margin="0" />
                 </StackPanel>
-                <TextBlock Text="{Binding MC.CurrentUser.Email}" />
+                <TextBlock Text="{Binding Email}" />
             </StackPanel>
 
         </Grid>
@@ -151,7 +151,7 @@
                 <Pivot Title="Browse">
                     <PivotItem Header="Projekter">
                         <StackPanel>
-                            <ListView ItemsSource="{Binding Mc.ProjectList, Mode=TwoWay}"
+                            <ListView ItemsSource="{Binding ProjectList, Mode=TwoWay}"
                                       Height="500">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -282,8 +282,7 @@
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
                           Grid.Row="1"
-                          Grid.Column="0"
-                          SelectedItem="{Binding SelectedProject, Mode=TwoWay}">
+                          Grid.Column="0">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -450,7 +449,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding SelectedProject.Name}"
+                <TextBlock Text="{Binding CurrentProject.Name}"
                            Grid.Row="0"
                            Grid.Column="0"
                            FontWeight="Bold"/>

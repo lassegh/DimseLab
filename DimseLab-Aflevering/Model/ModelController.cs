@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -16,22 +17,25 @@ namespace DimseLab_Aflevering.Model
 {
     public class ModelController : INotifyPropertyChanged
     {
+        private static ModelController _instance = null;
+        private Project _currentProject;
+
         public bool LoggedIn { get; set; }
 
-        List<Project> _projectList = new List<Project>();
+        ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
 
         List<Doohickey> _doohickeyList = new List<Doohickey>();
 
         List<User> _userList = new List<User>();
 
         public User CurrentUser { get; set; }
-        
+
         // Creates mediator pattern
         public User User;
         public Doohickey Doohickey;
-        public Project Project; 
+        public Project Project;
 
-        public ModelController()
+        private ModelController()
         {
             // TODO CurrentUser skal sættes til den bruger, der er logget på
             CurrentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
@@ -44,7 +48,24 @@ namespace DimseLab_Aflevering.Model
             Doohickey = new Doohickey(this);
             Project = new Project(this);
 
+            // Load data
+            LoadEverything();
+
         }
+
+        public void SendSpecificProjectToIndexNul(int ID)
+        {
+            for (int i = 0; i < ProjectList.Count; i++)
+            {
+                if (ProjectList[i].ID == ID)
+                {
+                    CurrentProject = ProjectList[i];
+                    Debug.WriteLine(CurrentProject);
+                }
+            }
+        }
+
+
 
         #region readingNwriting
 
@@ -67,13 +88,13 @@ namespace DimseLab_Aflevering.Model
         public async void SaveProjectsAsync()
         {
             Debug.WriteLine("Saving projects async...");
-            await XMLReadWrite.SaveObjectToXml<List<Project>>(ProjectList, "ProjectModel.xml");
+            await XMLReadWrite.SaveObjectToXml<ObservableCollection<Project>>(ProjectList, "ProjectModel.xml");
         }
 
         private async void LoadProjectsAsync()
         {
             Debug.WriteLine("loading projects async...");
-            ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<List<Project>>("ProjectModel.xml");
+            ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Project>>("ProjectModel.xml");
         }
 
         /*
@@ -108,7 +129,6 @@ namespace DimseLab_Aflevering.Model
             set
             {
                 _userList = value;
-                OnPropertyChanged();
             }
         }
 
@@ -118,19 +138,37 @@ namespace DimseLab_Aflevering.Model
             set
             {
                 _doohickeyList = value;
+            }
+        }
+
+        public ObservableCollection<Project> ProjectList
+        {
+            get { return _projectList; }
+            set { _projectList = value; }
+        }
+
+        public static ModelController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ModelController();
+                }
+                return _instance;
+            }
+        }
+
+        public Project CurrentProject
+        {
+            get { return _currentProject; }
+            set
+            {
+                _currentProject = value;
                 OnPropertyChanged();
             }
         }
 
-        public List<Project> ProjectList
-        {
-            get { return _projectList; }
-            set
-            {
-                _projectList = value;
-                OnPropertyChanged();
-            }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

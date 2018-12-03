@@ -17,13 +17,13 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class MyProjectsViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Project> _myProjects = new ObservableCollection<Project>();
+        private ObservableCollection<Project> _myProjects = ModelController.Instance.ProjectList;
         private DateTime _projectEndDate;
+        private Project _currentProject = ModelController.Instance.CurrentProject;
 
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTime _inputProjectDate;
-        private ModelController _mc;
 
         private RelayCommand _relayAddProject;
 
@@ -31,26 +31,34 @@ namespace DimseLab_Aflevering.ViewModel
         {
             RelayAddProject = new RelayCommand(AddNewProject);
 
-            // Opretter instans af ModelController
-            _mc = new ModelController();
-
-            LoadAndUpdateData();
+            ManageProjectsButton = new RelayCommand(OpenMyProjects);
+            SelectedProjectCommand = new RelayCommand<int>(OnClickProjectInList);
         }
 
-        private void LoadAndUpdateData()
+        private void OpenMyProjects()
         {
-            // Load data
-            _mc.LoadEverything();
+            MenuModel.Instance.ShowView("MyProjects");
+        }
 
-            MyProjects.Clear(); //Tømmer listen, så der ikke opstår dubletter
+        public void OnClickProjectInList(int i)
+        {
+            MenuModel.Instance.ShowView("EditProject");
+            ModelController.Instance.SendSpecificProjectToIndexNul(i);
 
+            //Her skal CurrentProject opdateres
+            CurrentProject = ModelController.Instance.CurrentProject;
+        }
+
+        private void UpdateData()
+        {
+            // TODO filtrering virker ikke. MyProjects skal have filtreret de projekter fra, hvor brugeren IKKE indgår
             // Loops though every project and compares if the email fits the current users email. 
-            foreach (Project project in _mc.ProjectList)
+            foreach (Project project in MyProjects)
             {
-                // Compares emails to test and show that it works, since we dont have a login system yet
-                if (project.ProjectMembers.Any(x => x.Email == _mc.CurrentUser.Email))
+                // Removes any project, that is not 'used' by the user, that is loggedIn
+                if (project.ProjectMembers.Any(x => x.Email != ModelController.Instance.CurrentUser.Email))
                 {
-                    MyProjects.Add(project); //adds this new filtered list to the "MyProject" List
+                    MyProjects.Remove(project);
                 }
             }
         }
@@ -65,7 +73,7 @@ namespace DimseLab_Aflevering.ViewModel
             {
                 // Udregner id til næste projekt
                 int id = 0;
-                foreach (Project project in _mc.ProjectList)
+                foreach (Project project in ModelController.Instance.ProjectList)
                 {
                     if (project.ID > id)
                     {
@@ -77,18 +85,14 @@ namespace DimseLab_Aflevering.ViewModel
 
                 // Add Project
                 Project newProject = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
-                newProject.ProjectMembers.Add(_mc.CurrentUser);
-                _mc.ProjectList.Add(newProject);
-                
-                _mc.SaveEverything();
+                newProject.ProjectMembers.Add(ModelController.Instance.CurrentUser);
+                ModelController.Instance.ProjectList.Add(newProject);// Tilføjer projekt til hovedlisten
+                MyProjects.Add(newProject);// Tilføjer projekt til MyProjects
+                ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
             }
-            LoadAndUpdateData();
         }
 
-        private void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
 
 
         #region Get & Set Properties
@@ -136,6 +140,20 @@ namespace DimseLab_Aflevering.ViewModel
             get { return _relayAddProject; }
             set { _relayAddProject = value; }
         }
+
+        public Project CurrentProject
+        {
+            get { return _currentProject; }
+            set
+            {
+                _currentProject = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand ManageProjectsButton { get; set; }
+
+        public RelayCommand<int> SelectedProjectCommand { get; set; }
 
         #endregion
 

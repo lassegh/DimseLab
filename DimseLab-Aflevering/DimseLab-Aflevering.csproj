@@ -100,7 +100,7 @@
     <Compile Include="Model\XMLReadWrite.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
-    <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="Model\MenuModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -111,6 +111,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="ViewModel\BrowseViewModel.cs" />
     <Compile Include="ViewModel\MyProjectsViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -96,11 +96,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\TEMP_RegexSearch.cs" />
-    <Compile Include="Model\ViewController.cs" />
     <Compile Include="Model\XMLReadWrite.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
-    <Compile Include="Model\MenuModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

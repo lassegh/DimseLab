@@ -15,6 +15,12 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class BrowseViewModel : INotifyPropertyChanged
     {
+        private bool _browseVisibility;
+        private bool _myProjectsVisibility;
+        private bool _myProfileVisibility;
+        private bool _adminVisibility;
+        private bool _editProjectVisibility;
+
         // User
         ObservableCollection<User> _userList = new ObservableCollection<User>();
 
@@ -40,7 +46,13 @@ namespace DimseLab_Aflevering.ViewModel
 
         void BrowseButtonMethod()
         {
-            MenuModel.Instance.ShowView("Browse");
+            ModelController.Instance.SetAllInvisible();
+            ModelController.Instance.BrowseVisibility = true;
+            BrowseVisibility = ModelController.Instance.BrowseVisibility;
+            MyProjectsVisibility = ModelController.Instance.MyProjectsVisibility;
+            MyProfileVisibility = ModelController.Instance.MyProfileVisibility;
+            AdminVisibility = ModelController.Instance.AdminVisibility;
+            EditProjectVisibility = ModelController.Instance.EditProjectVisibility;
         }
 
 
@@ -87,6 +99,60 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
         public RelayCommand BrowseButton { get; set; }
+
+        public bool BrowseVisibility
+        {
+            get { return _browseVisibility; }
+            set
+            {
+                _browseVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool MyProjectsVisibility
+        {
+            get { return _myProjectsVisibility; }
+            set
+            {
+                _myProjectsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool MyProfileVisibility
+        {
+            get { return _myProfileVisibility; }
+            set
+            {
+                _myProfileVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool AdminVisibility
+        {
+            get
+            {
+                return _adminVisibility;
+                OnPropertyChanged();
+            }
+            set
+            {
+                _adminVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool EditProjectVisibility
+        {
+            get { return _editProjectVisibility; }
+            set
+            {
+                _editProjectVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 

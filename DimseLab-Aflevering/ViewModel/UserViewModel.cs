@@ -13,6 +13,11 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class UserViewModel : INotifyPropertyChanged
     {
+        private bool _browseVisibility;
+        private bool _myProjectsVisibility;
+        private bool _myProfileVisibility;
+        private bool _adminVisibility;
+        private bool _editProjectVisibility;
         private String _firstName = ModelController.Instance.CurrentUser.FirstName;
         private String _lastName = ModelController.Instance.CurrentUser.LastName;
         private String _email = ModelController.Instance.CurrentUser.Email;
@@ -24,7 +29,13 @@ namespace DimseLab_Aflevering.ViewModel
 
         private void OpenUserProfile()
         {
-            MenuModel.Instance.ShowView("MyProfile");
+            ModelController.Instance.SetAllInvisible();
+            ModelController.Instance.MyProfileVisibility = true;
+            BrowseVisibility = ModelController.Instance.BrowseVisibility;
+            MyProjectsVisibility = ModelController.Instance.MyProjectsVisibility;
+            MyProfileVisibility = ModelController.Instance.MyProfileVisibility;
+            AdminVisibility = ModelController.Instance.AdminVisibility;
+            EditProjectVisibility = ModelController.Instance.EditProjectVisibility;
         }
 
         public RelayCommand UserProfileButton { get; set; }
@@ -49,6 +60,36 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _email; }
             set { _email = value; }
+        }
+
+        public bool BrowseVisibility
+        {
+            get { return _browseVisibility; }
+            set { _browseVisibility = value; }
+        }
+
+        public bool MyProjectsVisibility
+        {
+            get { return _myProjectsVisibility; }
+            set { _myProjectsVisibility = value; }
+        }
+
+        public bool MyProfileVisibility
+        {
+            get { return _myProfileVisibility; }
+            set { _myProfileVisibility = value; }
+        }
+
+        public bool AdminVisibility
+        {
+            get { return _adminVisibility; }
+            set { _adminVisibility = value; }
+        }
+
+        public bool EditProjectVisibility
+        {
+            get { return _editProjectVisibility; }
+            set { _editProjectVisibility = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

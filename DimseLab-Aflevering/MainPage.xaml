@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewModel:MenuModel />
+        <viewModel:MyProjectsViewModel />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -42,6 +42,9 @@
                     Command="{Binding BrowseButton}"
                     Grid.Column="2"
                     Grid.Row="0">
+                <Button.DataContext>
+                    <viewModel:BrowseViewModel/>
+                </Button.DataContext>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
@@ -52,6 +55,7 @@
                                Grid.Row="1" />
                 </Grid>
             </Button>
+            
             <Button HorizontalAlignment="Center"
                     Width="400"
                     Height="80"
@@ -77,6 +81,9 @@
                     Command="{Binding UserProfileButton}"
                     Grid.Column="4"
                     Grid.Row="0">
+                <Button.DataContext>
+                    <viewModel:UserViewModel/>
+                </Button.DataContext>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
@@ -96,6 +103,9 @@
                     Command="{Binding AdminButton}"
                     Grid.Column="5"
                     Grid.Row="0">
+                <Button.DataContext>
+                    <viewModel:AdminViewModel/>
+                </Button.DataContext>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
@@ -131,11 +141,23 @@
                         Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding FirstName}"
-                               Margin="0,0,2,0" />
+                               Margin="0,0,2,0">
+                        <TextBlock.DataContext>
+                            <viewModel:UserViewModel/>
+                        </TextBlock.DataContext>
+                    </TextBlock>
                     <TextBlock Text="{Binding LastName}"
-                               Margin="0" />
+                               Margin="0">
+                        <TextBlock.DataContext>
+                            <viewModel:UserViewModel />
+                        </TextBlock.DataContext>
+                    </TextBlock>
                 </StackPanel>
-                <TextBlock Text="{Binding Email}" />
+                <TextBlock Text="{Binding Email}">
+                    <TextBlock.DataContext>
+                        <viewModel:UserViewModel />
+                    </TextBlock.DataContext>
+                </TextBlock>
             </StackPanel>
 
         </Grid>
@@ -143,11 +165,10 @@
 
         <!--#region BrowserGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding ViewVisibility[0].Visible}">
-            <Grid>
-                <Grid.DataContext>
-                    <viewModel:BrowseViewModel />
-                </Grid.DataContext>
+              Visibility="{Binding BrowseVisibility}">
+            <Grid.DataContext>
+                <viewModel:BrowseViewModel />
+            </Grid.DataContext>
                 <Pivot Title="Browse">
                     <PivotItem Header="Projekter">
                         <StackPanel>
@@ -251,18 +272,17 @@
                         </StackPanel>
                     </PivotItem>
                 </Pivot>
-            </Grid>
+            
         </Grid>
         <!--#endregion-->
 
         <!--#region MyProjectsGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding ViewVisibility[1].Visible}">
-            <Grid>
-                <Grid.DataContext>
-                    <viewModel:MyProjectsViewModel />
-                </Grid.DataContext>
-                <Grid.ColumnDefinitions>
+              Visibility="{Binding MyProjectsVisibility}">
+            <Grid.DataContext>
+                <viewModel:MyProjectsViewModel />
+            </Grid.DataContext>
+            <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
@@ -387,52 +407,40 @@
                             Margin="5"
                             Command="{Binding RelayAddProject}" />
                 </Grid>
-            </Grid>
         </Grid>
         <!--#endregion-->
 
         <!--#region MyProfileGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  ViewVisibility[2].Visible}">
-            <Grid Grid.Row="1">
-                <Grid.DataContext>
-                    <viewModel:BrowseViewModel />
-                </Grid.DataContext>
+              Visibility="{Binding  MyProfileVisibility}">
+            <Grid.DataContext>
+                <viewModel:UserViewModel />
+            </Grid.DataContext>
                 <TextBox BorderThickness="5"
                          BorderBrush="Red">
 
                 </TextBox>
-            </Grid>
         </Grid>
         <!--#endregion-->
 
         <!--#region AdminGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  ViewVisibility[3].Visible}">
-            <Grid Grid.Row="0"
-                  BorderBrush="BlueViolet"
-                  BorderThickness="5">
-                <Grid.DataContext>
-                    <viewModel:AdminViewModel />
-                </Grid.DataContext>
-                <StackPanel Orientation="Vertical">
-                    <Button Content="Save"
-                            Command="{Binding SaveButton}" />
-                    <Button Content="Load"
-                            Command="{Binding LoadButton}" />
-                </StackPanel>
-            </Grid>
+              Visibility="{Binding  AdminVisibility}">
+            <Grid.DataContext>
+                <viewModel:AdminViewModel />
+            </Grid.DataContext>
+            
+
         </Grid>
         <!--#endregion-->
 
         <!--#region EditProject-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  ViewVisibility[4].Visible}">
-            <Grid Grid.Row="0">
-                <Grid.DataContext>
-                    <viewModel:MyProjectsViewModel />
-                </Grid.DataContext>
-                <Grid.ColumnDefinitions>
+              Visibility="{Binding  EditProjectVisibility}">
+            <Grid.DataContext>
+                <viewModel:MyProjectsViewModel />
+            </Grid.DataContext>
+            <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -453,7 +461,6 @@
                            Grid.Row="0"
                            Grid.Column="0"
                            FontWeight="Bold"/>
-            </Grid>
         </Grid>
         <!--#endregion-->
     </Grid>

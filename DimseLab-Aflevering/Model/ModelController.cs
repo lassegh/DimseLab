@@ -48,9 +48,24 @@ namespace DimseLab_Aflevering.Model
             Doohickey = new Doohickey(this);
             Project = new Project(this);
 
+            // Initierer visibility bools
+            SetAllInvisible();
+
+            // Viser browse
+            BrowseVisibility = true;
+
             // Load data
             LoadEverything();
 
+        }
+
+        public void SetAllInvisible()
+        {
+            BrowseVisibility = false;
+            MyProjectsVisibility = false;
+            MyProfileVisibility = false;
+            AdminVisibility = false;
+            EditProjectVisibility = false;
         }
 
         public void SendSpecificProjectToIndexNul(int ID)
@@ -64,8 +79,6 @@ namespace DimseLab_Aflevering.Model
                 }
             }
         }
-
-
 
         #region readingNwriting
 
@@ -169,6 +182,15 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
+        public bool BrowseVisibility { get; set; }
+
+        public bool MyProjectsVisibility { get; set; }
+
+        public bool MyProfileVisibility { get; set; }
+
+        public bool AdminVisibility { get; set; }
+
+        public bool EditProjectVisibility { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

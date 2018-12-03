@@ -17,7 +17,10 @@ namespace DimseLab_Aflevering.Model
 {
     public class ModelController : INotifyPropertyChanged
     {
+        // instans af singleton
         private static ModelController _instance = null;
+
+        // instans af currentProject - bruges ifm redigering af projekter
         private Project _currentProject;
 
         // Views Visibility
@@ -27,15 +30,17 @@ namespace DimseLab_Aflevering.Model
         private bool _adminVisibility;
         private bool _editProjectVisibility;
 
-        public bool LoggedIn { get; set; }
+        // instans af OC af projekter - bruges både i browse og i myProjects
+        private ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
 
-        ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
-
+        // instans af OC af dimser - bruges både i browse og i myProjects
         List<Doohickey> _doohickeyList = new List<Doohickey>();
 
+        // instans af OC af brugere - bruges både i browse og i myProjects
         List<User> _userList = new List<User>();
 
-        public User CurrentUser { get; set; }
+        // Nuværende bruger - sættes til null, så der senere kan tjekkes om der er logget på
+        private User _currentUser = null;
 
         // Creates mediator pattern
         public User User;
@@ -44,18 +49,12 @@ namespace DimseLab_Aflevering.Model
 
         private ModelController()
         {
-            // TODO CurrentUser skal sættes til den bruger, der er logget på
-            CurrentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
-
-            //TODO get loginToken - tjek om der er logget på
-            LoggedIn = true;
-
             // Creates mediator pattern
             User = new User(this);
             Doohickey = new Doohickey(this);
             Project = new Project(this);
 
-            // Initierer visibility bools
+            // Initierer visibility bools til false
             SetAllInvisible();
 
             // Viser browse
@@ -63,9 +62,11 @@ namespace DimseLab_Aflevering.Model
 
             // Load data
             LoadEverything();
-
         }
 
+        /// <summary>
+        /// Sætter alle grids til invisible
+        /// </summary>
         public void SetAllInvisible()
         {
             BrowseVisibility = false;
@@ -75,7 +76,11 @@ namespace DimseLab_Aflevering.Model
             EditProjectVisibility = false;
         }
 
-        public void SendSpecificProjectToIndexNul(int ID)
+        /// <summary>
+        /// Sætter projekt til currentProject, så det kan redigeres
+        /// </summary>
+        /// <param name="ID">Id'et på projektet</param>
+        public void SendSpecificProjectToCurrentProject(int ID)
         {
             for (int i = 0; i < ProjectList.Count; i++)
             {
@@ -89,6 +94,9 @@ namespace DimseLab_Aflevering.Model
 
         #region readingNwriting
 
+        /// <summary>
+        /// Gemmer alt til fil(er) (lister af projekter, dimser og brugere) 
+        /// </summary>
         public void SaveEverything()
         {
             SaveProjectsAsync();
@@ -97,6 +105,9 @@ namespace DimseLab_Aflevering.Model
             WriteUserData();*/
         }
 
+        /// <summary>
+        /// Henter alt fra fil(er) (lister af projekter, dimser og brugere) 
+        /// </summary>
         public void LoadEverything()
         {
             LoadProjectsAsync();
@@ -105,43 +116,27 @@ namespace DimseLab_Aflevering.Model
             LoadUserData();*/
         }
 
+        /// <summary>
+        /// Gemmer projektListe
+        /// </summary>
         public async void SaveProjectsAsync()
         {
             Debug.WriteLine("Saving projects async...");
             await XMLReadWrite.SaveObjectToXml<ObservableCollection<Project>>(ProjectList, "ProjectModel.xml");
         }
 
+        /// <summary>
+        /// Henter projektListe
+        /// </summary>
         private async void LoadProjectsAsync()
         {
             Debug.WriteLine("loading projects async...");
             ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Project>>("ProjectModel.xml");
         }
 
-        /*
-        public async Task WriteDoohickeyData()
-        {
-            await SaveObjectToXml(DoohickeyList, "DoohickeyData.xml");
-        }
-
-        public void ReadDoohickeyData()
-        {
-
-        }
-
-        public async Task WriteUserData()
-        {
-            await SaveObjectToXml(UserList, "UserData.xml");
-        }
-
-        public void ReadUserData()
-        {
-
-        }*/
-
         #endregion
-
-
-
+        
+        #region Properties
 
         public List<User> UserList
         {
@@ -239,6 +234,22 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
+        public User CurrentUser
+        {
+            get
+            {
+                if (_currentUser == null)
+                {
+                    // TODO Send til login og slet næste linie
+                    _currentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
+                }
+                return _currentUser;
+            }
+        }
+        #endregion
+
+        #region INotifyProperty
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -246,5 +257,8 @@ namespace DimseLab_Aflevering.Model
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
     }
 }

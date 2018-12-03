@@ -15,25 +15,31 @@ namespace DimseLab_Aflevering.ViewModel
 
     class AdminViewModel : INotifyPropertyChanged
     {
+        // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
         
         RelayCommand _saveButton;
 
         RelayCommand _loadButton;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AdminViewModel()
         {
-            //RelayLoadButton = new RelayCommand(helper.LoadEverything);
-
-
+            // Knap til visning af adminGrid
             AdminButton = new RelayCommand(OpenAdmin);
         }
 
+        /// <summary>
+        /// Metode til visning af adminGrid
+        /// </summary>
         private void OpenAdmin()
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.AdminVisibility = true;
         }
+
 
         public RelayCommand SaveButton
         {

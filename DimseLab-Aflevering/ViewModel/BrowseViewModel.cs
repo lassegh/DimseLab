@@ -15,31 +15,34 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class BrowseViewModel : INotifyPropertyChanged
     {
+        // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
 
-        // User
+        // User liste - TODO denne er midlertidig, da den skal komme fra modelController på samme måde som projektlisten
         ObservableCollection<User> _userList = new ObservableCollection<User>();
 
+        // Kopierer projektListen fra ModelController
         private ObservableCollection<Project> _projectList = ModelController.Instance.ProjectList;
 
-        private string _userInputFirstName;
-        private string _userInputLastName;
-        private int _userInputNumber;
-        private string _userInputEmail;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public BrowseViewModel()
         { 
-            // TODO oprettelse af denne type object skal ikke ske her
-            // Placeholder Users
+            // TODO oprettelse af denne type object skal ikke ske her, men i userViewModel
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
 
+            // Knap til visning af browseGrid
             BrowseButton = new RelayCommand(BrowseButtonMethod);
         }
 
+        /// <summary>
+        /// Metode til visning af BrowseGrid
+        /// </summary>
         void BrowseButtonMethod()
         {
             ModelController.Instance.SetAllInvisible();
@@ -49,7 +52,7 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
 
-        #region Get & Set Properties
+        #region Properties
 
         public ObservableCollection<User> UserList
         {
@@ -60,31 +63,7 @@ namespace DimseLab_Aflevering.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public string UserInputFirstName
-        {
-            get { return _userInputFirstName; }
-            set { _userInputFirstName = value; }
-        }
-
-        public string UserInputLastName
-        {
-            get { return _userInputLastName; }
-            set { _userInputLastName = value; }
-        }
-
-        public int UserInputNumber
-        {
-            get { return _userInputNumber; }
-            set { _userInputNumber = value; }
-        }
-
-        public string UserInputEmail
-        {
-            get { return _userInputEmail; }
-            set { _userInputEmail = value; }
-        }
-
+        
         public ObservableCollection<Project> ProjectList
         {
             get { return _projectList; }

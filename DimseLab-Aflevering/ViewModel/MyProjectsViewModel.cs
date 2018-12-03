@@ -17,40 +17,62 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class MyProjectsViewModel : INotifyPropertyChanged
     {
+        // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
-        private ObservableCollection<Project> _myProjects = ModelController.Instance.ProjectList;
-        private DateTime _projectEndDate;
 
+        // Kopierer projektListen til myProjects
+        private ObservableCollection<Project> _myProjects = ModelController.Instance.ProjectList;
+
+        // Instanser ifm oprettelse af nyt projekt
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTime _inputProjectDate;
+        private DateTime _projectEndDate;
 
+        // Knap til tilføjelse af projekt
         private RelayCommand _relayAddProject;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MyProjectsViewModel()
         {
+            // Knap til tilføjelse af projekt
             RelayAddProject = new RelayCommand(AddNewProject);
 
+            // Knap til visning af myProjectsGrid
             ManageProjectsButton = new RelayCommand(OpenMyProjects);
+
+            // Knap til redigering af valgt projekt
             SelectedProjectCommand = new RelayCommand<int>(OnClickProjectInList);
         }
 
+        /// <summary>
+        /// Metode til visning af MyProjectsGrid
+        /// </summary>
         private void OpenMyProjects()
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.MyProjectsVisibility = true;
         }
 
+        /// <summary>
+        /// Metode til visning af redigeringsside af valgt projekt
+        /// </summary>
+        /// <param name="i">Id'et for valgte projekt</param>
         public void OnClickProjectInList(int i)
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.EditProjectVisibility = true;
-            ModelController.Instance.SendSpecificProjectToIndexNul(i);
+            ModelController.Instance.SendSpecificProjectToCurrentProject(i);
         }
 
+        /// <summary>
+        /// Filtrerer MyProjects listen, så det kun er projekter jeg deltager i, der bliver vist
+        /// </summary>
         private void UpdateData()
         {
-            // TODO filtrering virker ikke. MyProjects skal have filtreret de projekter fra, hvor brugeren IKKE indgår
+            // TODO filtrering virker ikke. MyProjects skal have filtreret de projekter fra, hvor brugeren IKKE indgår. Metode skal kaldes fra constructoren, så den kun køres ved programmets opstart.
             // Loops though every project and compares if the email fits the current users email. 
             foreach (Project project in MyProjects)
             {
@@ -62,6 +84,9 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+        /// <summary>
+        /// Tilføjer nyt projekt til alle lister
+        /// </summary>
         public void AddNewProject()
         {
             if (string.IsNullOrWhiteSpace(InputProjectName) || string.IsNullOrWhiteSpace(InputProjectDescribtion))
@@ -89,12 +114,14 @@ namespace DimseLab_Aflevering.ViewModel
                 MyProjects.Add(newProject);// Tilføjer projekt til MyProjects
                 ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
             }
+
+            // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
         }
 
-        // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
 
 
-        #region Get & Set Properties
+
+        #region Properties
 
         public ObservableCollection<Project> MyProjects
         {

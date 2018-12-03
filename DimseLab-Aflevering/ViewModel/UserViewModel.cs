@@ -13,22 +13,33 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class UserViewModel : INotifyPropertyChanged
     {
+        // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
 
+        // Opretter instanser af bruger oplysninger - bruges til visning af nuværende bruger
         private String _firstName = ModelController.Instance.CurrentUser.FirstName;
         private String _lastName = ModelController.Instance.CurrentUser.LastName;
         private String _email = ModelController.Instance.CurrentUser.Email;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public UserViewModel()
         {
+            // Knap til visning af userGrid
             UserProfileButton = new RelayCommand(OpenUserProfile);
         }
 
+        /// <summary>
+        /// Metode til visning af userGrid
+        /// </summary>
         private void OpenUserProfile()
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.MyProfileVisibility = true;
         }
+
+        #region Properties
 
         public RelayCommand UserProfileButton { get; set; }
 
@@ -60,6 +71,10 @@ namespace DimseLab_Aflevering.ViewModel
             set { _mC = value; }
         }
 
+        #endregion
+
+        #region INotifyProperty
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -67,5 +82,8 @@ namespace DimseLab_Aflevering.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
     }
 }

@@ -165,7 +165,7 @@
 
         <!--#region BrowserGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding BrowseVisibility}">
+              Visibility="{Binding MC.BrowseVisibility}">
             <Grid.DataContext>
                 <viewModel:BrowseViewModel />
             </Grid.DataContext>
@@ -278,7 +278,7 @@
 
         <!--#region MyProjectsGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding MyProjectsVisibility}">
+              Visibility="{Binding MC.MyProjectsVisibility}">
             <Grid.DataContext>
                 <viewModel:MyProjectsViewModel />
             </Grid.DataContext>
@@ -412,7 +412,7 @@
 
         <!--#region MyProfileGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  MyProfileVisibility}">
+              Visibility="{Binding  MC.MyProfileVisibility}">
             <Grid.DataContext>
                 <viewModel:UserViewModel />
             </Grid.DataContext>
@@ -425,7 +425,7 @@
 
         <!--#region AdminGrid-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  AdminVisibility}">
+              Visibility="{Binding  MC.AdminVisibility}">
             <Grid.DataContext>
                 <viewModel:AdminViewModel />
             </Grid.DataContext>
@@ -436,7 +436,7 @@
 
         <!--#region EditProject-->
         <Grid Grid.Row="1"
-              Visibility="{Binding  EditProjectVisibility}">
+              Visibility="{Binding  MC.EditProjectVisibility}">
             <Grid.DataContext>
                 <viewModel:MyProjectsViewModel />
             </Grid.DataContext>
@@ -457,7 +457,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding CurrentProject.Name}"
+                <TextBlock Text="{Binding MC.CurrentProject.Name}"
                            Grid.Row="0"
                            Grid.Column="0"
                            FontWeight="Bold"/>

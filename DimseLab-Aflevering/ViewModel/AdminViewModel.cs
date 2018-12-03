@@ -15,19 +15,11 @@ namespace DimseLab_Aflevering.ViewModel
 
     class AdminViewModel : INotifyPropertyChanged
     {
-        private bool _browseVisibility;
-        private bool _myProjectsVisibility;
-        private bool _myProfileVisibility;
-        private bool _adminVisibility;
-        private bool _editProjectVisibility;
+        private ModelController _mC = ModelController.Instance;
         
         RelayCommand _saveButton;
 
         RelayCommand _loadButton;
-
-
-
-
 
         public AdminViewModel()
         {
@@ -41,11 +33,6 @@ namespace DimseLab_Aflevering.ViewModel
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.AdminVisibility = true;
-            BrowseVisibility = ModelController.Instance.BrowseVisibility;
-            MyProjectsVisibility = ModelController.Instance.MyProjectsVisibility;
-            MyProfileVisibility = ModelController.Instance.MyProfileVisibility;
-            AdminVisibility = ModelController.Instance.AdminVisibility;
-            EditProjectVisibility = ModelController.Instance.EditProjectVisibility;
         }
 
         public RelayCommand SaveButton
@@ -62,54 +49,10 @@ namespace DimseLab_Aflevering.ViewModel
 
         public RelayCommand AdminButton { get; set; }
 
-        public bool BrowseVisibility
+        public ModelController MC
         {
-            get { return _browseVisibility; }
-            set
-            {
-                _browseVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool MyProjectsVisibility
-        {
-            get { return _myProjectsVisibility; }
-            set
-            {
-                _myProjectsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool MyProfileVisibility
-        {
-            get { return _myProfileVisibility; }
-            set
-            {
-                _myProfileVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool AdminVisibility
-        {
-            get { return _adminVisibility; }
-            set
-            {
-                _adminVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool EditProjectVisibility
-        {
-            get { return _editProjectVisibility; }
-            set
-            {
-                _editProjectVisibility = value;
-                OnPropertyChanged();
-            }
+            get { return _mC; }
+            set { _mC = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

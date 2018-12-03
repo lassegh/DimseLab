@@ -17,14 +17,9 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class MyProjectsViewModel : INotifyPropertyChanged
     {
-        private bool _browseVisibility;
-        private bool _myProjectsVisibility;
-        private bool _myProfileVisibility;
-        private bool _adminVisibility;
-        private bool _editProjectVisibility;
+        private ModelController _mC = ModelController.Instance;
         private ObservableCollection<Project> _myProjects = ModelController.Instance.ProjectList;
         private DateTime _projectEndDate;
-        private Project _currentProject = ModelController.Instance.CurrentProject;
 
         private string _inputProjectName;
         private string _inputProjectDescribtion;
@@ -44,26 +39,13 @@ namespace DimseLab_Aflevering.ViewModel
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.MyProjectsVisibility = true;
-            BrowseVisibility = ModelController.Instance.BrowseVisibility;
-            MyProjectsVisibility = ModelController.Instance.MyProjectsVisibility;
-            MyProfileVisibility = ModelController.Instance.MyProfileVisibility;
-            AdminVisibility = ModelController.Instance.AdminVisibility;
-            EditProjectVisibility = ModelController.Instance.EditProjectVisibility;
         }
 
         public void OnClickProjectInList(int i)
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.EditProjectVisibility = true;
-            BrowseVisibility = ModelController.Instance.BrowseVisibility;
-            MyProjectsVisibility = ModelController.Instance.MyProjectsVisibility;
-            MyProfileVisibility = ModelController.Instance.MyProfileVisibility;
-            AdminVisibility = ModelController.Instance.AdminVisibility;
-            EditProjectVisibility = ModelController.Instance.EditProjectVisibility;
             ModelController.Instance.SendSpecificProjectToIndexNul(i);
-
-            //Her skal CurrentProject opdateres
-            CurrentProject = ModelController.Instance.CurrentProject;
         }
 
         private void UpdateData()
@@ -158,48 +140,18 @@ namespace DimseLab_Aflevering.ViewModel
             set { _relayAddProject = value; }
         }
 
-        public Project CurrentProject
-        {
-            get { return _currentProject; }
-            set
-            {
-                _currentProject = value;
-                OnPropertyChanged();
-            }
-        }
-
         public RelayCommand ManageProjectsButton { get; set; }
 
         public RelayCommand<int> SelectedProjectCommand { get; set; }
 
-        public bool BrowseVisibility
+        public ModelController MC
         {
-            get { return _browseVisibility; }
-            set { _browseVisibility = value; }
-        }
-
-        public bool MyProjectsVisibility
-        {
-            get { return _myProjectsVisibility; }
-            set { _myProjectsVisibility = value; }
-        }
-
-        public bool MyProfileVisibility
-        {
-            get { return _myProfileVisibility; }
-            set { _myProfileVisibility = value; }
-        }
-
-        public bool AdminVisibility
-        {
-            get { return _adminVisibility; }
-            set { _adminVisibility = value; }
-        }
-
-        public bool EditProjectVisibility
-        {
-            get { return _editProjectVisibility; }
-            set { _editProjectVisibility = value; }
+            get { return _mC; }
+            set
+            {
+                _mC = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

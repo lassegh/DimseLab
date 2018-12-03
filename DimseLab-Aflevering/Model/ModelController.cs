@@ -20,6 +20,13 @@ namespace DimseLab_Aflevering.Model
         private static ModelController _instance = null;
         private Project _currentProject;
 
+        // Views Visibility
+        private bool _browseVisibility;
+        private bool _myProjectsVisibility;
+        private bool _myProfileVisibility;
+        private bool _adminVisibility;
+        private bool _editProjectVisibility;
+
         public bool LoggedIn { get; set; }
 
         ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
@@ -182,15 +189,55 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
-        public bool BrowseVisibility { get; set; }
+        public bool BrowseVisibility
+        {
+            get { return _browseVisibility; }
+            set
+            {
+                _browseVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool MyProjectsVisibility { get; set; }
+        public bool MyProjectsVisibility
+        {
+            get { return _myProjectsVisibility; }
+            set
+            {
+                _myProjectsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool MyProfileVisibility { get; set; }
+        public bool MyProfileVisibility
+        {
+            get { return _myProfileVisibility; }
+            set
+            {
+                _myProfileVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool AdminVisibility { get; set; }
+        public bool AdminVisibility
+        {
+            get { return _adminVisibility; }
+            set
+            {
+                _adminVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public bool EditProjectVisibility { get; set; }
+        public bool EditProjectVisibility
+        {
+            get { return _editProjectVisibility; }
+            set
+            {
+                _editProjectVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

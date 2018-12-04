@@ -549,7 +549,7 @@
                            Margin="0,0,5,0" />
                 <TextBox Margin="0,0,5,0"
                          KeyUp="SearchForUsersForEveryLetterTyped"
-                         FocusDisengaged="EmptySearchString"
+                         LostFocus="EmptySearchString"
                          MinWidth="200" />
             </StackPanel>
             <ListView Grid.Row="3"

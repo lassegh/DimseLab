@@ -36,12 +36,12 @@ namespace DimseLab_Aflevering
 
         private void SearchForUsersForEveryLetterTyped(object sender, KeyRoutedEventArgs e)
         {
-            SBuilder.Append(e);
+            SBuilder.Append(e.Key);
             SearchString = SBuilder.ToString();
             ModelController.Instance.SearchForUsers(SearchString);
         }
 
-        private void EmptySearchString(Control sender, FocusDisengagedEventArgs args)
+        private void EmptySearchString(object sender, RoutedEventArgs e)
         {
             SearchString = "";
             SBuilder.Clear();
@@ -58,5 +58,7 @@ namespace DimseLab_Aflevering
             get { return _sBuilder; }
             set { _sBuilder = value; }
         }
+
+        
     }
 }

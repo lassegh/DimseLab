@@ -63,7 +63,11 @@ namespace DimseLab_Aflevering.Model
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
         }
 
         public DateTime ProjectBeginDate
@@ -81,19 +85,31 @@ namespace DimseLab_Aflevering.Model
         public List<Doohickey> BorrowedItems
         {
             get { return _borrowedItems; }
-            set { _borrowedItems = value; }
+            set
+            {
+                _borrowedItems = value;
+                OnPropertyChanged();
+            }
         }
 
         public bool IsFinished
         {
             get { return isFinished; }
-            set { isFinished = value; }
+            set
+            {
+                isFinished = value;
+                OnPropertyChanged();
+            }
         }
 
         public List<User> ProjectMembers
         {
             get { return _projectMembers; }
-            set { _projectMembers = value; }
+            set
+            {
+                _projectMembers = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

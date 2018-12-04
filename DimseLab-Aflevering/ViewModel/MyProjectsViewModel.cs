@@ -32,6 +32,18 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til tilføjelse af projekt
         private RelayCommand _relayAddProject;
 
+        // Knap til afslutning af projekt
+        private RelayCommand _endProjectCommand;
+
+        // Knap til opdatering af redigering
+        private RelayCommand _saveEditingCommand;
+
+        // String til søgning efter brugere til projekt
+        private string _searchForUserString;
+
+        // String til søgning efter dimser til projekt
+        private string _searchForDoohickeyString;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -45,6 +57,50 @@ namespace DimseLab_Aflevering.ViewModel
 
             // Knap til redigering af valgt projekt
             SelectedProjectCommand = new RelayCommand<int>(OnClickProjectInList);
+
+            // Knap til afslutning af projekt
+            EndProjectCommand = new RelayCommand(EndProject);
+
+            // Knap til opdatering af redigering
+            SaveEditingCommand = new RelayCommand(SaveProject);
+        }
+
+        /// <summary>
+        /// Gem redigering af projekt
+        /// </summary>
+        private void SaveProject()
+        {
+            // Gemmer til liste i ModelController
+            foreach (Project project in MC.ProjectList)
+            {
+                if (project.ID == MC.CurrentProject.ID)
+                {
+                    project.BorrowedItems = MC.CurrentProject.BorrowedItems;
+                    project.Description = MC.CurrentProject.Description;
+                    project.ProjectMembers = MC.CurrentProject.ProjectMembers;
+                }
+            }
+
+            // Gemmer til listen myProjects
+            foreach (Project project in MyProjects)
+            {
+                if (project.ID == MC.CurrentProject.ID)
+                {
+                    project.BorrowedItems = MC.CurrentProject.BorrowedItems;
+                    project.Description = MC.CurrentProject.Description;
+                    project.ProjectMembers = MC.CurrentProject.ProjectMembers;
+                }
+            }
+            ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
+            OpenMyProjects(); // Viser mine projekter
+        }
+
+        /// <summary>
+        /// Metode til afslutning af projekt
+        /// </summary>
+        private void EndProject()
+        {
+            // TODO indsæt kode til afslutning af projekt
         }
 
         /// <summary>
@@ -179,6 +235,30 @@ namespace DimseLab_Aflevering.ViewModel
                 _mC = value;
                 OnPropertyChanged();
             }
+        }
+
+        public RelayCommand EndProjectCommand
+        {
+            get { return _endProjectCommand; }
+            set { _endProjectCommand = value; }
+        }
+
+        public string SearchForUserString
+        {
+            get { return _searchForUserString; }
+            set { _searchForUserString = value; }
+        }
+
+        public string SearchForDoohickeyString
+        {
+            get { return _searchForDoohickeyString; }
+            set { _searchForDoohickeyString = value; }
+        }
+
+        public RelayCommand SaveEditingCommand
+        {
+            get { return _saveEditingCommand; }
+            set { _saveEditingCommand = value; }
         }
 
         #endregion

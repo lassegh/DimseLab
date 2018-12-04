@@ -129,8 +129,17 @@ namespace DimseLab_Aflevering.Model
         /// </summary>
         private async void LoadProjectsAsync()
         {
-            Debug.WriteLine("loading projects async...");
-            ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Project>>("ProjectModel.xml");
+            try
+            {
+                Debug.WriteLine("loading projects async...");
+                ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Project>>("ProjectModel.xml");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                
+            }
+            
         }
 
         #endregion

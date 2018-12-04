@@ -37,7 +37,7 @@ namespace DimseLab_Aflevering.Model
         List<Doohickey> _doohickeyList = new List<Doohickey>();
 
         // instans af OC af brugere - bruges både i browse og i myProjects
-        List<User> _userList = new List<User>();
+        ObservableCollection<User> _userList = new ObservableCollection<User>();
 
         // Nuværende bruger - sættes til null, så der senere kan tjekkes om der er logget på
         private User _currentUser = null;
@@ -57,11 +57,24 @@ namespace DimseLab_Aflevering.Model
             // Initierer visibility bools til false
             SetAllInvisible();
 
+            // Opretter brugere
+            HardcodedUsers();
+
             // Viser browse
             BrowseVisibility = true;
 
             // Load data
             LoadEverything();
+        }
+
+        // Laver brugere hardcoded
+        private void HardcodedUsers()
+        {
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
         }
 
         /// <summary>
@@ -89,6 +102,7 @@ namespace DimseLab_Aflevering.Model
                     CurrentProject = ProjectList[i];
                 }
             }
+            // TODO Hvis currentProject / projekt, der prøves tilgås er afsluttet, skal man ikke sendes til redigeringssiden
         }
 
         #region readingNwriting
@@ -146,7 +160,7 @@ namespace DimseLab_Aflevering.Model
         
         #region Properties
 
-        public List<User> UserList
+        public ObservableCollection<User> UserList
         {
             get { return _userList; }
             set

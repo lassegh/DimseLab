@@ -44,6 +44,9 @@ namespace DimseLab_Aflevering.ViewModel
         // String til søgning efter dimser til projekt
         private string _searchForDoohickeyString;
 
+        // Liste af søgte brugere
+        private ObservableCollection<User> _searchUsers = new ObservableCollection<User>();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -66,6 +69,9 @@ namespace DimseLab_Aflevering.ViewModel
 
             //Opdaterer liste
             UpdateData();
+
+            // 
+            
         }
 
         /// <summary>
@@ -135,6 +141,7 @@ namespace DimseLab_Aflevering.ViewModel
             // Loops though every project and compares if the email fits the current users email. 
             foreach (Project project in MC.ProjectList)
             {
+                // TODO Tjek om projekt er afsluttet
                 // Removes any project, that is not 'used' by the user, that is loggedIn
                 if (project.ProjectMembers.Any(x => x.Email == ModelController.Instance.CurrentUser.Email))
                 {
@@ -249,7 +256,16 @@ namespace DimseLab_Aflevering.ViewModel
         public string SearchForUserString
         {
             get { return _searchForUserString; }
-            set { _searchForUserString = value; }
+            set
+            {
+                _searchForUserString = value;
+                SearchUsers.Clear();
+                foreach (User user in RegexSearch.SearchUsers(SearchForUserString, MC.UserList))
+                {
+                    SearchUsers.Add(user);
+                }
+                OnPropertyChanged();
+            }
         }
 
         public string SearchForDoohickeyString
@@ -262,6 +278,12 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _saveEditingCommand; }
             set { _saveEditingCommand = value; }
+        }
+
+        public ObservableCollection<User> SearchUsers
+        {
+            get { return _searchUsers; }
+            set { _searchUsers = value; }
         }
 
         #endregion

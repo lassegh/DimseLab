@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 
 namespace DimseLab_Aflevering
@@ -30,36 +31,40 @@ namespace DimseLab_Aflevering
 
         */
 
-
-
-
-
-/*
-            //Erstat HEJHEJHEJ med hvad end object du har en liste af
-        public List<HEJHEJHEJ> RXsearch(string SearchTerm, List<HEJHEJHEJ> inputList)
+        /// <summary>
+        /// Søger efter brugere
+        /// </summary>
+        /// <param name="SearchTerm">Søgestring</param>
+        /// <param name="inputList">Liste af brugere, der skal søges i</param>
+        /// <returns></returns>
+        public static ObservableCollection<User> SearchUsers(string SearchTerm, ObservableCollection<User> inputList)
         {
-            List<HEJHEJHEJ> FilteredList = new List<HEJHEJHEJ>();
+            ObservableCollection<User> FilteredList = new ObservableCollection<User>();
 
-
-            foreach (HEJHEJHEJ ITEM in inputList)
+            if (SearchTerm != null)
             {
-
                 string pattern = SearchTerm; //det pattern vi søger efter
                 RegexOptions options = RegexOptions.IgnoreCase | RegexOptions.Compiled; //en option der gør at vi ignorer forskellen på store og små bogstaver og noget andet gøjl
-                string text = ITEM; //den tekst vi søger i
-                Regex optionRegex = new Regex(pattern, options); //tager pattern og options og laver et Regex object der gør det faktiske arbejde
 
-                //her sker magien
-                if (optionRegex.IsMatch(text))
+
+                foreach (User user in inputList)
                 {
-                    FilteredList.Add(ITEM); 
-                }
-                
 
+                    string text = user.FirstName + " " + user.LastName; //den tekst vi søger i
+                    Regex optionRegex = new Regex(pattern, options); //tager pattern og options og laver et Regex object der gør det faktiske arbejde
+
+                    //her sker magien
+                    if (optionRegex.IsMatch(text))
+                    {
+                        FilteredList.Add(user);
+                    }
+
+
+                }
             }
 
             //returerner en liste med søgeresultater
             return FilteredList;
-        }*/
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace DimseLab_Aflevering.ViewModel
         private ModelController _mC = ModelController.Instance;
 
         // User liste - TODO denne er midlertidig, da den skal komme fra modelController på samme måde som projektlisten
-        ObservableCollection<User> _userList = new ObservableCollection<User>();
+        private ObservableCollection<User> _userList = ModelController.Instance.UserList;
 
         // Kopierer projektListen fra ModelController
         private ObservableCollection<Project> _projectList = ModelController.Instance.ProjectList;
@@ -29,13 +29,6 @@ namespace DimseLab_Aflevering.ViewModel
         /// </summary>
         public BrowseViewModel()
         { 
-            // TODO oprettelse af denne type object skal ikke ske her, men i userViewModel
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-
             // Knap til visning af browseGrid
             BrowseButton = new RelayCommand(BrowseButtonMethod);
         }

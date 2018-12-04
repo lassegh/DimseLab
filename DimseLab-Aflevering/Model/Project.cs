@@ -133,15 +133,8 @@ namespace DimseLab_Aflevering.Model
         //at slutte et projekt
         public void FinishProject()
         {
-            if (CheckProjectForLoans())
-            {
-                ProjectMembers.Clear(); //fjerner alle elementer fra listen
-                IsFinished = true;
-            }
-            else
-            {
-                Debug.Write("ERROR CODE LARS: Projektet har stadig lån");
-            }
+            IsFinished = true;
+            Name = Name + " (afsluttet)";
 
         }
 

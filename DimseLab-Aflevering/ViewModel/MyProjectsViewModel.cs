@@ -109,7 +109,8 @@ namespace DimseLab_Aflevering.ViewModel
         /// </summary>
         private void EndProject()
         {
-            // TODO indsæt kode til afslutning af projekt
+            //kalder metoden inde i projektet for at afslutte det
+            MC.CurrentProject.FinishProject();
         }
 
         /// <summary>

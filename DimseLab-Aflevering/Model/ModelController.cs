@@ -144,6 +144,8 @@ namespace DimseLab_Aflevering.Model
             DoohickeyList.Add(new Doohickey("Manuel regulator"));
             DoohickeyList.Add(new Doohickey("Harboe SportsBrus"));
             DoohickeyList.Add(new Doohickey("Fiber Cable"));
+            DoohickeyList.Add(new Doohickey("Robot Arm"));
+            DoohickeyList.Add(new Doohickey("Drejebænk"));
         }
 
         #region readingNwriting

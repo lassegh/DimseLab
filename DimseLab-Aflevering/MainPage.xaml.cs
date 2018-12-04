@@ -37,9 +37,12 @@ namespace DimseLab_Aflevering
 
         private void SearchForUsersForEveryLetterTyped(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Back && SBuilder.Length != 0)
+            if (e.Key == VirtualKey.Back)
             {
-                SBuilder.Length--;
+                if (SBuilder.Length != 0)
+                {
+                    SBuilder.Length--;
+                }
             }
             else
             {
@@ -51,9 +54,12 @@ namespace DimseLab_Aflevering
 
         private void SearchForDoohickeysByLetter(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Back && SBuilder.Length != 0)
+            if (e.Key == VirtualKey.Back)
             {
-                SBuilder.Length--;
+                if (SBuilder.Length != 0)
+                {
+                    SBuilder.Length--;
+                }
             }
             else
             {

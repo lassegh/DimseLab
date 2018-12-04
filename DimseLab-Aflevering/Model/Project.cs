@@ -117,15 +117,15 @@ namespace DimseLab_Aflevering.Model
         #region Methods
 
         //før vi kan lukke et projekt, skal vi tjekke om det har nogle lån
-        public void CheckProjectForLoans()
+        public bool CheckProjectForLoans()
         {
             if(BorrowedItems.Count == 0) //hvis der er 0 nul items i listen af lån
             {
-                FinishProject(); //så kalder vi koden der afslutter projektet
+                return true;
             }
             else
             {
-                Debug.Write("ERROR CODE LARS: Projektet har stadig udlån");
+                return false;
             }
         }
 
@@ -133,8 +133,15 @@ namespace DimseLab_Aflevering.Model
         //at slutte et projekt
         public void FinishProject()
         {
-            ProjectMembers.Clear(); //fjerner alle elementer fra listen
-            IsFinished = true;
+            if (CheckProjectForLoans())
+            {
+                ProjectMembers.Clear(); //fjerner alle elementer fra listen
+                IsFinished = true;
+            }
+            else
+            {
+                Debug.Write("ERROR CODE LARS: Projektet har stadig lån");
+            }
 
         }
 

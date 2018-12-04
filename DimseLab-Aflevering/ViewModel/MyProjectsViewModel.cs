@@ -38,14 +38,8 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til opdatering af redigering
         private RelayCommand _saveEditingCommand;
 
-        // String til søgning efter brugere til projekt
-        private string _searchForUserString;
-
         // String til søgning efter dimser til projekt
         private string _searchForDoohickeyString;
-
-        // Liste af søgte brugere
-        private ObservableCollection<User> _searchUsers = new ObservableCollection<User>();
 
         /// <summary>
         /// Constructor
@@ -69,9 +63,6 @@ namespace DimseLab_Aflevering.ViewModel
 
             //Opdaterer liste
             UpdateData();
-
-            // 
-            
         }
 
         /// <summary>
@@ -173,13 +164,13 @@ namespace DimseLab_Aflevering.ViewModel
 
                     id++;
                 }
-                /*
+
                 // Add Project
                 Project newProject = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
                 newProject.ProjectMembers.Add(ModelController.Instance.CurrentUser);
                 ModelController.Instance.ProjectList.Add(newProject);// Tilføjer projekt til hovedlisten
                 MyProjects.Add(newProject);// Tilføjer projekt til MyProjects
-                ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.*/
+                ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
             }
 
             // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
@@ -254,21 +245,6 @@ namespace DimseLab_Aflevering.ViewModel
             set { _endProjectCommand = value; }
         }
 
-        public string SearchForUserString
-        {
-            get { return _searchForUserString; }
-            set
-            {
-                _searchForUserString = value;
-                SearchUsers.Clear(); // Listen med søgte brugere nulstilles
-                foreach (User user in RegexSearch.SearchUsers(SearchForUserString, MC.UserList)) // Der tilføjes brugere ifølge Regexsearch
-                {
-                    SearchUsers.Add(user);
-                }
-                OnPropertyChanged();
-            }
-        }
-
         public string SearchForDoohickeyString
         {
             get { return _searchForDoohickeyString; }
@@ -279,12 +255,6 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _saveEditingCommand; }
             set { _saveEditingCommand = value; }
-        }
-
-        public ObservableCollection<User> SearchUsers
-        {
-            get { return _searchUsers; }
-            set { _searchUsers = value; }
         }
 
         #endregion

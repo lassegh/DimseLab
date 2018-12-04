@@ -14,8 +14,8 @@ namespace DimseLab_Aflevering.Model
     {
         private string _name;
         private string _description;
-        private DateTime _projectBeginDate;
-        private DateTime _projectEndDate;
+        private DateTimeOffset _projectBeginDate;
+        private DateTimeOffset _projectEndDate;
 
         private List<User> _projectMembers;
         private List<Doohickey> _borrowedItems;
@@ -34,7 +34,7 @@ namespace DimseLab_Aflevering.Model
             _mc = mc;
         }
 
-        public Project(string inputName, string inputDescription, DateTime inputEndDate, int id)
+        public Project(string inputName, string inputDescription, DateTimeOffset inputEndDate, int id)
         {
             Name = inputName;
             Description = inputDescription;
@@ -70,13 +70,13 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
-        public DateTime ProjectBeginDate
+        public DateTimeOffset ProjectBeginDate
         {
             get { return _projectBeginDate; }
             set { _projectBeginDate = value; }
         }
 
-        public DateTime ProjectEndDate
+        public DateTimeOffset ProjectEndDate
         {
             get { return _projectEndDate; }
             set { _projectEndDate = value; }

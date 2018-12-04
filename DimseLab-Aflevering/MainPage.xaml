@@ -548,14 +548,14 @@
                 <TextBlock Text="Søg :"
                            Margin="0,0,5,0" />
                 <TextBox Margin="0,0,5,0"
-                         Text="{Binding SearchForUserString, Mode=TwoWay}"
-                         KeyUp="UIElement_OnKeyUp"
+                         KeyUp="SearchForUsersForEveryLetterTyped"
+                         FocusDisengaged="EmptySearchString"
                          MinWidth="200" />
             </StackPanel>
             <ListView Grid.Row="3"
                       Grid.Column="1"
                       Grid.RowSpan="3"
-                      ItemsSource="{Binding SearchUsers}"
+                      ItemsSource="{Binding MC.SearchUsers}"
                       Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>

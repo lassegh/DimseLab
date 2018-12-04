@@ -42,6 +42,9 @@ namespace DimseLab_Aflevering.Model
         // Nuværende bruger - sættes til null, så der senere kan tjekkes om der er logget på
         private User _currentUser = null;
 
+        // Liste af søgte brugere
+        private ObservableCollection<User> _searchUsers = new ObservableCollection<User>();
+
         // Creates mediator pattern
         public User User;
         public Doohickey Doohickey;
@@ -65,6 +68,15 @@ namespace DimseLab_Aflevering.Model
 
             // Load data
             LoadEverything();
+        }
+
+        public void SearchForUsers(String searchString)
+        {
+            SearchUsers.Clear(); // Listen med søgte brugere nulstilles
+            foreach (User user in RegexSearch.SearchUsers(searchString, UserList)) // Der tilføjes brugere ifølge Regexsearch
+            {
+                SearchUsers.Add(user);
+            }
         }
 
         // Laver brugere hardcoded
@@ -268,6 +280,13 @@ namespace DimseLab_Aflevering.Model
                 return _currentUser;
             }
         }
+
+        public ObservableCollection<User> SearchUsers
+        {
+            get { return _searchUsers; }
+            set { _searchUsers = value; }
+        }
+
         #endregion
 
         #region INotifyProperty

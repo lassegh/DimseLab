@@ -18,11 +18,14 @@ namespace DimseLab_Aflevering.ViewModel
         // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
 
-        // User liste - TODO denne er midlertidig, da den skal komme fra modelController på samme måde som projektlisten
+        // Kopierer user listen
         private ObservableCollection<User> _userList = ModelController.Instance.UserList;
 
         // Kopierer projektListen fra ModelController
         private ObservableCollection<Project> _projectList = ModelController.Instance.ProjectList;
+
+        // Kopierer doohickey listen
+        private ObservableCollection<Doohickey> _doohickeyList = ModelController.Instance.DoohickeyList;
 
         /// <summary>
         /// Constructor
@@ -73,6 +76,12 @@ namespace DimseLab_Aflevering.ViewModel
                 _mC = value;
                 OnPropertyChanged();
             }
+        }
+
+        public ObservableCollection<Doohickey> DoohickeyList
+        {
+            get { return _doohickeyList; }
+            set { _doohickeyList = value; }
         }
 
         #endregion

@@ -34,7 +34,7 @@ namespace DimseLab_Aflevering.Model
         private ObservableCollection<Project> _projectList = new ObservableCollection<Project>();
 
         // instans af OC af dimser - bruges både i browse og i myProjects
-        List<Doohickey> _doohickeyList = new List<Doohickey>();
+        ObservableCollection<Doohickey> _doohickeyList = new ObservableCollection<Doohickey>();
 
         // instans af OC af brugere - bruges både i browse og i myProjects
         ObservableCollection<User> _userList = new ObservableCollection<User>();
@@ -44,6 +44,9 @@ namespace DimseLab_Aflevering.Model
 
         // Liste af søgte brugere
         private ObservableCollection<User> _searchUsers = new ObservableCollection<User>();
+
+        // Liste af søgte dimser
+        private ObservableCollection<Doohickey> _searchDoohickeys = new ObservableCollection<Doohickey>();
 
         // Creates mediator pattern
         public User User;
@@ -80,6 +83,15 @@ namespace DimseLab_Aflevering.Model
             foreach (User user in RegexSearch.SearchUsers(searchString, UserList)) // Der tilføjes brugere ifølge Regexsearch
             {
                 SearchUsers.Add(user);
+            }
+        }
+
+        public void SearchForDoohickeys(String searchString)
+        {
+            SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
+            foreach (Doohickey doohickey in RegexSearch.SearchDoohickeys(searchString, DoohickeyList)) // Der tilføjes brugere ifølge Regexsearch
+            {
+                SearchDoohickeys.Add(doohickey);
             }
         }
 
@@ -126,8 +138,11 @@ namespace DimseLab_Aflevering.Model
             DoohickeyList.Add(new Doohickey("Raspberry Pi"));
             DoohickeyList.Add(new Doohickey("Dildo"));
             DoohickeyList.Add(new Doohickey("Webcam"));
+            DoohickeyList.Add(new Doohickey("Desert Eagle"));
             DoohickeyList.Add(new Doohickey("9mm Laser"));
+            DoohickeyList.Add(new Doohickey("Billede af Lars"));
             DoohickeyList.Add(new Doohickey("Manuel regulator"));
+            DoohickeyList.Add(new Doohickey("Harboe SportsBrus"));
             DoohickeyList.Add(new Doohickey("Fiber Cable"));
         }
 
@@ -195,7 +210,7 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
-        public List<Doohickey> DoohickeyList
+        public ObservableCollection<Doohickey> DoohickeyList
         {
             get { return _doohickeyList; }
             set
@@ -299,6 +314,12 @@ namespace DimseLab_Aflevering.Model
         {
             get { return _searchUsers; }
             set { _searchUsers = value; }
+        }
+
+        public ObservableCollection<Doohickey> SearchDoohickeys
+        {
+            get { return _searchDoohickeys; }
+            set { _searchDoohickeys = value; }
         }
 
         #endregion

@@ -21,7 +21,7 @@ namespace DimseLab_Aflevering.ViewModel
         private ModelController _mC = ModelController.Instance;
 
         // Kopierer projektListen til myProjects
-        private ObservableCollection<Project> _myProjects = ModelController.Instance.ProjectList;
+        private ObservableCollection<Project> _myProjects = new ObservableCollection<Project>();
 
         // Instanser ifm oprettelse af nyt projekt
         private string _inputProjectName;
@@ -63,6 +63,9 @@ namespace DimseLab_Aflevering.ViewModel
 
             // Knap til opdatering af redigering
             SaveEditingCommand = new RelayCommand(SaveProject);
+
+            //Opdaterer liste
+            UpdateData();
         }
 
         /// <summary>
@@ -128,14 +131,14 @@ namespace DimseLab_Aflevering.ViewModel
         /// </summary>
         private void UpdateData()
         {
-            // TODO filtrering virker ikke. MyProjects skal have filtreret de projekter fra, hvor brugeren IKKE indgår. Metode skal kaldes fra constructoren, så den kun køres ved programmets opstart.
+            // MyProjects skal have filtreret de projekter, hvor brugeren indgår. Metode skal kaldes fra constructoren, så den kun køres ved programmets opstart.
             // Loops though every project and compares if the email fits the current users email. 
-            foreach (Project project in MyProjects)
+            foreach (Project project in MC.ProjectList)
             {
                 // Removes any project, that is not 'used' by the user, that is loggedIn
-                if (project.ProjectMembers.Any(x => x.Email != ModelController.Instance.CurrentUser.Email))
+                if (project.ProjectMembers.Any(x => x.Email == ModelController.Instance.CurrentUser.Email))
                 {
-                    MyProjects.Remove(project);
+                    MyProjects.Add(project);
                 }
             }
         }

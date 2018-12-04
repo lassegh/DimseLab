@@ -87,7 +87,6 @@ namespace DimseLab_Aflevering.Model
                 if (ProjectList[i].ID == ID)
                 {
                     CurrentProject = ProjectList[i];
-                    Debug.WriteLine(CurrentProject);
                 }
             }
         }

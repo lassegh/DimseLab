@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,9 +37,30 @@ namespace DimseLab_Aflevering
 
         private void SearchForUsersForEveryLetterTyped(object sender, KeyRoutedEventArgs e)
         {
-            SBuilder.Append(e.Key);
-            SearchString = SBuilder.ToString();
-            ModelController.Instance.SearchForUsers(SearchString);
+            if (e.Key == VirtualKey.Back && SBuilder.Length != 0)
+            {
+                SBuilder.Length--;
+            }
+            else
+            {
+                SBuilder.Append(e.Key);
+                SearchString = SBuilder.ToString();
+                ModelController.Instance.SearchForUsers(SearchString);
+            }
+        }
+
+        private void SearchForDoohickeysByLetter(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Back && SBuilder.Length != 0)
+            {
+                SBuilder.Length--;
+            }
+            else
+            {
+                SBuilder.Append(e.Key);
+                SearchString = SBuilder.ToString();
+                ModelController.Instance.SearchForDoohickeys(SearchString);
+            }
         }
 
         private void EmptySearchString(object sender, RoutedEventArgs e)
@@ -46,6 +68,8 @@ namespace DimseLab_Aflevering
             SearchString = "";
             SBuilder.Clear();
         }
+
+        #region Properties
 
         public string SearchString
         {
@@ -58,6 +82,8 @@ namespace DimseLab_Aflevering
             get { return _sBuilder; }
             set { _sBuilder = value; }
         }
+
+        #endregion
 
         
     }

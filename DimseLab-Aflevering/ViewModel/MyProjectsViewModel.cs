@@ -38,9 +38,6 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til opdatering af redigering
         private RelayCommand _saveEditingCommand;
 
-        // String til søgning efter dimser til projekt
-        private string _searchForDoohickeyString;
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -243,12 +240,6 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _endProjectCommand; }
             set { _endProjectCommand = value; }
-        }
-
-        public string SearchForDoohickeyString
-        {
-            get { return _searchForDoohickeyString; }
-            set { _searchForDoohickeyString = value; }
         }
 
         public RelayCommand SaveEditingCommand

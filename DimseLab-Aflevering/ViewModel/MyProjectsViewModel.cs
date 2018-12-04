@@ -144,7 +144,7 @@ namespace DimseLab_Aflevering.ViewModel
             {
                 // TODO Tjek om projekt er afsluttet
                 // Removes any project, that is not 'used' by the user, that is loggedIn
-                if (project.ProjectMembers.Any(x => x.Email == ModelController.Instance.CurrentUser.Email))
+                if (project.ProjectMembers.Any(x => x.Email.ToLower() == ModelController.Instance.CurrentUser.Email.ToLower()))
                 {
                     MyProjects.Add(project);
                 }

@@ -14,6 +14,7 @@ namespace DimseLab_Aflevering
         private int _number;
         private string _email;
         private ModelController _mc;
+        private string _password;
 
         public User()
         {
@@ -88,6 +89,12 @@ namespace DimseLab_Aflevering
         {
             get { return _email; }
             set { _email = value; }
+        }
+
+        public string Password
+        {
+            get { return _password; }
+            set { _password = value; }
         }
 
         #endregion

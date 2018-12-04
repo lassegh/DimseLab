@@ -65,6 +65,10 @@ namespace DimseLab_Aflevering.Model
 
             // Load data
             LoadEverything();
+
+            // Hardcoded Doohickeys
+            HardcodedDoohickeys();
+
         }
 
         // Laver brugere hardcoded
@@ -103,6 +107,16 @@ namespace DimseLab_Aflevering.Model
                 }
             }
             // TODO Hvis currentProject / projekt, der prøves tilgås er afsluttet, skal man ikke sendes til redigeringssiden
+        }
+
+        public void HardcodedDoohickeys()
+        {
+            DoohickeyList.Add(new Doohickey("Raspberry Pi"));
+            DoohickeyList.Add(new Doohickey("Dildo"));
+            DoohickeyList.Add(new Doohickey("Webcam"));
+            DoohickeyList.Add(new Doohickey("9mm Laser"));
+            DoohickeyList.Add(new Doohickey("Manuel regulator"));
+            DoohickeyList.Add(new Doohickey("Fiber Cable"));
         }
 
         #region readingNwriting

@@ -50,7 +50,9 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <SymbolIcon Symbol="Manage" />
+                    <Image Source="Assets/browse.png"
+                           MaxHeight="20"
+                           MinHeight="1"/>
                     <TextBlock Text="Browse"
                                Grid.Row="1" />
                 </Grid>
@@ -67,7 +69,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/myprojects.png"
+                    <Image Source="Assets/MyProjects.png"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -89,7 +91,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/img_325791.png"
+                    <Image Source="Assets/Shield.png"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -111,7 +113,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/Cogwheel-512.png"
+                    <Image Source="Assets/Admin.png"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -359,7 +361,9 @@
                                         Height="30"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center">
-                                    <SymbolIcon Symbol="Edit" />
+                                    <Image Source="Assets/Edit.png"
+                                           MaxHeight="20"
+                                           MinHeight="1"/>
                                 </Button>
                             </Grid>
 
@@ -570,6 +574,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
+                            <Button>
+                                <SymbolIcon Symbol="Add" />
+                            </Button>
                             <TextBlock Text="{Binding FirstName}"
                                        Margin="0,0,5,10" />
                             <TextBlock Text="{Binding LastName}"
@@ -605,6 +612,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
+                            <Button>
+                                <SymbolIcon Symbol="Add" />
+                            </Button>
                             <TextBlock Text="{Binding Name}"
                                        Margin="0,0,5,10" />
                         </StackPanel>

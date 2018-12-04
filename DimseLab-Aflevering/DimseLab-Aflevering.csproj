@@ -118,11 +118,12 @@
     <None Include="DimseLab-Aflevering_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Admin.png" />
     <Content Include="Assets\browse.png" />
-    <Content Include="Assets\Cogwheel-512.png" />
-    <Content Include="Assets\img_325791.png" />
+    <Content Include="Assets\Edit.png" />
     <Content Include="Assets\logo.png" />
-    <Content Include="Assets\myprojects.png" />
+    <Content Include="Assets\MyProjects.png" />
+    <Content Include="Assets\Shield.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

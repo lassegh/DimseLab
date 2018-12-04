@@ -82,7 +82,10 @@ namespace DimseLab_Aflevering.Model
             SearchUsers.Clear(); // Listen med søgte brugere nulstilles
             foreach (User user in RegexSearch.SearchUsers(searchString, UserList)) // Der tilføjes brugere ifølge Regexsearch
             {
-                SearchUsers.Add(user);
+                if (!user.Equals(CurrentUser))
+                {
+                    SearchUsers.Add(user);
+                }
             }
         }
 

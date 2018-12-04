@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,11 @@ namespace DimseLab_Aflevering
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void UIElement_OnKeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            Debug.WriteLine("Jeg virker");
         }
     }
 }

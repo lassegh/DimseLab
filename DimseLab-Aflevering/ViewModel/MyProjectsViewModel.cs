@@ -26,7 +26,7 @@ namespace DimseLab_Aflevering.ViewModel
         // Instanser ifm oprettelse af nyt projekt
         private string _inputProjectName;
         private string _inputProjectDescribtion;
-        private DateTime _inputProjectDate;
+        private DateTimeOffset _inputProjectDate;
         private DateTime _projectEndDate;
 
         // Knap til tilføjelse af projekt
@@ -173,13 +173,13 @@ namespace DimseLab_Aflevering.ViewModel
 
                     id++;
                 }
-
+                /*
                 // Add Project
                 Project newProject = new Project(InputProjectName, InputProjectDescribtion, InputProjectDate, id);
                 newProject.ProjectMembers.Add(ModelController.Instance.CurrentUser);
                 ModelController.Instance.ProjectList.Add(newProject);// Tilføjer projekt til hovedlisten
                 MyProjects.Add(newProject);// Tilføjer projekt til MyProjects
-                ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
+                ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.*/
             }
 
             // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
@@ -222,7 +222,7 @@ namespace DimseLab_Aflevering.ViewModel
             set { _inputProjectDescribtion = value; }
         }
 
-        public DateTime InputProjectDate
+        public DateTimeOffset InputProjectDate
         {
             get { return _inputProjectDate; }
             set { _inputProjectDate = value; }
@@ -260,8 +260,8 @@ namespace DimseLab_Aflevering.ViewModel
             set
             {
                 _searchForUserString = value;
-                SearchUsers.Clear();
-                foreach (User user in RegexSearch.SearchUsers(SearchForUserString, MC.UserList))
+                SearchUsers.Clear(); // Listen med søgte brugere nulstilles
+                foreach (User user in RegexSearch.SearchUsers(SearchForUserString, MC.UserList)) // Der tilføjes brugere ifølge Regexsearch
                 {
                     SearchUsers.Add(user);
                 }

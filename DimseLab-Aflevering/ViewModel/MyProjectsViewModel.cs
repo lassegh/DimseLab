@@ -99,6 +99,9 @@ namespace DimseLab_Aflevering.ViewModel
         {
             //kalder metoden inde i projektet for at afslutte det
             MC.CurrentProject.FinishProject();
+            
+            // Kalder metoden, der sender brugeren tilbage til MyProjects
+            OpenMyProjects();
         }
 
         /// <summary>

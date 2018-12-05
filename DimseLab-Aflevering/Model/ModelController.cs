@@ -133,7 +133,17 @@ namespace DimseLab_Aflevering.Model
                     CurrentProject = ProjectList[i];
                 }
             }
-            // TODO Hvis currentProject / projekt, der prøves tilgås er afsluttet, skal man ikke sendes til redigeringssiden
+
+            // Du kan ikke redigere i projekter som er afsluttet
+            foreach (Project projects in ProjectList)
+            {
+                if (CurrentProject.IsFinished)
+                {   
+                    EditProjectVisibility = false;
+                    MyProjectsVisibility = true;
+                }
+            }
+            
         }
 
         public void HardcodedDoohickeys()

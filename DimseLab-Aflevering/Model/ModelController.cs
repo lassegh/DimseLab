@@ -75,6 +75,9 @@ namespace DimseLab_Aflevering.Model
             // Hardcoded Doohickeys
             HardcodedDoohickeys();
 
+            // Sætter søgelisten for doohickeys lig alm. doohickeyList
+            SearchDoohickeys = DoohickeyList;
+
         }
 
         public void SearchForUsers(String searchString)
@@ -91,10 +94,21 @@ namespace DimseLab_Aflevering.Model
 
         public void SearchForDoohickeys(String searchString)
         {
-            SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
-            foreach (Doohickey doohickey in RegexSearch.SearchDoohickeys(searchString, DoohickeyList)) // Der tilføjes brugere ifølge Regexsearch
+            if (searchString.Length == 1)
             {
-                SearchDoohickeys.Add(doohickey);
+                SearchDoohickeys.Clear();
+                foreach (Doohickey doohickey in DoohickeyList)
+                {
+                    SearchDoohickeys.Add(doohickey);
+                }
+            }
+            else
+            {
+                SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
+                foreach (Doohickey doohickey in RegexSearch.SearchDoohickeys(searchString, DoohickeyList)) // Der tilføjes brugere ifølge Regexsearch
+                {
+                    SearchDoohickeys.Add(doohickey);
+                }
             }
         }
 

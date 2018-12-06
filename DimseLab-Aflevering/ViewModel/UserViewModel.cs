@@ -39,34 +39,6 @@ namespace DimseLab_Aflevering.ViewModel
             ModelController.Instance.MyProfileVisibility = true;
         }
 
-        /*login system:
-        
-        public sealed partial class MainPage
-        {
-            public MainPage()
-            {
-                this.InitializeComponent();
-            }
-
-            private void Button_Click(object sender, RoutedEventArgs e)
-            {
-                //txtUsername og txtPassword bindes til en TextBox og PasswordBox
-                string username, password;
-                username = txtUsername.Text;
-                password = txtPassword.Password;
-                if (username == "admin@easj.dk" && password == "1234")
-                {
-                    // bruger vises nu som "logged in" og man vises videre til startsiden
-                    //Debug.Write("Success");
-                }
-                else
-                {
-                    // mangler evt. en pop-up message med "error"
-                    //Debug.Write("Error");
-                }
-            }
-        }*/
-
         #region Properties
 
         public RelayCommand UserProfileButton { get; set; }

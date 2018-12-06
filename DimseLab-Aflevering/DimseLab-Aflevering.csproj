@@ -97,7 +97,6 @@
     </Compile>
     <Compile Include="Model\JsonReadWrite.cs" />
     <Compile Include="Model\RegexSearch.cs" />
-    <Compile Include="Model\XMLReadWrite.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">

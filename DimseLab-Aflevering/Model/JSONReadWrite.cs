@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -15,28 +16,54 @@ namespace DimseLab_Aflevering
     class JsonReadWrite
     {
 
-        private static string JsonFileName = "Notes.json";
+        private static string JsonFileName = "ProjectModel.json";
 
+
+
+        /// <summary>
+        /// Gemmer projektets data
+        /// </summary>
+        /// <param name="notes"></param>
         public static async void SaveNotesAsJsonAsync(ObservableCollection<Project> notes)
         {
             string notesJsonString = JsonConvert.SerializeObject(notes);
             SerializeNotesFileAsync(notesJsonString, JsonFileName);
         }
 
-        public static async Task<List<Project>> LoadNotesFromJsonAsync()
+
+
+        /// <summary>
+        /// Loader projektets data
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<ObservableCollection<Project>> LoadNotesFromJsonAsync()
         {
-            string notesJsonString = await DeserializeNotesFileAsync(JsonFileName);
-            if (notesJsonString != null)
-                return (List<Project>)JsonConvert.DeserializeObject(notesJsonString, typeof(List<Project>));
-            return null;
+            try
+            {
+                string notesJsonString = await DeserializeNotesFileAsync(JsonFileName);
+                    return (ObservableCollection<Project>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Project>));
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return new ObservableCollection<Project>();
+
         }
 
+
+
+        // motode der kaldes i SaveNotesAsJsonAsync()
         private static async void SerializeNotesFileAsync(string notesJsonString, string fileName)
         {
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(localFile, notesJsonString);
         }
 
+
+
+        // metode der kaldes i LoadNotesFromJsonAsync()
         private static async Task<string> DeserializeNotesFileAsync(string fileName)
         {
             try
@@ -51,6 +78,11 @@ namespace DimseLab_Aflevering
             }
         }
 
+
+
+        /// <summary>
+        /// message helper der giver besked første gang du loader programmet
+        /// </summary>
         private class MessageDialogHelper
         {
             public static async void Show(string content, string title)

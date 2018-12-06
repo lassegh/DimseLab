@@ -635,7 +635,7 @@
             <ListView Grid.Row="12"
                       Grid.Column="1"
                       Grid.RowSpan="2"
-                      ItemsSource="{Binding MC.SearchDoohickeys}"
+                      ItemsSource="{Binding MC.SearchDoohickeys, Mode=TwoWay}"
                       Margin="10">
                 <ListView.DataContext>
                     <viewModel:BrowseViewModel />

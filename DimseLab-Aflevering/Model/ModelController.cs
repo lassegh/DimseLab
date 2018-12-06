@@ -73,13 +73,14 @@ namespace DimseLab_Aflevering.Model
             LoadEverything();
             Task.Delay(1000);
             
-
             // Hardcoded Doohickeys
             HardcodedDoohickeys();
 
-            // Sætter søgelisten for doohickeys lig alm. doohickeyList
-            SearchDoohickeys = DoohickeyList;
+            // Kalder searchForDoohickeys med tomt parameter for at få listen af doohickeys op i editing vinduet
+            SearchForDoohickeys("");
 
+            // Kalder searchForUsers med tomt parameter for at få listen af brugere op i editing vinduet
+            SearchForUsers("");
         }
 
         public void SearchForUsers(String searchString)
@@ -96,21 +97,10 @@ namespace DimseLab_Aflevering.Model
 
         public void SearchForDoohickeys(String searchString)
         {
-            if (searchString.Length == 1)
+            SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
+            foreach (Doohickey doohickey in RegexSearch.SearchDoohickeys(searchString, DoohickeyList)) // Der tilføjes brugere ifølge Regexsearch
             {
-                SearchDoohickeys.Clear();
-                foreach (Doohickey doohickey in DoohickeyList)
-                {
-                    SearchDoohickeys.Add(doohickey);
-                }
-            }
-            else
-            {
-                SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
-                foreach (Doohickey doohickey in RegexSearch.SearchDoohickeys(searchString, DoohickeyList)) // Der tilføjes brugere ifølge Regexsearch
-                {
-                    SearchDoohickeys.Add(doohickey);
-                }
+                SearchDoohickeys.Add(doohickey);
             }
         }
 
@@ -317,7 +307,11 @@ namespace DimseLab_Aflevering.Model
         public ObservableCollection<Doohickey> SearchDoohickeys
         {
             get { return _searchDoohickeys; }
-            set { _searchDoohickeys = value; }
+            set
+            {
+                _searchDoohickeys = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion

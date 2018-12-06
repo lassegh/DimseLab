@@ -27,7 +27,7 @@ namespace DimseLab_Aflevering.ViewModel
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTimeOffset _inputProjectDate;
-        private DateTime _projectEndDate;
+        private DateTime _projectEndDate;// TODO sæt slutdato til d.d. + 30 dage
 
         // Knap til tilføjelse af projekt
         private RelayCommand _relayAddProject;

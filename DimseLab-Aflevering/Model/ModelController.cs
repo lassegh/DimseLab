@@ -71,6 +71,8 @@ namespace DimseLab_Aflevering.Model
 
             // Load data
             LoadEverything();
+            Task.Delay(1000);
+            
 
             // Hardcoded Doohickeys
             HardcodedDoohickeys();
@@ -182,48 +184,15 @@ namespace DimseLab_Aflevering.Model
         /// </summary>
         public void SaveEverything()
         {
-            SaveProjectsAsync();
-            /*
-            WriteDoohickeyData();
-            WriteUserData();*/
+            JsonReadWrite.SaveNotesAsJsonAsync(ProjectList);
         }
 
         /// <summary>
         /// Henter alt fra fil(er) (lister af projekter, dimser og brugere) 
         /// </summary>
-        public void LoadEverything()
+        public async void LoadEverything()
         {
-            LoadProjectsAsync();
-            /*
-            LoadDoohickeyData();
-            LoadUserData();*/
-        }
-
-        /// <summary>
-        /// Gemmer projektListe
-        /// </summary>
-        public async void SaveProjectsAsync()
-        {
-            Debug.WriteLine("Saving projects async...");
-            await XMLReadWrite.SaveObjectToXml<ObservableCollection<Project>>(ProjectList, "ProjectModel.xml");
-        }
-
-        /// <summary>
-        /// Henter projektListe
-        /// </summary>
-        private async void LoadProjectsAsync()
-        {
-            try
-            {
-                Debug.WriteLine("loading projects async...");
-                ProjectList = await XMLReadWrite.ReadObjectFromXmlFileAsync<ObservableCollection<Project>>("ProjectModel.xml");
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                
-            }
-            
+            ProjectList = await JsonReadWrite.LoadNotesFromJsonAsync();
         }
 
         #endregion

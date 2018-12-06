@@ -44,6 +44,9 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til tilføjelse af bruger til projekt
         private RelayCommand<string> _addUserToProjectCommand;
 
+        // Knap, der fjerner dims fra projekt
+        private RelayCommand<int> _removeDoohickeyFromProjectCommand;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -70,8 +73,29 @@ namespace DimseLab_Aflevering.ViewModel
             // Knap til tilføjelse af bruger til projekt
             AddUserToProjectCommand = new RelayCommand<string>(AddUserToProject);
 
+            // Knap, der fjerner dims fra projekt
+            RemoveDoohickeyFromProjectCommand = new RelayCommand<int>(RemoveDoohickeyFromProject);
+
             //Opdaterer liste
             UpdateData();
+        }
+
+        /// <summary>
+        /// Fjerner lånt dims fra projekt
+        /// </summary>
+        /// <param name="id">dimsens id</param>
+        private void RemoveDoohickeyFromProject(int id)
+        {
+            int doohickeyPosition = 0;
+            for (int i = 0; i < MC.CurrentProject.BorrowedItems.Count; i++)
+            {
+                if (MC.CurrentProject.BorrowedItems[i].ID == id)
+                {
+                    doohickeyPosition = i;
+                }
+            }
+            MC.CurrentProject.BorrowedItems.RemoveAt(doohickeyPosition);
+            MC.SaveEverything();
         }
 
         /// <summary>
@@ -87,6 +111,7 @@ namespace DimseLab_Aflevering.ViewModel
                     MC.CurrentProject.ProjectMembers.Add(user);
                 }
             }
+            MC.SaveEverything();
         }
 
         /// <summary>
@@ -102,6 +127,7 @@ namespace DimseLab_Aflevering.ViewModel
                     MC.CurrentProject.BorrowedItems.Add(doohickey);
                 }
             }
+            MC.SaveEverything();
         }
 
         /// <summary>
@@ -304,6 +330,12 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _addUserToProjectCommand; }
             set { _addUserToProjectCommand = value; }
+        }
+
+        public RelayCommand<int> RemoveDoohickeyFromProjectCommand
+        {
+            get { return _removeDoohickeyFromProjectCommand; }
+            set { _removeDoohickeyFromProjectCommand = value; }
         }
 
         #endregion

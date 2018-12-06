@@ -560,8 +560,14 @@
                       ItemsSource="{Binding MC.CurrentProject.BorrowedItems}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{Binding ElementName=MainPages, Path=DataContext.RemoveDoohickeyFromProjectCommand}"
+                                    CommandParameter="{Binding ID}">
+                                <SymbolIcon Symbol="Delete"/>
+                            </Button>
+                            <TextBlock Text="{Binding Name}"
                                    Margin="0,0,5,10" />
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

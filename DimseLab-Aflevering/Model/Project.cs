@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace DimseLab_Aflevering.Model
         private DateTimeOffset _projectBeginDate;
         private DateTimeOffset _projectEndDate;
 
-        private List<User> _projectMembers;
-        private List<Doohickey> _borrowedItems;
+        private ObservableCollection<User> _projectMembers;
+        private ObservableCollection<Doohickey> _borrowedItems;
 
         private bool isFinished;
 
@@ -39,9 +40,10 @@ namespace DimseLab_Aflevering.Model
             Name = inputName;
             Description = inputDescription;
             ProjectBeginDate = DateTime.Now; //vælger nuværende dag og tidspunkt
-            ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her
+            ProjectEndDate = inputEndDate; //FRONT END NIGGAS: BRUG DATEPICKER som input til denne her TODO valgte dato huskes ikke, når programmet hentes efter lukning
             IsFinished = false; //for den er jo ikke færdig når den lige er blevet skabt
-            ProjectMembers = new List<User>();
+            ProjectMembers = new ObservableCollection<User>();
+            BorrowedItems = new ObservableCollection<Doohickey>();
             ID = id; // Sætter id på projekter
         }
 
@@ -82,14 +84,10 @@ namespace DimseLab_Aflevering.Model
             set { _projectEndDate = value; }
         }
 
-        public List<Doohickey> BorrowedItems
+        public ObservableCollection<Doohickey> BorrowedItems
         {
             get { return _borrowedItems; }
-            set
-            {
-                _borrowedItems = value;
-                OnPropertyChanged();
-            }
+            set { _borrowedItems = value; }
         }
 
         public bool IsFinished
@@ -102,14 +100,10 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
-        public List<User> ProjectMembers
+        public ObservableCollection<User> ProjectMembers
         {
             get { return _projectMembers; }
-            set
-            {
-                _projectMembers = value;
-                OnPropertyChanged();
-            }
+            set { _projectMembers = value; }
         }
 
         #endregion

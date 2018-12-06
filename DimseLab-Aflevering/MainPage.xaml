@@ -493,6 +493,9 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="{Binding MC.CurrentProject.Name}"
                        Grid.Row="0"
@@ -545,7 +548,24 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Row="10"
+            <TextBlock Text="Lånte Dimser:"
+                       Grid.Row="10"
+                       Grid.Column="0"
+                       Margin="10"
+                       FontWeight="Bold" />
+            <ListView Grid.Row="11"
+                      Grid.RowSpan="2"
+                      Grid.Column="0"
+                      Margin="10"
+                      ItemsSource="{Binding MC.CurrentProject.BorrowedItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Margin="0,0,5,10" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Grid.Row="13"
                     Grid.Column="0"
                     Margin="10"
                     Content="Afslut Projekt"
@@ -612,7 +632,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button>
+                            <Button Command="{Binding ElementName=MainPages, Path=DataContext.AddDoohickeyToProjectCommand}"
+                                    CommandParameter="{Binding ID}">
                                 <SymbolIcon Symbol="Add" />
                             </Button>
                             <TextBlock Text="{Binding Name}"

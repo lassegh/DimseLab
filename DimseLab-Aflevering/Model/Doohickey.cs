@@ -9,6 +9,7 @@ namespace DimseLab_Aflevering.Model
     public class Doohickey
     {
         private String name;
+        private int _iD;
         private ModelController _mc;
 
         public Doohickey()
@@ -21,9 +22,10 @@ namespace DimseLab_Aflevering.Model
             _mc = mc;
         }
         
-        public Doohickey(string inputName)
+        public Doohickey(string inputName, int id)
         {
             Name = inputName;
+            ID = id;
         }
 
 
@@ -33,5 +35,10 @@ namespace DimseLab_Aflevering.Model
             set { name = value; }
         }
 
+        public int ID
+        {
+            get { return _iD; }
+            set { _iD = value; }
+        }
     }
 }

@@ -38,6 +38,9 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til opdatering af redigering
         private RelayCommand _saveEditingCommand;
 
+        // Knap til tilføjelse af dims til projekt
+        private RelayCommand<int> _addDoohickeyToProjectCommand;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -58,8 +61,26 @@ namespace DimseLab_Aflevering.ViewModel
             // Knap til opdatering af redigering
             SaveEditingCommand = new RelayCommand(SaveProject);
 
+            // Knap til tilføjelse af dims til projekt
+            AddDoohickeyToProjectCommand = new RelayCommand<int>(AddDoohickeyToProject);
+
             //Opdaterer liste
             UpdateData();
+        }
+
+        /// <summary>
+        /// Tilføjer en dims til et projekt
+        /// </summary>
+        /// <param name="id">id'et på dimsen</param>
+        private void AddDoohickeyToProject(int id)
+        {
+            foreach (Doohickey doohickey in MC.DoohickeyList)
+            {
+                if (doohickey.ID == id)
+                {
+                    MC.CurrentProject.BorrowedItems.Add(doohickey);
+                }
+            }
         }
 
         /// <summary>
@@ -102,6 +123,7 @@ namespace DimseLab_Aflevering.ViewModel
             
             // Kalder metoden, der sender brugeren tilbage til MyProjects
             OpenMyProjects();
+            ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
         }
 
         /// <summary>
@@ -249,6 +271,12 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _saveEditingCommand; }
             set { _saveEditingCommand = value; }
+        }
+
+        public RelayCommand<int> AddDoohickeyToProjectCommand
+        {
+            get { return _addDoohickeyToProjectCommand; }
+            set { _addDoohickeyToProjectCommand = value; }
         }
 
         #endregion

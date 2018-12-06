@@ -148,17 +148,17 @@ namespace DimseLab_Aflevering.Model
 
         public void HardcodedDoohickeys()
         {
-            DoohickeyList.Add(new Doohickey("Raspberry Pi"));
-            DoohickeyList.Add(new Doohickey("Dildo"));
-            DoohickeyList.Add(new Doohickey("Webcam"));
-            DoohickeyList.Add(new Doohickey("Desert Eagle"));
-            DoohickeyList.Add(new Doohickey("9mm Laser"));
-            DoohickeyList.Add(new Doohickey("Billede af Lars"));
-            DoohickeyList.Add(new Doohickey("Manuel regulator"));
-            DoohickeyList.Add(new Doohickey("Harboe SportsBrus"));
-            DoohickeyList.Add(new Doohickey("Fiber Cable"));
-            DoohickeyList.Add(new Doohickey("Robot Arm"));
-            DoohickeyList.Add(new Doohickey("Drejebænk"));
+            DoohickeyList.Add(new Doohickey("Raspberry Pi",1));
+            DoohickeyList.Add(new Doohickey("Dildo",2));
+            DoohickeyList.Add(new Doohickey("Webcam",3));
+            DoohickeyList.Add(new Doohickey("Desert Eagle",4));
+            DoohickeyList.Add(new Doohickey("9mm Laser",5));
+            DoohickeyList.Add(new Doohickey("Billede af Lars",6));
+            DoohickeyList.Add(new Doohickey("Manuel regulator",7));
+            DoohickeyList.Add(new Doohickey("Harboe SportsBrus",8));
+            DoohickeyList.Add(new Doohickey("Fiber Cable",9));
+            DoohickeyList.Add(new Doohickey("Robot Arm",10));
+            DoohickeyList.Add(new Doohickey("Drejebænk",11));
         }
 
         #region readingNwriting

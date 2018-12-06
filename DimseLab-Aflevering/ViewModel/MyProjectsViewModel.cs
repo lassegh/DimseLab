@@ -41,6 +41,9 @@ namespace DimseLab_Aflevering.ViewModel
         // Knap til tilføjelse af dims til projekt
         private RelayCommand<int> _addDoohickeyToProjectCommand;
 
+        // Knap til tilføjelse af bruger til projekt
+        private RelayCommand<string> _addUserToProjectCommand;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -64,8 +67,26 @@ namespace DimseLab_Aflevering.ViewModel
             // Knap til tilføjelse af dims til projekt
             AddDoohickeyToProjectCommand = new RelayCommand<int>(AddDoohickeyToProject);
 
+            // Knap til tilføjelse af bruger til projekt
+            AddUserToProjectCommand = new RelayCommand<string>(AddUserToProject);
+
             //Opdaterer liste
             UpdateData();
+        }
+
+        /// <summary>
+        /// Tilføjer bruger til projekt
+        /// </summary>
+        /// <param name="mail">mailen på den bruger, der tilføjes</param>
+        private void AddUserToProject(string mail)
+        {
+            foreach (User user in MC.UserList)
+            {
+                if (user.Email.Equals(mail))
+                {
+                    MC.CurrentProject.ProjectMembers.Add(user);
+                }
+            }
         }
 
         /// <summary>
@@ -277,6 +298,12 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _addDoohickeyToProjectCommand; }
             set { _addDoohickeyToProjectCommand = value; }
+        }
+
+        public RelayCommand<string> AddUserToProjectCommand
+        {
+            get { return _addUserToProjectCommand; }
+            set { _addUserToProjectCommand = value; }
         }
 
         #endregion

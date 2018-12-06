@@ -103,9 +103,9 @@ namespace DimseLab_Aflevering.Model
         {
             UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
             UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
+            UserList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk"));
+            UserList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk"));
+            UserList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk"));
         }
 
         /// <summary>

@@ -594,7 +594,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button>
+                            <Button Command="{Binding ElementName=MainPages, Path=DataContext.AddUserToProjectCommand}"
+                                    CommandParameter="{Binding Email}">
                                 <SymbolIcon Symbol="Add" />
                             </Button>
                             <TextBlock Text="{Binding FirstName}"

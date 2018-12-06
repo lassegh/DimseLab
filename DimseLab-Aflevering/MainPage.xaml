@@ -506,24 +506,27 @@
             <TextBlock Text="Beskrivelse:"
                        Grid.Row="1"
                        Grid.Column="0"
+                       Grid.ColumnSpan="2"
                        Margin="10"
                        FontWeight="Bold" />
             <TextBox Text="{Binding MC.CurrentProject.Description, Mode=TwoWay}"
                      Grid.Row="2"
                      Grid.RowSpan="3"
                      Grid.Column="0"
+                     Grid.ColumnSpan="2"
                      Margin="10"
                      TextWrapping="Wrap" />
             <StackPanel Orientation="Horizontal"
                         Grid.Row="5"
                         Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         Margin="10">
                 <TextBlock Text="Startdato: "
                            Margin="0,0,5,0" />
                 <TextBlock Text="{Binding MC.CurrentProject.ProjectBeginDate}"
                            Margin="0,0,5,0" />
                 <TextBlock Text="Slutdato: "
-                           Margin="0,0,5,0" />
+                           Margin="15,0,5,0" />
                 <TextBlock Text="{Binding MC.CurrentProject.ProjectEndDate}"
                            Margin="0,0,5,0" />
             </StackPanel>
@@ -566,7 +569,7 @@
                                 <SymbolIcon Symbol="Delete"/>
                             </Button>
                             <TextBlock Text="{Binding Name}"
-                                   Margin="0,0,5,10" />
+                                   Margin="5,0,5,10" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -576,13 +579,13 @@
                     Margin="10"
                     Content="Afslut Projekt"
                     Command="{Binding EndProjectCommand}" />
-            <TextBlock Grid.Row="1"
+            <TextBlock Grid.Row="6"
                        Grid.Column="1"
                        Margin="10"
                        Text="Tilføj brugere: "
                        FontWeight="Bold" />
             <StackPanel Orientation="Horizontal"
-                        Grid.Row="2"
+                        Grid.Row="7"
                         Grid.Column="1"
                         Margin="10">
                 <TextBlock Text="Søg :"
@@ -592,9 +595,9 @@
                          LostFocus="EmptySearchString"
                          MinWidth="200" />
             </StackPanel>
-            <ListView Grid.Row="3"
+            <ListView Grid.Row="8"
                       Grid.Column="1"
-                      Grid.RowSpan="3"
+                      Grid.RowSpan="2"
                       ItemsSource="{Binding MC.SearchUsers}"
                       Margin="10">
                 <ListView.ItemTemplate>
@@ -605,14 +608,14 @@
                                 <SymbolIcon Symbol="Add" />
                             </Button>
                             <TextBlock Text="{Binding FirstName}"
-                                       Margin="0,0,5,10" />
+                                       Margin="5,0,5,10" />
                             <TextBlock Text="{Binding LastName}"
                                        Margin="0,0,5,10" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <TextBlock Grid.Row="6"
+            <TextBlock Grid.Row="10"
                        Grid.Column="1"
                        Margin="10"
                        Text="Tilføj dims: "
@@ -628,7 +631,7 @@
                          KeyUp="SearchForDoohickeysByLetter"
                          LostFocus="EmptySearchString" />
             </StackPanel>
-            <ListView Grid.Row="8"
+            <ListView Grid.Row="11"
                       Grid.Column="1"
                       Grid.RowSpan="2"
                       ItemsSource="{Binding MC.SearchDoohickeys}"
@@ -644,12 +647,12 @@
                                 <SymbolIcon Symbol="Add" />
                             </Button>
                             <TextBlock Text="{Binding Name}"
-                                       Margin="0,0,5,10" />
+                                       Margin="5,0,5,10" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Row="10"
+            <Button Grid.Row="13"
                     Grid.Column="1"
                     Margin="10"
                     Content="Save"

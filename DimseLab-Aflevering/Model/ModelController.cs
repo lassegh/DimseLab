@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Storage;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using DimseLab_Aflevering.Annotations;
 
 namespace DimseLab_Aflevering.Model
@@ -82,6 +84,7 @@ namespace DimseLab_Aflevering.Model
 
             // Kalder searchForUsers med tomt parameter for at få listen af brugere op i editing vinduet
             SearchForUsers("");
+
         }
 
         public void SearchForUsers(String searchString)
@@ -108,11 +111,11 @@ namespace DimseLab_Aflevering.Model
         // Laver brugere hardcoded
         private void HardcodedUsers()
         {
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk"));
-            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk"));
-            UserList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk"));
-            UserList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk"));
-            UserList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk"));
+            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk", "1234"));
+            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk", "1234"));
+            UserList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk","1234"));
+            UserList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk","1234"));
+            UserList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk","1234"));
         }
 
         /// <summary>
@@ -294,7 +297,7 @@ namespace DimseLab_Aflevering.Model
             {
                 if (_currentUser == null)
                 {
-                    _currentUser = new User("NN","AA",80123456,"nn@aa.dk");
+                    _currentUser = new User("NN","AA",80123456,"nn@aa.dk","1234");
                 }
                 return _currentUser;
             }

@@ -26,13 +26,13 @@ namespace DimseLab_Aflevering
             _mc = mc;
         }
 
-        public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail)
+        public User(string inputFirstName, string inputLastName, int inputNumber, string inputEmail, string password)
         {
             FirstName = inputFirstName;
             LastName = inputLastName;
             Number = inputNumber;
             Email = inputEmail;
-
+            Password = password;
         }
 
         /*//login system:

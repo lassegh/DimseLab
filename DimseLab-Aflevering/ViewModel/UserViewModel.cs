@@ -26,6 +26,8 @@ namespace DimseLab_Aflevering.ViewModel
         private String _lastName = ModelController.Instance.CurrentUser.LastName;
         private String _email = ModelController.Instance.CurrentUser.Email;
 
+        private RelayCommand _logOutCommand;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -34,12 +36,14 @@ namespace DimseLab_Aflevering.ViewModel
             // Knap til visning af userGrid
             UserProfileButton = new RelayCommand(OpenUserProfile);
 
-            if (ModelController.Instance.CurrentUser == null)
-            {
-                ((Frame)Window.Current.Content).Navigate(typeof(LoginView));
-            }
-            
+            // Log ud knap
+            LogOutCommand = new RelayCommand(LogOutMethod);
+        }
 
+        private void LogOutMethod()
+        {
+            MC.CurrentUser = null;
+            ((Frame)Window.Current.Content).Navigate(typeof(LoginView));
         }
 
         /// <summary>
@@ -50,7 +54,6 @@ namespace DimseLab_Aflevering.ViewModel
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.MyProfileVisibility = true;
 
-            
         }
 
         #region Properties
@@ -83,6 +86,12 @@ namespace DimseLab_Aflevering.ViewModel
         {
             get { return _mC; }
             set { _mC = value; }
+        }
+
+        public RelayCommand LogOutCommand
+        {
+            get { return _logOutCommand; }
+            set { _logOutCommand = value; }
         }
 
         #endregion

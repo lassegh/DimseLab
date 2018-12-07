@@ -437,11 +437,26 @@
             <Grid.DataContext>
                 <viewModel:UserViewModel />
             </Grid.DataContext>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <TextBlock Text="Min Profil"
                        FontWeight="Bold"
                        Margin="10,15,10,10"
                        VerticalAlignment="Top"
-                       FontSize="18" />
+                       FontSize="18"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+            <Button Grid.Column="1"
+                    Grid.Row="0"
+                    Content="Log ud"
+                    HorizontalAlignment="Right"
+                    Command="{Binding LogOutCommand}"/>
         </Grid>
         <!--#endregion-->
 

@@ -32,6 +32,7 @@ namespace DimseLab_Aflevering
         public MainPage()
         {
             this.InitializeComponent();
+
         }
 
         private void SearchForUsersForEveryLetterTyped(object sender, KeyRoutedEventArgs e)

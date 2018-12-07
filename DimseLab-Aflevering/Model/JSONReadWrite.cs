@@ -73,7 +73,22 @@ namespace DimseLab_Aflevering
             }
             catch (FileNotFoundException ex)
             {
-                MessageDialogHelper.Show("Loading for the first time? - Try Add and Save some Notes before trying to Save for the first time", "File not Found");
+                /*
+                try
+                {
+                    StorageFile localFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/ProjectModel.json"));
+                    await localFile.CopyAsync(ApplicationData.Current.LocalFolder);
+                    localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+                    MessageDialogHelper.Show("Future data will be saved on local storage...", "Dummy data has been loaded");
+                    return await FileIO.ReadTextAsync(localFile);
+                }
+                catch (FileNotFoundException e)
+                {
+                    MessageDialogHelper.Show("Try save some data.", "Nothing loaded.");
+                    return null;
+                }
+                */
+                MessageDialogHelper.Show("Try save some data.", "Nothing loaded.");
                 return null;
             }
         }

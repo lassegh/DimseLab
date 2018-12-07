@@ -115,6 +115,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\ProjectModel.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="DimseLab-Aflevering_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

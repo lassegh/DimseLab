@@ -71,7 +71,8 @@ namespace DimseLab_Aflevering.Model
 
             // Load data
             LoadEverything();
-            Task.Delay(1000);
+            Task.WaitAll();
+            //Task.Delay(1000);
             
             // Hardcoded Doohickeys
             HardcodedDoohickeys();

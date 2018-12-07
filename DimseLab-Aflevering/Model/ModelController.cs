@@ -70,8 +70,8 @@ namespace DimseLab_Aflevering.Model
             BrowseVisibility = true;
 
             // Load data
-            LoadEverything();
-            Task.WaitAll();
+            //LoadEverything();
+            Task.WaitAll(LoadEverything());
             //Task.Delay(1000);
             
             // Hardcoded Doohickeys
@@ -181,9 +181,11 @@ namespace DimseLab_Aflevering.Model
         /// <summary>
         /// Henter alt fra fil(er) (lister af projekter, dimser og brugere) 
         /// </summary>
-        public async void LoadEverything()
+        public async Task LoadEverything()
         {
+            Debug.WriteLine("Begynder LoadEverything");
             ProjectList = await JsonReadWrite.LoadNotesFromJsonAsync();
+            Debug.WriteLine("Afslutter LoadEverything");
         }
 
         #endregion

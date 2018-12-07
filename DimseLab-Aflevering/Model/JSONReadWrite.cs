@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -38,10 +39,13 @@ namespace DimseLab_Aflevering
         /// <returns></returns>
         public static async Task<ObservableCollection<Project>> LoadNotesFromJsonAsync()
         {
+            Debug.WriteLine("LoadNotesFromJsonAsync");
+
             try
             {
                 string notesJsonString = await DeserializeNotesFileAsync(JsonFileName);
                     return (ObservableCollection<Project>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Project>));
+                
                 
             }
             catch (Exception e)

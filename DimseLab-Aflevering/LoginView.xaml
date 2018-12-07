@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="DimseLab_Aflevering.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DimseLab_Aflevering"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:DimseLab_Aflevering.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+<Page.DataContext>
+    <viewModel:LoginViewModel/>
+</Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+
+        <!--#region TopBar-->
+        <Grid Grid.Row="0"
+              Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.6*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0"
+                       Grid.Row="0"
+                       Grid.ColumnSpan="6"
+                       Fill="Gray" />
+            
+
+            <Rectangle Grid.Column="1"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       Fill="Gray" />
+            <Image Source="Assets/logo.png"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.RowSpan="2" />
+        </Grid>
+        <!--#endregion-->
+
+
+    </Grid>
+</Page>

@@ -5,6 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using DimseLab_Aflevering.Annotations;
 using DimseLab_Aflevering.Model;
 using GalaSoft.MvvmLight.Command;
@@ -28,6 +33,13 @@ namespace DimseLab_Aflevering.ViewModel
         {
             // Knap til visning af userGrid
             UserProfileButton = new RelayCommand(OpenUserProfile);
+
+            if (ModelController.Instance.CurrentUser == null)
+            {
+                ((Frame)Window.Current.Content).Navigate(typeof(LoginView));
+            }
+            
+
         }
 
         /// <summary>
@@ -37,6 +49,8 @@ namespace DimseLab_Aflevering.ViewModel
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.MyProfileVisibility = true;
+
+            
         }
 
         #region Properties

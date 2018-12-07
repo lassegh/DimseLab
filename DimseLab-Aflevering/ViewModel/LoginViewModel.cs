@@ -8,6 +8,5 @@ namespace DimseLab_Aflevering.ViewModel
 {
     class LoginViewModel
     {
-        // kode sættes ind senere
     }
 }

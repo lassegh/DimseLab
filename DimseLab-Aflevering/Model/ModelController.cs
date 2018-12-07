@@ -291,11 +291,11 @@ namespace DimseLab_Aflevering.Model
             {
                 if (_currentUser == null)
                 {
-                    // TODO Send til login og slet næste linie
-                    _currentUser = new User("Lars", "Truelsen", 4612456, "lars@easj.dk");
+                    _currentUser = new User("NN","AA",80123456,"nn@aa.dk");
                 }
                 return _currentUser;
             }
+            set { _currentUser = value; }
         }
 
         public ObservableCollection<User> SearchUsers

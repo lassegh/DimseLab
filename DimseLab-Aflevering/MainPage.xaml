@@ -474,6 +474,9 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="Admin"
                        FontWeight="Bold"
@@ -482,6 +485,69 @@
                        FontSize="18"
                        Grid.Column="0"
                        Grid.Row="0" />
+
+            <TextBlock
+                Text="Antal af projekter"
+                Grid.Column="0"
+                Grid.Row="1"
+            />
+
+            <TextBlock
+                Text="{Binding NumberOfProjects, Mode=TwoWay}"
+                Grid.Column="1"
+                Grid.Row="1"
+            />
+
+
+            <TextBlock
+                Text="Antal af aktive projekter"
+                Grid.Column="0"
+                Grid.Row="2"
+            />
+
+            <TextBlock
+                Text="{Binding NumberOfActiveProjects, Mode=TwoWay}"
+                Grid.Column="1"
+                Grid.Row="2"
+            />
+
+
+            <TextBlock
+                Text="Antal af aktive udlån"
+                Grid.Column="0"
+                Grid.Row="3"
+            />
+
+            <TextBlock
+                Text="{Binding NumberOfCurrentLoans, Mode=TwoWay}"
+                Grid.Column="1"
+                Grid.Row="3"
+            />
+
+            <TextBlock
+                Text="Antal af brugere"
+                Grid.Column="0"
+                Grid.Row="4"
+            />
+
+            <TextBlock
+                Text="{Binding NumberOfUsers, Mode=TwoWay}"
+                Grid.Column="1"
+                Grid.Row="4"
+            />
+
+
+            <TextBlock
+                Text="Antal af dimser"
+                Grid.Column="0"
+                Grid.Row="5"
+            />
+
+            <TextBlock
+                Text="{Binding NumberOfDoohickeys, Mode=TwoWay}"
+                Grid.Column="1"
+                Grid.Row="5"
+            />
 
         </Grid>
         <!--#endregion-->

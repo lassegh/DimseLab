@@ -57,35 +57,22 @@ namespace DimseLab_Aflevering.ViewModel
         /// </summary>
         private async void SaveChangesMethod()
         {
-            if (NewPassword != null)
+            if (TryParsePhoneNumber(PhoneNumberInput) && PasswordChecker())
             {
-                if (PasswordChecker())
-                {
-                    MC.CurrentUser.Password = NewPassword;
-                }
-                else
-                {
-                    var dialog = new MessageDialog("Passwords does not match");
-                    await dialog.ShowAsync();
-                }
-            }
-           
-
-            if (TryParsePhoneNumber(PhoneNumberInput))
-            {
+                // Gem alt
                 MC.CurrentUser.Number = _phoneNumberAsInt;
+                MC.SaveEverything();
+                ModelController.Instance.SetAllInvisible();
+                ModelController.Instance.BrowseVisibility = true;
             }
             else
             {
-                var dialog = new MessageDialog("Please enter your 8 digits phonenumber");
+                var dialog = new MessageDialog("There is some mismatch. Please check your data.");
                 await dialog.ShowAsync();
             }
-
-            // Gem alt
-            MC.SaveEverything();
         }
 
-        
+
         private bool TryParsePhoneNumber(string phoneNumber)
         {
             if (phoneNumber.Length != 8)
@@ -93,13 +80,22 @@ namespace DimseLab_Aflevering.ViewModel
                 return false;
             }
             return int.TryParse(phoneNumber, out _phoneNumberAsInt);
-            
+
         }
 
         private bool PasswordChecker()
         {
-            if (NewPassword.Equals(NewPasswordCheck) && CurrentPassword.Equals(MC.CurrentUser.Password)) return true;
-            return false;
+            if (NewPassword != null && NewPasswordCheck != null && CurrentPassword != null)
+            {
+                if (NewPassword.Equals(NewPasswordCheck) && CurrentPassword.Equals(MC.CurrentUser.Password))
+                {
+                    MC.CurrentUser.Password = NewPassword;
+                    return true;
+                }
+                return false;
+            }
+            else return true;
+
         }
 
         /// <summary>

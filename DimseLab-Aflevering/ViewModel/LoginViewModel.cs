@@ -53,6 +53,8 @@ namespace DimseLab_Aflevering.ViewModel
                     {
                         ModelController.Instance.CurrentUser = user;
                         userFound = true;
+                        ModelController.Instance.SetAllInvisible();
+                        ModelController.Instance.BrowseVisibility = true;
                         ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
                         break;
                     }

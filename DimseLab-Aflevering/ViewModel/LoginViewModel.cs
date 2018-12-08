@@ -77,6 +77,10 @@ namespace DimseLab_Aflevering.ViewModel
 
         private bool TryParsePhoneNumber(string phoneNumber)
         {
+            if (phoneNumber.Length != 8)
+            {
+                return false;
+            }
             return int.TryParse(phoneNumber, out _phoneNumberAsInt);
         }
 

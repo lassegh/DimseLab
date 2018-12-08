@@ -132,7 +132,7 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Grid.RowSpan="2" />
-            <TextBlock Text="Du er logged in som:"
+            <TextBlock Text="Du er logged ind som:"
                        Grid.Column="2"
                        Grid.Row="1"
                        VerticalAlignment="Bottom"
@@ -142,20 +142,20 @@
                         Grid.Row="2"
                         Margin="10,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding FirstName}"
+                    <TextBlock Text="{Binding MC.CurrentUser.FirstName}"
                                Margin="0,0,2,0">
                         <TextBlock.DataContext>
                             <viewModel:UserViewModel />
                         </TextBlock.DataContext>
                     </TextBlock>
-                    <TextBlock Text="{Binding LastName}"
+                    <TextBlock Text="{Binding MC.CurrentUser.LastName}"
                                Margin="0">
                         <TextBlock.DataContext>
                             <viewModel:UserViewModel />
                         </TextBlock.DataContext>
                     </TextBlock>
                 </StackPanel>
-                <TextBlock Text="{Binding Email}">
+                <TextBlock Text="{Binding MC.CurrentUser.Email}">
                     <TextBlock.DataContext>
                         <viewModel:UserViewModel />
                     </TextBlock.DataContext>
@@ -438,10 +438,10 @@
                 <viewModel:UserViewModel />
             </Grid.DataContext>
             <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
-                <RowDefinition/>
-
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -468,6 +468,87 @@
                 <TextBlock Text="{Binding MC.CurrentUser.LastName}"
                            Margin="0,5,5,5"/>
             </StackPanel>
+            <TextBlock Text="Skift password"
+                       FontWeight="Bold"
+                       Margin="10,15,10,10"
+                       VerticalAlignment="Top"
+                       FontSize="15"
+                       Grid.Row="1"
+                       Grid.Column="1" />
+            <Grid Grid.Column="0"
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="E-mail: "
+                           Margin="10,5,5,5" 
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                <TextBlock Text="{Binding MC.CurrentUser.Email, Mode=TwoWay}"
+                         Margin="0,5,5,5" 
+                         Grid.Row="0"
+                         Grid.Column="1"/>
+                <TextBlock Text="Tlf.-nr: "
+                           Margin="10,5,5,5" 
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                <TextBox Text="{Binding PhoneNumberInput, Mode=TwoWay}"
+                         Margin="0,5,5,5" 
+                         Grid.Row="1"
+                         Grid.Column="1"/>
+
+            </Grid>
+            <Grid Grid.Column="1"
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Nuværende password: "
+                           Margin="10,5,5,5"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+                <PasswordBox Password="{Binding CurrentPassword, Mode=TwoWay}"
+                             Margin="0,5,5,5" 
+                             Grid.Column="1"
+                             Grid.Row="0"/>
+                <TextBlock Text="Nyt password: "
+                           Margin="10,5,5,5" 
+                           Grid.Column="0"
+                           Grid.Row="1"/>
+                <PasswordBox Password="{Binding NewPassword, Mode=TwoWay}"
+                             Margin="0,5,5,5" 
+                             Grid.Column="1"
+                             Grid.Row="1"/>
+                <TextBlock Text="Gentag nyt password: "
+                           Margin="10,5,5,5" 
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                <PasswordBox Password="{Binding NewPasswordCheck, Mode=TwoWay}"
+                             Margin="0,5,5,5" 
+                             Grid.Row="2"
+                             Grid.Column="1"/>
+                <Button Margin="10"
+                        Content="Opdater"
+                        Command="{Binding SaveChangesCommand}"
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"/>
+            </Grid>
+
+            
+
         </Grid>
         <!--#endregion-->
 

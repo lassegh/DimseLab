@@ -45,6 +45,11 @@ namespace DimseLab_Aflevering
             SerializeNotesFileAsync(notesJsonString, DoohickeyFileName);
         }
 
+        public static async Task<bool> IsFilePresent(string fileName)
+        {
+            var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName);
+            return item != null;
+        }
 
 
         /// <summary>
@@ -55,18 +60,25 @@ namespace DimseLab_Aflevering
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");
 
-            try
+            if (await IsFilePresent(ProjectFileName))
             {
-                string notesJsonString = await DeserializeNotesFileAsync(ProjectFileName);
+                try
+                {
+                    string notesJsonString = await DeserializeNotesFileAsync(ProjectFileName);
                     return (ObservableCollection<Project>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Project>));
-                
-                
+
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                return new ObservableCollection<Project>();
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+                return HardcodedProjects();
             }
-            return new ObservableCollection<Project>();
 
         }
 
@@ -74,18 +86,29 @@ namespace DimseLab_Aflevering
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");
 
-            try
+            if (await IsFilePresent(UserFileName))
             {
-                string notesJsonString = await DeserializeNotesFileAsync(UserFileName);
-                return (ObservableCollection<User>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<User>));
+                try
+                {
+                    string notesJsonString = await DeserializeNotesFileAsync(UserFileName);
+                    return (ObservableCollection<User>) JsonConvert.DeserializeObject(notesJsonString,
+                        typeof(ObservableCollection<User>));
 
 
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                return new ObservableCollection<User>();
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+               return HardcodedUsers();
             }
-            return new ObservableCollection<User>();
+
+            return null;
 
         }
 
@@ -93,22 +116,30 @@ namespace DimseLab_Aflevering
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");
 
-            try
+            if (await IsFilePresent(DoohickeyFileName))
             {
-                string notesJsonString = await DeserializeNotesFileAsync(DoohickeyFileName);
-                return (ObservableCollection<Doohickey>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Doohickey>));
+                try
+                {
+                    string notesJsonString = await DeserializeNotesFileAsync(DoohickeyFileName);
+                    return (ObservableCollection<Doohickey>) JsonConvert.DeserializeObject(notesJsonString,
+                        typeof(ObservableCollection<Doohickey>));
 
 
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                return new ObservableCollection<Doohickey>();
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
+               return HardcodedDoohickeys();
             }
-            return new ObservableCollection<Doohickey>();
 
+            return null;
         }
-
-
 
         // motode der kaldes i SaveNotesAsJsonAsync()
         private static async void SerializeNotesFileAsync(string notesJsonString, string fileName)
@@ -116,8 +147,6 @@ namespace DimseLab_Aflevering
             StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(localFile, notesJsonString);
         }
-
-
 
         // metode der kaldes i LoadNotesFromJsonAsync()
         private static async Task<string> DeserializeNotesFileAsync(string fileName)
@@ -129,27 +158,10 @@ namespace DimseLab_Aflevering
             }
             catch (FileNotFoundException e)
             {
-                /*
-                try
-                {
-                    StorageFile localFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/ProjectModel.json"));
-                    await localFile.CopyAsync(ApplicationData.Current.LocalFolder);
-                    localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
-                    MessageDialogHelper.Show("Future data will be saved on local storage...", "Dummy data has been loaded");
-                    return await FileIO.ReadTextAsync(localFile);
-                }
-                catch (FileNotFoundException e)
-                {
-                    MessageDialogHelper.Show("Try save some data.", "Nothing loaded.");
-                    return null;
-                }
-                */
                 MessageDialogHelper.Show("Try save some data.", "Nothing loaded.");
                 return null;
             }
         }
-
-
 
         /// <summary>
         /// message helper der giver besked første gang du loader programmet
@@ -161,6 +173,66 @@ namespace DimseLab_Aflevering
                 MessageDialog messageDialog = new MessageDialog(content, title);
                 await messageDialog.ShowAsync();
             }
+        }
+
+        // Laver brugere hardcoded
+        private static ObservableCollection<User> HardcodedUsers()
+        {
+            ObservableCollection<User> uList = new ObservableCollection<User>();
+            uList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk", "1234"));
+            uList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk", "1234"));
+            uList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
+            uList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk", "1234"));
+            uList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk", "1234"));
+            uList.Add(new User("Ebbe", "Vang", 20123456, "ebva@easj.dk", "dimseLab"));
+
+            return uList;
+        }
+
+        // Laver projekter hardcoded
+        private static ObservableCollection<Project> HardcodedProjects()
+        {
+            ObservableCollection<Project> pList = new ObservableCollection<Project>();
+            Project project1 = new Project("Robotic Arm",
+                "Vi vil udvikle en robotarm, der selv kan videreudvikle dette program", new DateTime(2018, 12, 31), 0);
+            project1.ProjectMembers.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
+            pList.Add(project1);
+
+            Project project2 = new Project("Ny Computer", "Se min nye computer, hvor er den smart. Min er bare ikke stor og klodset som andres.", new DateTime(2018, 12, 9), 1);
+            project2.ProjectMembers.Add(new User("Ebbe", "Vang", 20123456, "ebva@easj.dk", "dimseLab"));
+            pList.Add(project2);
+
+            Project project3 = new Project("Klap on, Klap off", "Med en raspberry pi vil vi kunne taende og slukke lyset med klappelyde.", new DateTime(2016, 01, 01), 2);
+            project3.ProjectMembers.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk", "1234"));
+            project3.IsFinished = true;
+            pList.Add(project3);
+
+            Project project4 = new Project("Sproejt mig i ansigtet", "Hold mig vaagen med Hvid Monster, hvis jeg falder i soevn", new DateTime(2018, 12, 19), 3);
+            project4.ProjectMembers.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk", "1234"));
+            project4.ProjectMembers.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
+            pList.Add(project4);
+
+            return pList;
+        }
+
+        // Hardcoded dimser
+        private static ObservableCollection<Doohickey> HardcodedDoohickeys()
+        {
+            ObservableCollection<Doohickey> dList = new ObservableCollection<Doohickey>();
+
+            dList.Add(new Doohickey("Raspberry Pi", 1));
+            dList.Add(new Doohickey("Dildo", 2));
+            dList.Add(new Doohickey("Webcam", 3));
+            dList.Add(new Doohickey("Desert Eagle", 4));
+            dList.Add(new Doohickey("9mm Laser", 5));
+            dList.Add(new Doohickey("Billede af Lars", 6));
+            dList.Add(new Doohickey("Manuel regulator", 7));
+            dList.Add(new Doohickey("Harboe SportsBrus", 8));
+            dList.Add(new Doohickey("Fiber Cable", 9));
+            dList.Add(new Doohickey("Robot Arm", 10));
+            dList.Add(new Doohickey("Drejebænk", 11));
+
+            return dList;
         }
 
     }

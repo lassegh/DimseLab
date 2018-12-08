@@ -65,19 +65,13 @@ namespace DimseLab_Aflevering.Model
             // Initierer visibility bools til false
             SetAllInvisible();
 
-            // Opretter brugere
-            HardcodedUsers();
-
             // Viser browse
             BrowseVisibility = true;
 
             // Load data
-            //LoadEverything();
-            Task.WaitAll(LoadEverything());
-            //Task.Delay(1000);
-            
-            // Hardcoded Doohickeys
-            HardcodedDoohickeys();
+            LoadEverything();
+            //Task.WaitAll(LoadEverything());
+            Task.Delay(1000);
 
             // Kalder searchForDoohickeys med tomt parameter for at få listen af doohickeys op i editing vinduet
             SearchForDoohickeys("");
@@ -87,6 +81,10 @@ namespace DimseLab_Aflevering.Model
 
         }
 
+        /// <summary>
+        /// Søger efter brugere
+        /// </summary>
+        /// <param name="searchString">Søgestring fra code behind</param>
         public void SearchForUsers(String searchString)
         {
             SearchUsers.Clear(); // Listen med søgte brugere nulstilles
@@ -99,6 +97,10 @@ namespace DimseLab_Aflevering.Model
             }
         }
 
+        /// <summary>
+        /// Søger efter dimser
+        /// </summary>
+        /// <param name="searchString">søgestring fra codebehind</param>
         public void SearchForDoohickeys(String searchString)
         {
             SearchDoohickeys.Clear(); // Listen med søgte brugere nulstilles
@@ -106,16 +108,6 @@ namespace DimseLab_Aflevering.Model
             {
                 SearchDoohickeys.Add(doohickey);
             }
-        }
-
-        // Laver brugere hardcoded
-        private void HardcodedUsers()
-        {
-            UserList.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk", "1234"));
-            UserList.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk", "1234"));
-            UserList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk","1234"));
-            UserList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk","1234"));
-            UserList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk","1234"));
         }
 
         /// <summary>
@@ -154,21 +146,6 @@ namespace DimseLab_Aflevering.Model
                 }
             }
             
-        }
-
-        public void HardcodedDoohickeys()
-        {
-            DoohickeyList.Add(new Doohickey("Raspberry Pi",1));
-            DoohickeyList.Add(new Doohickey("Dildo",2));
-            DoohickeyList.Add(new Doohickey("Webcam",3));
-            DoohickeyList.Add(new Doohickey("Desert Eagle",4));
-            DoohickeyList.Add(new Doohickey("9mm Laser",5));
-            DoohickeyList.Add(new Doohickey("Billede af Lars",6));
-            DoohickeyList.Add(new Doohickey("Manuel regulator",7));
-            DoohickeyList.Add(new Doohickey("Harboe SportsBrus",8));
-            DoohickeyList.Add(new Doohickey("Fiber Cable",9));
-            DoohickeyList.Add(new Doohickey("Robot Arm",10));
-            DoohickeyList.Add(new Doohickey("Drejebænk",11));
         }
 
         #region readingNwriting

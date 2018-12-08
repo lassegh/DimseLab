@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -31,6 +32,8 @@ namespace DimseLab_Aflevering.ViewModel
         private RelayCommand _createLoginCommand;
         private RelayCommand _shiftVisibilityCommand;
 
+        private ObservableCollection<User> _uList = ModelController.Instance.UserList;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -61,6 +64,7 @@ namespace DimseLab_Aflevering.ViewModel
                         userFound = true;
                         ModelController.Instance.SetAllInvisible();
                         ModelController.Instance.BrowseVisibility = true; // Viser browse ved login
+                        ModelController.Instance.SaveEverything();
                         ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
                         break;
                     }

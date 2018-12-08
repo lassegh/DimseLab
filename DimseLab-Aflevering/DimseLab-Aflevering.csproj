@@ -121,9 +121,6 @@
     </AppxManifest>
     <Content Include="Assets\edit-solid.svg" />
     <Content Include="Assets\project-diagram-solid.svg" />
-    <Content Include="Assets\ProjectModel.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="DimseLab-Aflevering_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

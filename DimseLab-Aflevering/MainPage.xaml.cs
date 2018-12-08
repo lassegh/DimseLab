@@ -35,6 +35,11 @@ namespace DimseLab_Aflevering
 
         }
 
+        /// <summary>
+        /// Denne metode lytter på hvert keystroke og sender det videre til søgning efter brugere
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchForUsersForEveryLetterTyped(object sender, KeyRoutedEventArgs e)
         {
             StringBuilder SBuilder = new StringBuilder();
@@ -156,6 +161,11 @@ namespace DimseLab_Aflevering
             ModelController.Instance.SearchForUsers(SearchStringUser);
         }
 
+        /// <summary>
+        /// Denne metode lytter på hvert keystroke og sender det videre til søgning efter dimser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchForDoohickeysByLetter(object sender, KeyRoutedEventArgs e)
         {
             StringBuilder SBuilder = new StringBuilder();

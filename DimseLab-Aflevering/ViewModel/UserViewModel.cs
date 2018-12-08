@@ -21,11 +21,7 @@ namespace DimseLab_Aflevering.ViewModel
         // Opretter reference til ModelController
         private ModelController _mC = ModelController.Instance;
 
-        // Opretter instanser af bruger oplysninger - bruges til visning af nuværende bruger
-        private String _firstName = ModelController.Instance.CurrentUser.FirstName;
-        private String _lastName = ModelController.Instance.CurrentUser.LastName;
-        private String _email = ModelController.Instance.CurrentUser.Email;
-
+        // Knap til at logge ud
         private RelayCommand _logOutCommand;
 
         /// <summary>
@@ -40,6 +36,9 @@ namespace DimseLab_Aflevering.ViewModel
             LogOutCommand = new RelayCommand(LogOutMethod);
         }
 
+        /// <summary>
+        /// Metode til at logge ud
+        /// </summary>
         private void LogOutMethod()
         {
             MC.CurrentUser = null;
@@ -59,28 +58,6 @@ namespace DimseLab_Aflevering.ViewModel
         #region Properties
 
         public RelayCommand UserProfileButton { get; set; }
-
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string LastName
-        {
-            get { return _lastName; }
-            set { _lastName = value; }
-        }
-
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
 
         public ModelController MC
         {

@@ -17,7 +17,9 @@ namespace DimseLab_Aflevering
     class JsonReadWrite
     {
 
-        private static string JsonFileName = "ProjectModel.json";
+        private static string ProjectFileName = "ProjectModel.json";
+        private static string UserFileName = "UserModel.json";
+        private static string DoohickeyFileName = "DoohickeyModel.json";
 
 
 
@@ -25,10 +27,22 @@ namespace DimseLab_Aflevering
         /// Gemmer projektets data
         /// </summary>
         /// <param name="notes"></param>
-        public static async void SaveNotesAsJsonAsync(ObservableCollection<Project> notes)
+        public static async void SaveProjectsAsJsonAsync(ObservableCollection<Project> notes)
         {
             string notesJsonString = JsonConvert.SerializeObject(notes);
-            SerializeNotesFileAsync(notesJsonString, JsonFileName);
+            SerializeNotesFileAsync(notesJsonString, ProjectFileName);
+        }
+
+        public static async void SaveUsersAsJsonAsync(ObservableCollection<User> notes)
+        {
+            string notesJsonString = JsonConvert.SerializeObject(notes);
+            SerializeNotesFileAsync(notesJsonString, UserFileName);
+        }
+
+        public static async void SaveDoohickeyAsJsonAsync(ObservableCollection<Doohickey> notes)
+        {
+            string notesJsonString = JsonConvert.SerializeObject(notes);
+            SerializeNotesFileAsync(notesJsonString, DoohickeyFileName);
         }
 
 
@@ -37,13 +51,13 @@ namespace DimseLab_Aflevering
         /// Loader projektets data
         /// </summary>
         /// <returns></returns>
-        public static async Task<ObservableCollection<Project>> LoadNotesFromJsonAsync()
+        public static async Task<ObservableCollection<Project>> LoadProjectsFromJsonAsync()
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");
 
             try
             {
-                string notesJsonString = await DeserializeNotesFileAsync(JsonFileName);
+                string notesJsonString = await DeserializeNotesFileAsync(ProjectFileName);
                     return (ObservableCollection<Project>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Project>));
                 
                 
@@ -53,6 +67,44 @@ namespace DimseLab_Aflevering
                 Console.WriteLine(e);
             }
             return new ObservableCollection<Project>();
+
+        }
+
+        public static async Task<ObservableCollection<User>> LoadUsersFromJsonAsync()
+        {
+            Debug.WriteLine("LoadNotesFromJsonAsync");
+
+            try
+            {
+                string notesJsonString = await DeserializeNotesFileAsync(UserFileName);
+                return (ObservableCollection<User>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<User>));
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return new ObservableCollection<User>();
+
+        }
+
+        public static async Task<ObservableCollection<Doohickey>> LoadDoohickeysFromJsonAsync()
+        {
+            Debug.WriteLine("LoadNotesFromJsonAsync");
+
+            try
+            {
+                string notesJsonString = await DeserializeNotesFileAsync(DoohickeyFileName);
+                return (ObservableCollection<Doohickey>)JsonConvert.DeserializeObject(notesJsonString, typeof(ObservableCollection<Doohickey>));
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return new ObservableCollection<Doohickey>();
 
         }
 
@@ -75,7 +127,7 @@ namespace DimseLab_Aflevering
                 StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
                 return await FileIO.ReadTextAsync(localFile);
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException e)
             {
                 /*
                 try

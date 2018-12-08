@@ -178,7 +178,9 @@ namespace DimseLab_Aflevering.Model
         /// </summary>
         public void SaveEverything()
         {
-            JsonReadWrite.SaveNotesAsJsonAsync(ProjectList);
+            JsonReadWrite.SaveProjectsAsJsonAsync(ProjectList);
+            JsonReadWrite.SaveUsersAsJsonAsync(UserList);
+            JsonReadWrite.SaveDoohickeyAsJsonAsync(DoohickeyList);
         }
 
         /// <summary>
@@ -187,7 +189,11 @@ namespace DimseLab_Aflevering.Model
         public async Task LoadEverything()
         {
             Debug.WriteLine("Begynder LoadEverything");
-            ProjectList = await JsonReadWrite.LoadNotesFromJsonAsync();
+            ProjectList = await JsonReadWrite.LoadProjectsFromJsonAsync();
+
+            UserList = await JsonReadWrite.LoadUsersFromJsonAsync();
+
+            DoohickeyList = await JsonReadWrite.LoadDoohickeysFromJsonAsync();
             Debug.WriteLine("Afslutter LoadEverything");
         }
 

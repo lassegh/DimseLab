@@ -22,6 +22,13 @@ namespace DimseLab_Aflevering.ViewModel
 
         RelayCommand _loadButton;
 
+        private int _numberOfProjects;
+        private int _numberOfActiveProjects;
+        private int _numberOfUsers;
+        private int _numberOfDoohickeys;
+        private int _numberOfCurrentLoans;
+
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -29,6 +36,8 @@ namespace DimseLab_Aflevering.ViewModel
         {
             // Knap til visning af adminGrid
             AdminButton = new RelayCommand(OpenAdmin);
+            CalculateStats();
+
         }
 
         /// <summary>
@@ -38,6 +47,37 @@ namespace DimseLab_Aflevering.ViewModel
         {
             ModelController.Instance.SetAllInvisible();
             ModelController.Instance.AdminVisibility = true;
+
+
+
+            CalculateStats();
+        }
+
+        private void CalculateStats()
+        {
+
+
+            NumberOfUsers = MC.UserList.Count;
+            NumberOfProjects = MC.ProjectList.Count;
+            NumberOfDoohickeys = MC.DoohickeyList.Count;
+
+
+            NumberOfActiveProjects = 0; //reset
+            //for at tælle antallet af aktive projekter
+            foreach (Project PROJ in MC.ProjectList)
+            {
+                if (PROJ.IsFinished == false)
+                {
+                    NumberOfActiveProjects++;
+                }
+            }
+
+            NumberOfCurrentLoans = 0; //reset
+            //for at tælle antallet af aktive udlån
+            foreach (Project PROJ in MC.ProjectList)
+            {
+                NumberOfCurrentLoans = NumberOfCurrentLoans + PROJ.BorrowedItems.Count;
+            }
         }
 
 
@@ -61,6 +101,36 @@ namespace DimseLab_Aflevering.ViewModel
             set { _mC = value; }
         }
 
+        public int NumberOfProjects
+        {
+            get { return _numberOfProjects; }
+            set { _numberOfProjects = value; }
+        }
+
+        public int NumberOfUsers
+        {
+            get { return _numberOfUsers; }
+            set { _numberOfUsers = value; }
+        }
+
+        public int NumberOfDoohickeys
+        {
+            get { return _numberOfDoohickeys; }
+            set { _numberOfDoohickeys = value; }
+        }
+
+        public int NumberOfActiveProjects
+        {
+            get { return _numberOfActiveProjects; }
+            set { _numberOfActiveProjects = value; }
+        }
+
+        public int NumberOfCurrentLoans
+        {
+            get { return _numberOfCurrentLoans; }
+            set { _numberOfCurrentLoans = value; }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -68,5 +138,6 @@ namespace DimseLab_Aflevering.ViewModel
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

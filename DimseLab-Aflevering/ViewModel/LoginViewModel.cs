@@ -31,6 +31,9 @@ namespace DimseLab_Aflevering.ViewModel
         private RelayCommand _createLoginCommand;
         private RelayCommand _shiftVisibilityCommand;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LoginViewModel()
         {
             CreateLoginVisibility = false;
@@ -41,6 +44,9 @@ namespace DimseLab_Aflevering.ViewModel
             ShiftVisibilityCommand = new RelayCommand(ShiftVisibility);
         }
 
+        /// <summary>
+        /// Tjekker om logininformationer er korrekte, og logger på eller viser besked
+        /// </summary>
         private async void LoginMethod()
         {
             bool userFound = false;
@@ -54,7 +60,7 @@ namespace DimseLab_Aflevering.ViewModel
                         ModelController.Instance.CurrentUser = user;
                         userFound = true;
                         ModelController.Instance.SetAllInvisible();
-                        ModelController.Instance.BrowseVisibility = true;
+                        ModelController.Instance.BrowseVisibility = true; // Viser browse ved login
                         ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
                         break;
                     }
@@ -68,6 +74,10 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+        /// <summary>
+        /// Ved oprettelse af bruger - tjekker om passwords er ens
+        /// </summary>
+        /// <returns>bool</returns>
         private bool PasswordsAreEqual()
         {
             if (PassWord == PassWordCheck)
@@ -77,6 +87,11 @@ namespace DimseLab_Aflevering.ViewModel
             return false;
         }
 
+        /// <summary>
+        /// Tjekker om tlf nummer er tal og om det er 8 cifre langt
+        /// </summary>
+        /// <param name="phoneNumber">Tlf som string</param>
+        /// <returns>bool</returns>
         private bool TryParsePhoneNumber(string phoneNumber)
         {
             if (phoneNumber.Length != 8)
@@ -86,6 +101,9 @@ namespace DimseLab_Aflevering.ViewModel
             return int.TryParse(phoneNumber, out _phoneNumberAsInt);
         }
 
+        /// <summary>
+        /// Metode for at oprette login
+        /// </summary>
         private async void CreateLoginMethod()
         {
             if (PasswordsAreEqual() && TryParsePhoneNumber(PhoneNumber))
@@ -118,6 +136,9 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+        /// <summary>
+        /// Skifter mellem login og oprettelse af login
+        /// </summary>
         private void ShiftVisibility()
         {
             if (LoginVisibility)

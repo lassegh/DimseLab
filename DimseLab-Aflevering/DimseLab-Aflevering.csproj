@@ -119,6 +119,8 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\edit-solid.svg" />
+    <Content Include="Assets\project-diagram-solid.svg" />
     <Content Include="Assets\ProjectModel.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -130,7 +132,10 @@
     <Content Include="Assets\Edit.png" />
     <Content Include="Assets\logo.png" />
     <Content Include="Assets\MyProjects.png" />
+    <Content Include="Assets\search-solid.svg" />
     <Content Include="Assets\Shield.png" />
+    <Content Include="Assets\unlock-alt-solid.svg" />
+    <Content Include="Assets\user-regular.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

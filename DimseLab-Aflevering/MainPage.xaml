@@ -35,13 +35,14 @@
             <Rectangle Grid.Column="0"
                        Grid.Row="0"
                        Grid.ColumnSpan="6"
-                       Fill="Gray" />
+                       Fill="Gray"/>
             <Button HorizontalAlignment="Center"
                     Width="400"
                     Height="80"
                     Command="{Binding BrowseButton}"
                     Grid.Column="2"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Background="Transparent">
                 <Button.DataContext>
                     <viewModel:BrowseViewModel />
                 </Button.DataContext>
@@ -50,7 +51,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/browse.png"
+                    <Image Source="Assets/search-solid.svg"
                            MaxHeight="20"
                            MinHeight="1"/>
                     <TextBlock Text="Browse"
@@ -63,13 +64,14 @@
                     Height="80"
                     Command="{Binding ManageProjectsButton}"
                     Grid.Column="3"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Background="Transparent">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/MyProjects.png"
+                    <Image Source="Assets/project-diagram-solid.svg"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -82,7 +84,8 @@
                     Height="80"
                     Command="{Binding UserProfileButton}"
                     Grid.Column="4"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Background="Transparent">
                 <Button.DataContext>
                     <viewModel:UserViewModel />
                 </Button.DataContext>
@@ -91,7 +94,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/Shield.png"
+                    <Image Source="Assets/user-regular.svg"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -104,7 +107,8 @@
                     Height="80"
                     Command="{Binding AdminButton}"
                     Grid.Column="5"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Background="Transparent">
                 <Button.DataContext>
                     <viewModel:AdminViewModel />
                 </Button.DataContext>
@@ -113,7 +117,7 @@
                         <RowDefinition Height="3*" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
-                    <Image Source="Assets/Admin.png"
+                    <Image Source="Assets/unlock-alt-solid.svg"
                            Grid.Row="0"
                            MaxHeight="20"
                            MinHeight="1" />
@@ -357,13 +361,13 @@
                                 <Button Command="{Binding ElementName=MainPages, Path=DataContext.SelectedProjectCommand}"
                                         CommandParameter="{Binding ID}"
                                         Margin="10"
-                                        Width="30"
-                                        Height="30"
+                                        Width="50"
+                                        Height="50"
                                         HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                    <Image Source="Assets/Edit.png"
-                                           MaxHeight="20"
-                                           MinHeight="1"/>
+                                        VerticalAlignment="Center"
+                                        Background="Transparent">
+                                    <Image Source="Assets/edit-solid.svg"
+                                           Height="50"/>
                                 </Button>
                             </Grid>
 

@@ -123,6 +123,7 @@ namespace DimseLab_Aflevering.ViewModel
                     User user = new User(FirstName, LastName, _phoneNumberAsInt, Email, PassWord);
                     ModelController.Instance.UserList.Add(user);
                     ModelController.Instance.CurrentUser = user;
+                    ModelController.Instance.SaveEverything();
                     ((Frame)Window.Current.Content).Navigate(typeof(MainPage));
                 }
             }

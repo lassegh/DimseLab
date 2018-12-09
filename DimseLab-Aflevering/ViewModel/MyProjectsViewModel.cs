@@ -26,7 +26,7 @@ namespace DimseLab_Aflevering.ViewModel
         // Instanser ifm oprettelse af nyt projekt
         private string _inputProjectName;
         private string _inputProjectDescribtion;
-        private DateTimeOffset _inputProjectDate;
+        private DateTime _inputProjectDate;
         private DateTime _projectEndDate;// TODO sæt slutdato til d.d. + 30 dage
 
         // Knap til tilføjelse af projekt
@@ -282,7 +282,7 @@ namespace DimseLab_Aflevering.ViewModel
             set { _inputProjectDescribtion = value; }
         }
 
-        public DateTimeOffset InputProjectDate
+        public DateTime InputProjectDate
         {
             get { return _inputProjectDate; }
             set { _inputProjectDate = value; }

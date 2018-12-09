@@ -194,6 +194,7 @@
                                                     <RowDefinition />
                                                     <RowDefinition />
                                                     <RowDefinition />
+                                                    <RowDefinition />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="300" />
@@ -209,7 +210,36 @@
                                                            Grid.Row="1"
                                                            Grid.Column="0"
                                                            TextWrapping="Wrap" />
-                                                <MenuFlyoutSeparator Grid.Row="2"
+                                                <StackPanel Orientation="Horizontal"
+                                                            Grid.Row="2"
+                                                            Grid.Column="0"
+                                                            Margin="10,5,10,5">
+                                                    <TextBlock Text="Startdato: "
+                                                               Margin="0,0,5,0" />
+                                                    <TextBlock Text="{Binding ProjectBeginDate.Date.Day}"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="/"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="{Binding ProjectBeginDate.Date.Month}"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="-"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="{Binding ProjectBeginDate.Date.Year}"
+                                                               Margin="0,0,5,0" />
+                                                    <TextBlock Text="Slutdato: "
+                                                               Margin="15,0,5,0" />
+                                                    <TextBlock Text="{Binding ProjectEndDate.Date.Day}"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="/"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="{Binding ProjectEndDate.Date.Month}"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="-"
+                                                               Margin="0,0,0,0" />
+                                                    <TextBlock Text="{Binding ProjectEndDate.Date.Year}"
+                                                               Margin="0,0,5,0" />
+                                                </StackPanel>
+                                                <MenuFlyoutSeparator Grid.Row="3"
                                                                      Grid.Column="0"
                                                                      Grid.ColumnSpan="2" />
                                                 <ListView Grid.Column="1"
@@ -347,10 +377,35 @@
                                        Grid.Row="1"
                                        Grid.Column="0"
                                        TextWrapping="Wrap" />
-                            <TextBlock Text="{Binding ProjectEndDate}"
-                                       Grid.Column="0"
-                                       Grid.Row="2" 
-                                       Margin="10,5,10,5"/>
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        Margin="10,5,10,5">
+                                <TextBlock Text="Startdato: "
+                                           Margin="0,0,5,0" />
+                                <TextBlock Text="{Binding ProjectBeginDate.Date.Day}"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="/"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="{Binding ProjectBeginDate.Date.Month}"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="-"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="{Binding ProjectBeginDate.Date.Year}"
+                                           Margin="0,0,5,0" />
+                                <TextBlock Text="Slutdato: "
+                                           Margin="15,0,5,0" />
+                                <TextBlock Text="{Binding ProjectEndDate.Date.Day}"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="/"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="{Binding ProjectEndDate.Date.Month}"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="-"
+                                           Margin="0,0,0,0" />
+                                <TextBlock Text="{Binding ProjectEndDate.Date.Year}"
+                                           Margin="0,0,5,0" />
+                            </StackPanel>
                             <MenuFlyoutSeparator Grid.Row="3"
                                                  Grid.Column="0"
                                                  Grid.ColumnSpan="2" />
@@ -697,11 +752,27 @@
                         Margin="10,5,5,0">
                 <TextBlock Text="Startdato: "
                            Margin="0,0,5,0" />
-                <TextBlock Text="{Binding MC.CurrentProject.ProjectBeginDate}"
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectBeginDate.Date.Day}"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="/"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectBeginDate.Date.Month}"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="-"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectBeginDate.Date.Year}"
                            Margin="0,0,5,0" />
                 <TextBlock Text="Slutdato: "
                            Margin="15,0,5,0" />
-                <TextBlock Text="{Binding MC.CurrentProject.ProjectEndDate}"
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectEndDate.Date.Day}"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="/"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectEndDate.Date.Month}"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="-"
+                           Margin="0,0,0,0" />
+                <TextBlock Text="{Binding MC.CurrentProject.ProjectEndDate.Date.Year}"
                            Margin="0,0,5,0" />
             </StackPanel>
             <TextBlock Text="Deltagere:"

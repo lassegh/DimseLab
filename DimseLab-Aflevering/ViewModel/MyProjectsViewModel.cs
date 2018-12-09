@@ -27,7 +27,7 @@ namespace DimseLab_Aflevering.ViewModel
         private string _inputProjectName;
         private string _inputProjectDescribtion;
         private DateTime _inputProjectDate;
-        private DateTime _projectEndDate;// TODO sæt slutdato til d.d. + 30 dage
+        private DateTime _projectEndDate;
 
         // Knap til tilføjelse af projekt
         private RelayCommand _relayAddProject;
@@ -202,7 +202,6 @@ namespace DimseLab_Aflevering.ViewModel
             // Loops though every project and compares if the email fits the current users email. 
             foreach (Project project in MC.ProjectList)
             {
-                // TODO Tjek om projekt er afsluttet
                 // Removes any project, that is not 'used' by the user, that is loggedIn
                 if (project.ProjectMembers.Any(x => x.Email.ToLower() == ModelController.Instance.CurrentUser.Email.ToLower()))
                 {
@@ -240,9 +239,12 @@ namespace DimseLab_Aflevering.ViewModel
                 ModelController.Instance.ProjectList.Add(newProject);// Tilføjer projekt til hovedlisten
                 MyProjects.Add(newProject);// Tilføjer projekt til MyProjects
                 ModelController.Instance.SaveEverything(); // Her gemmes - Der gemmes til disk.
+
+                // Nulstiller felter i indstastningen
+                InputProjectName = "";
+                InputProjectDescribtion = "";
             }
 
-            // TODO Når der tilføjes et projekt skal indtastningerne i GUI slettes
         }
 
 
@@ -285,7 +287,10 @@ namespace DimseLab_Aflevering.ViewModel
         public DateTime InputProjectDate
         {
             get { return _inputProjectDate; }
-            set { _inputProjectDate = value; }
+            set
+            {
+                _inputProjectDate = value;
+            }
         }
 
         public RelayCommand RelayAddProject

@@ -12,11 +12,8 @@
     </Page.DataContext>
 
     <Grid>
-        <Button Content="Afslut projekt" HorizontalAlignment="Left" Margin="962,465,0,0" VerticalAlignment="Top" Height="77" Width="156" Background="#FFFFFA00"/>
-        <Button Content="Slet projekt" HorizontalAlignment="Left" Margin="962,563,0,0" VerticalAlignment="Top" Height="77
-                " Width="156" Background="Red"/>
-        <TextBlock HorizontalAlignment="Left" Margin="82,37,0,0" Text="Dimselab Administrator" TextWrapping="Wrap" VerticalAlignment="Top" Height="73" Width="595" FontSize="36" FontWeight="Bold"/>
-
-
+        
     </Grid>
+
+        
 </Page>

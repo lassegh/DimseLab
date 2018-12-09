@@ -306,8 +306,12 @@ namespace DimseLab_Aflevering
             set { _searchStringDoohickey = value; }
         }
 
+
         #endregion
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

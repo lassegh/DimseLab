@@ -185,7 +185,7 @@
                     <PivotItem Header="Projekter">
                         <StackPanel>
                             <ListView ItemsSource="{Binding ProjectList, Mode=TwoWay}"
-                                      Height="500">
+                                      Height="500" SelectionChanged="ListView_SelectionChanged">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel>
@@ -238,6 +238,7 @@
                                                                Margin="0,0,0,0" />
                                                     <TextBlock Text="{Binding ProjectEndDate.Date.Year}"
                                                                Margin="0,0,5,0" />
+                                                    <Button Content="X" Margin="5,0,0,0"/>
                                                 </StackPanel>
                                                 <MenuFlyoutSeparator Grid.Row="3"
                                                                      Grid.Column="0"
@@ -288,7 +289,9 @@
                                                 <TextBlock Text="{Binding Email}"
                                                            Margin="10,5,10,5"
                                                            Grid.Row="1" />
+                                                <Button Content="X" Margin="450,0,0,0"/>
                                                 <MenuFlyoutSeparator Grid.Row="2" />
+
                                             </Grid>
                                         </StackPanel>
                                     </DataTemplate>
@@ -313,6 +316,7 @@
                                                             Width="500">
                                                     <TextBlock Text="{Binding Name}"
                                                                Margin="10,10,2,5" />
+                                                    <Button Content="X" Margin="200,0,0,0"/>
                                                 </StackPanel>
                                                 <MenuFlyoutSeparator Grid.Row="1" />
                                             </Grid>

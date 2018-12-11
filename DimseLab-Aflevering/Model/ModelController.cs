@@ -169,8 +169,17 @@ namespace DimseLab_Aflevering.Model
             ProjectList = await JsonReadWrite.LoadProjectsFromJsonAsync();
 
             UserList = await JsonReadWrite.LoadUsersFromJsonAsync();
+            foreach (User user in UserList) // Populates searchUser, så listen er klar når man går ind i edit project
+            {
+                SearchUsers.Add(user);
+            }
 
             DoohickeyList = await JsonReadWrite.LoadDoohickeysFromJsonAsync();
+            foreach (Doohickey doohickey in DoohickeyList) // Populates searchDoohickey, så listen er klar når man går ind i edit project
+            {
+                SearchDoohickeys.Add(doohickey);
+            }
+
             Debug.WriteLine("Afslutter LoadEverything");
         }
 

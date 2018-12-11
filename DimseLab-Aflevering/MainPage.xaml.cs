@@ -26,7 +26,7 @@ namespace DimseLab_Aflevering
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private string _searchStringUser;
+        string _searchStringUser;
         private string _searchStringDoohickey;
 
         public MainPage()

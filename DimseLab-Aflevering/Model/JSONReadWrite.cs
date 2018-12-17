@@ -184,7 +184,7 @@ namespace DimseLab_Aflevering
             uList.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
             uList.Add(new User("Lasse", "Grønbech", 46375817, "Lasse@easj.dk", "1234"));
             uList.Add(new User("André", "Horsten", 46375817, "Andre@easj.dk", "1234"));
-            uList.Add(new User("Ebbe", "Vang", 20123456, "ebva@easj.dk", "dimseLab"));
+            uList.Add(new User("Some", "Teacher", 20123456, "someTeacher@easj.dk", "dimseLab"));
 
             return uList;
         }
@@ -199,7 +199,7 @@ namespace DimseLab_Aflevering
             pList.Add(project1);
 
             Project project2 = new Project("Ny Computer", "Se min nye computer, hvor er den smart. Min er bare ikke stor og klodset som andres.", new DateTime(2018, 12, 9), 1);
-            project2.ProjectMembers.Add(new User("Ebbe", "Vang", 20123456, "ebva@easj.dk", "dimseLab"));
+            project2.ProjectMembers.Add(new User("Some", "Teacher", 20123456, "someTeacher@easj.dk", "dimseLab"));
             pList.Add(project2);
 
             Project project3 = new Project("Klap on, Klap off", "Med en raspberry pi vil vi kunne taende og slukke lyset med klappelyde.", new DateTime(2016, 01, 01), 2);

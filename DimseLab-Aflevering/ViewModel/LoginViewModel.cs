@@ -79,6 +79,26 @@ namespace DimseLab_Aflevering.ViewModel
         }
 
         /// <summary>
+        /// Tjekker om den email, der er tastet til ny bruger allerede er i brug
+        /// </summary>
+        /// <returns></returns>
+        private bool UserAllreadyExists()
+        {
+            bool userAllreadyExists = false;
+
+            foreach (User user in ModelController.Instance.UserList)
+            {
+                if (user.Email.ToLower().Equals(Email.ToLower()))
+                {
+                    userAllreadyExists = true;
+                    break;
+                }
+            }
+
+            return userAllreadyExists;
+        }
+
+        /// <summary>
         /// Ved oprettelse af bruger - tjekker om passwords er ens
         /// </summary>
         /// <returns>bool</returns>
@@ -112,7 +132,7 @@ namespace DimseLab_Aflevering.ViewModel
         {
             if (PasswordsAreEqual() && TryParsePhoneNumber(PhoneNumber))
             {
-                if (!Email.Contains("@easj.dk".ToLower()))
+                if (!Email.Contains("@easj.dk".ToLower()) || UserAllreadyExists())
                 {
                     // Wrong email used
                     var dialog = new MessageDialog("Invalid Email Used");

@@ -53,6 +53,9 @@ namespace DimseLab_Aflevering.ViewModel
             CalculateStats();
         }
 
+        /// <summary>
+        /// Udregner statistik for antal af projekter m.m.
+        /// </summary>
         private void CalculateStats()
         {
 
@@ -80,6 +83,7 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
+        #region Properties
 
         public RelayCommand SaveButton
         {
@@ -131,6 +135,10 @@ namespace DimseLab_Aflevering.ViewModel
             set { _numberOfCurrentLoans = value; }
         }
 
+        #endregion
+
+        #region PropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -139,5 +147,6 @@ namespace DimseLab_Aflevering.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #endregion
     }
 }

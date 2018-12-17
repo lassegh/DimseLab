@@ -5,32 +5,8 @@ using DimseLab_Aflevering.Model;
 
 namespace DimseLab_Aflevering
 {
-    public class RegexSearch
+    public class RegexSearch 
     {
-
-        /*
-        ██▓    ▄▄▄       ██▀███    ██████     ██▒   █▓ ▄▄▄       ██▀███      ██░ ██ ▓█████  ██▀███  
-        ▓██▒   ▒████▄    ▓██ ▒ ██▒▒██    ▒    ▓██░   █▒▒████▄    ▓██ ▒ ██▒   ▓██░ ██▒▓█   ▀ ▓██ ▒ ██▒
-        ▒██░   ▒██  ▀█▄  ▓██ ░▄█ ▒░ ▓██▄       ▓██  █▒░▒██  ▀█▄  ▓██ ░▄█ ▒   ▒██▀▀██░▒███   ▓██ ░▄█ ▒
-        ▒██░   ░██▄▄▄▄██ ▒██▀▀█▄    ▒   ██▒     ▒██ █░░░██▄▄▄▄██ ▒██▀▀█▄     ░▓█ ░██ ▒▓█  ▄ ▒██▀▀█▄  
-        ░██████▒▓█   ▓██▒░██▓ ▒██▒▒██████▒▒      ▒▀█░   ▓█   ▓██▒░██▓ ▒██▒   ░▓█▒░██▓░▒████▒░██▓ ▒██▒
-        ░ ▒░▓  ░▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▓▒ ▒ ░      ░ ▐░   ▒▒   ▓▒█░░ ▒▓ ░▒▓░    ▒ ░░▒░▒░░ ▒░ ░░ ▒▓ ░▒▓░
-        ░ ░ ▒  ░ ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒  ░ ░      ░ ░░    ▒   ▒▒ ░  ░▒ ░ ▒░    ▒ ░▒░ ░ ░ ░  ░  ░▒ ░ ▒░
-        ░ ░    ░   ▒     ░░   ░ ░  ░  ░          ░░    ░   ▒     ░░   ░     ░  ░░ ░   ░     ░░   ░ 
-        ░  ░     ░  ░   ░           ░           ░        ░  ░   ░         ░  ░  ░   ░  ░   ░     
-        ░                                                 
-
-            Hvasså kællinger???????
-
-            Her er der lige en gratis gave fra Lars til jer numsehuller der koder! Jeg ved at vi skal søge på noget shit senere, så jeg har brudt sprintens etik og låner jeg hermed noget kode jeg alligevel havde liggende fra tidligere
-            Den er gratis og kommenteret, motherfuckers
-
-
-
-            "Know what I'm saying?" J-Roc
-
-
-        */
 
         /// <summary>
         /// Søger efter brugere

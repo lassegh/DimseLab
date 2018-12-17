@@ -55,6 +55,9 @@ namespace DimseLab_Aflevering.Model
         public Doohickey Doohickey;
         public Project Project;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         private ModelController()
         {
             // Creates mediator pattern

@@ -45,6 +45,11 @@ namespace DimseLab_Aflevering
             SerializeNotesFileAsync(notesJsonString, DoohickeyFileName);
         }
 
+        /// <summary>
+        /// Tjekker om filnavnet allerede eksisterer
+        /// </summary>
+        /// <param name="fileName">Filnavn</param>
+        /// <returns>bool</returns>
         public static async Task<bool> IsFilePresent(string fileName)
         {
             var item = await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName);
@@ -82,6 +87,10 @@ namespace DimseLab_Aflevering
 
         }
 
+        /// <summary>
+        /// Henter userlisten
+        /// </summary>
+        /// <returns>Userlist</returns>
         public static async Task<ObservableCollection<User>> LoadUsersFromJsonAsync()
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");
@@ -112,6 +121,10 @@ namespace DimseLab_Aflevering
 
         }
 
+        /// <summary>
+        /// Henter doohickey listen
+        /// </summary>
+        /// <returns>DoohickeyList</returns>
         public static async Task<ObservableCollection<Doohickey>> LoadDoohickeysFromJsonAsync()
         {
             Debug.WriteLine("LoadNotesFromJsonAsync");

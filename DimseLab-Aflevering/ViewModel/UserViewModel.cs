@@ -72,7 +72,11 @@ namespace DimseLab_Aflevering.ViewModel
             }
         }
 
-
+        /// <summary>
+        /// Tjekker om tlf.-nummer overholder standarder såsom længde og kun tal
+        /// </summary>
+        /// <param name="phoneNumber">Telefonnummer som string</param>
+        /// <returns>bool</returns>
         private bool TryParsePhoneNumber(string phoneNumber)
         {
             if (phoneNumber.Length != 8)
@@ -83,6 +87,10 @@ namespace DimseLab_Aflevering.ViewModel
 
         }
 
+        /// <summary>
+        /// Tjekker om passwords er ens og ikke er tomme
+        /// </summary>
+        /// <returns>bool</returns>
         private bool PasswordChecker()
         {
             if (NewPassword != null && NewPasswordCheck != null && CurrentPassword != null)

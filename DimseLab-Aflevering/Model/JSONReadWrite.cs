@@ -196,20 +196,24 @@ namespace DimseLab_Aflevering
             Project project1 = new Project("Robotic Arm",
                 "Vi vil udvikle en robotarm, der selv kan videreudvikle dette program", new DateTime(2018, 12, 31), 0);
             project1.ProjectMembers.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
+            project1.ProjectBeginDate = new DateTime(2018, 12, 01);
             pList.Add(project1);
 
             Project project2 = new Project("Ny Computer", "Se min nye computer, hvor er den smart. Min er bare ikke stor og klodset som andres.", new DateTime(2018, 12, 9), 1);
             project2.ProjectMembers.Add(new User("Some", "Teacher", 20123456, "someTeacher@easj.dk", "dimseLab"));
+            project2.ProjectBeginDate = new DateTime(2018, 11, 21);
             pList.Add(project2);
 
-            Project project3 = new Project("Klap on, Klap off", "Med en raspberry pi vil vi kunne taende og slukke lyset med klappelyde.", new DateTime(2016, 01, 01), 2);
+            Project project3 = new Project("Klap on, Klap off (Afsluttet)", "Med en raspberry pi vil vi kunne taende og slukke lyset med klappelyde.", new DateTime(2016, 01, 01), 2);
             project3.ProjectMembers.Add(new User("Ungobungo", "BangoBong", 46375817, "Ungogabe@edu.easj.dk", "1234"));
             project3.IsFinished = true;
+            project3.ProjectBeginDate = new DateTime(2015, 12, 01);
             pList.Add(project3);
 
             Project project4 = new Project("Sproejt mig i ansigtet", "Hold mig vaagen med Hvid Monster, hvis jeg falder i soevn", new DateTime(2018, 12, 19), 3);
             project4.ProjectMembers.Add(new User("Lars", "Truelsen", 46375817, "Lars@easj.dk", "1234"));
             project4.ProjectMembers.Add(new User("Michael", "Kjergaard", 46375817, "Michael@easj.dk", "1234"));
+            project4.ProjectBeginDate = new DateTime(2018, 12, 01);
             pList.Add(project4);
 
             return pList;
